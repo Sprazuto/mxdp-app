@@ -1,150 +1,192 @@
-'use client'
+"use client";
 
-import Link from 'next/link'
-import { cn } from '@/lib/utils'
-import { ArrowRight, CheckCircle, Users, Award, Shield, Sparkles, Star } from 'lucide-react'
-import { FloatingOrnaments } from '@/components/ui/FloatingOrnaments'
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
+import { BackgroundBeams, Sparkles } from "@/components/aceternity";
+import { cn } from "@/lib/utils";
+import { ArrowRight, Users, Award, CheckCircle, Shield } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { fadeInUp, staggerContainer, buttonVariants, cardVariants } from "@/lib/motion";
 
 interface HeroSectionProps {
-  title?: string
-  subtitle?: string
-  primaryCtaText?: string
-  primaryCtaHref?: string
-  secondaryCtaText?: string
-  secondaryCtaHref?: string
-  stats?: Array<{ label: string; value: string; icon: React.ComponentType<{ className?: string }> }>
+  title?: string;
+  subtitle?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
+  stats?: Array<{ label: string; value: string; icon: React.ComponentType<{ className?: string }> }>;
 }
 
 export function HeroSection({
-  title = 'Pendidikan Berkualitas untuk Masa Depan Cerah',
-  subtitle = 'MXDP menyediakan program pendidikan terbaik dengan guru berpengalaman, fasilitas lengkap, dan lingkungan belajar yang aman serta menyenangkan untuk anak-anak Indonesia.',
-  primaryCtaText = 'Daftar Sekarang',
-  primaryCtaHref = '/ppdb',
-  secondaryCtaText = 'Jelajahi Program',
-  secondaryCtaHref = '/program',
+  title = "Pendidikan Berkualitas untuk Masa Depan Cerah",
+  subtitle = "MXDP menyediakan program pendidikan terbaik dengan guru berpengalaman, fasilitas lengkap, dan lingkungan belajar yang aman serta menyenangkan untuk anak-anak Indonesia.",
+  primaryCtaText = "Daftar Sekarang",
+  primaryCtaHref = "/ppdb",
+  secondaryCtaText = "Jelajahi Program",
+  secondaryCtaHref = "/program",
   stats = [
-    { label: 'Siswa Aktif', value: '2.500+', icon: Users },
-    { label: 'Guru Berpengalaman', value: '150+', icon: Award },
-    { label: 'Program Unggulan', value: '25+', icon: CheckCircle },
-    { label: 'Lingkungan Aman', value: '100%', icon: Shield },
+    { label: "Siswa Aktif", value: "2.500+", icon: Users },
+    { label: "Guru Berpengalaman", value: "150+", icon: Award },
+    { label: "Program Unggulan", value: "25+", icon: CheckCircle },
+    { label: "Lingkungan Aman", value: "100%", icon: Shield },
   ],
 }: HeroSectionProps = {}) {
+  const reducedMotion = useReducedMotion();
+
   return (
     <section
       className={cn(
-        'relative overflow-hidden px-4 py-20 sm:py-28 lg:py-36 xl:py-44 pt-24',
-        'bg-gradient-to-b from-[#FFFDF9] via-[#FFF8F0] to-[#F0F9FF] dark:from-gray-950 dark:via-gray-900 dark:to-gray-950'
+        "relative overflow-hidden px-4 py-16 sm:py-20 lg:py-28 xl:py-32 pt-20",
+        "bg-gradient-to-b from-emerald-50 via-white to-amber-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
       )}
       aria-labelledby="hero-title"
     >
-      <FloatingOrnaments count={30} variant="hero" />
-      
-      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-emerald-200/30 blur-3xl dark:bg-emerald-900/20" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-pink-200/30 blur-3xl dark:bg-pink-900/20" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-emerald-200/20 to-pink-200/20 blur-3xl dark:from-emerald-900/10 dark:to-pink-900/10" />
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-10" />
-      </div>
+      <BackgroundBeams />
+      <Sparkles count={15} color="multi" size="md" />
 
       <div className="mx-auto max-w-7xl">
-        <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-amber-100/90 px-5 py-2 text-sm font-bold text-amber-800 dark:bg-amber-900/40 dark:text-amber-300 backdrop-blur-sm mb-6 border-2 border-amber-200 dark:border-amber-800 shadow-lg shadow-amber-200/50 rotate-[-2deg]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+        <motion.div
+          className="text-center max-w-3xl mx-auto mb-12"
+          initial={reducedMotion ? false : fadeInUp.initial}
+          animate={reducedMotion ? false : fadeInUp.animate}
+          viewport={{ once: true, margin: "50px" }}
+        >
+          <motion.span
+            className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <motion.span
+                className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.75, 0, 0.75] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
             </span>
-            <Sparkles className="h-4 w-4 animate-bounce" />
-            Pendaftaran Tahun Ajaran Baru Dibuka! 🎈
-          </span>
-          <h1
+            Pendaftaran Tahun Ajaran Baru Dibuka
+          </motion.span>
+
+          <motion.h1
             id="hero-title"
             className={cn(
-              'text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.1]',
-              'bg-gradient-to-r from-slate-900 via-emerald-600 to-pink-600',
-              'bg-clip-text text-transparent dark:from-white dark:via-emerald-400 dark:to-pink-400',
-              'mb-6'
+              "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-tight leading-[1.1]",
+              "bg-gradient-to-r from-slate-900 via-emerald-600 to-amber-600",
+              "bg-clip-text text-transparent dark:from-white dark:via-emerald-400 dark:to-amber-400",
+              "mb-4"
             )}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             {title}
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-700 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium">
+          </motion.h1>
+
+          <motion.p
+            className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+          >
             {subtitle}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 relative z-10">
-          <Link
-            href={primaryCtaHref}
-            className={cn(
-              'group inline-flex items-center justify-center gap-3 rounded-full',
-              'bg-gradient-to-r from-amber-400 to-orange-500',
-              'text-amber-950 font-black px-10 py-5 text-lg',
-              'border-b-4 border-orange-600',
-              'shadow-[0_12px_24px_-6px_rgba(251,191,36,0.5)] hover:shadow-[0_16px_32px_-8px_rgba(251,191,36,0.6)]',
-              'hover:bg-gradient-to-r hover:from-amber-300 hover:to-orange-400',
-              'active:translate-y-1 active:border-b-0 active:shadow-[0_4px_8px_-2px_rgba(251,191,36,0.4)]',
-              'transition-all duration-150 focus:outline-none',
-              'focus:ring-4 focus:ring-amber-300 focus:ring-offset-2'
-            )}
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "50px" }}
+        >
+          <motion.button
+            variants={buttonVariants}
+            className="w-full sm:w-auto gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 active:scale-[0.98] transition-all duration-200 px-8 py-4 text-white font-semibold text-lg"
           >
-            {primaryCtaText}
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-          </Link>
-          <Link
-            href={secondaryCtaHref}
-            className={cn(
-              'inline-flex items-center justify-center gap-2 rounded-full',
-              'bg-white/90 dark:bg-slate-800/90',
-              'border-4 border-emerald-200 dark:border-emerald-800',
-              'px-10 py-5 text-lg font-black text-emerald-700 dark:text-emerald-300',
-              'backdrop-blur-sm',
-              'hover:bg-emerald-50 dark:hover:bg-emerald-900/30',
-              'hover:border-emerald-300 dark:hover:border-emerald-700',
-              'hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-200/30',
-              'transition-all duration-300 focus:outline-none',
-              'focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2'
-            )}
-          >
-            {secondaryCtaText}
-            <ArrowRight className="h-5 w-5" aria-hidden="true" />
-          </Link>
-        </div>
+            <Link href={primaryCtaHref} className="flex items-center gap-2">
+              {primaryCtaText}
+              <motion.svg
+                className="ml-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                initial={{ x: 0 }}
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </motion.svg>
+            </Link>
+          </motion.button>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-4xl mx-auto relative z-10">
+          <motion.button
+            variants={buttonVariants}
+            className="w-full sm:w-auto gap-2 rounded-full border-2 border-emerald-300 dark:border-emerald-700 bg-white/90 dark:bg-slate-800/90 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-400 px-8 py-4 font-semibold text-lg"
+          >
+            <Link href={secondaryCtaHref} className="flex items-center gap-2">
+              {secondaryCtaText}
+              <motion.svg
+                className="ml-2 h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                initial={{ x: 0 }}
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </motion.svg>
+            </Link>
+          </motion.button>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto"
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "50px" }}
+        >
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={stat.label}
-              className={cn(
-                'relative p-6 rounded-[24px] group',
-                'bg-white/80 dark:bg-slate-800/80',
-                'border-4 border-emerald-100 dark:border-emerald-800',
-                'backdrop-blur-sm',
-                'hover:border-emerald-300 dark:hover:border-emerald-700',
-                'hover:shadow-[0_16px_32px_-8px_rgba(16,185,129,0.25)]',
-                'hover:-translate-y-2',
-                'transition-all duration-300'
-              )}
-              style={{ transform: index % 2 === 0 ? 'rotate(-1deg)' : 'rotate(1deg)' }}
+              variants={cardVariants}
+              className="relative p-5 rounded-2xl group"
+              style={{ transform: index % 2 === 0 ? "rotate(-1deg)" : "rotate(1deg)" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-pink-500/5 rounded-[24px] opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="relative flex items-center gap-4">
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-[20px] bg-gradient-to-br from-emerald-100 to-pink-100 dark:from-emerald-900/30 dark:to-pink-900/30 border-2 border-emerald-200 dark:border-emerald-800 shadow-lg shadow-emerald-200/50">
-                  <stat.icon className="h-8 w-8 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
-                </div>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-amber-500/5 rounded-2xl"
+                initial={{ opacity: 0 }}
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              />
+              <motion.div
+                className="relative flex items-center gap-3"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              >
+                <motion.div
+                  className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-100 to-amber-100 dark:from-emerald-900/30 dark:to-amber-900/30 border border-emerald-200/50 dark:border-emerald-800/50 shadow-lg shadow-emerald-200/50"
+                  whileHover={{ scale: 1.1, rotate: 3 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                >
+                  <stat.icon className="h-6 w-6 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                </motion.div>
                 <div className="text-left">
-                  <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white leading-tight">
+                  <div className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight">
                     {stat.value}
                   </div>
-                  <div className="text-sm font-bold text-slate-600 dark:text-slate-400">
+                  <div className="text-sm font-semibold text-slate-600 dark:text-slate-400">
                     {stat.label}
                   </div>
                 </div>
-              </div>
-              <Star className="absolute top-3 right-3 h-5 w-5 text-amber-300 animate-bounce" aria-hidden="true" />
-            </div>
+              </motion.div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }
