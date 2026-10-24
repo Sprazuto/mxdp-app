@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, type UseFormRegister } from "react-hook-form";
+import { useForm, type UseFormRegister, type FieldError } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, useReducedMotion } from "motion/react";
 import { ppdbRegistrationSchema, type PPDBRegistrationData, ppdbRegistrationDefaultValues } from "@/lib/validations/ppdb";
@@ -214,7 +214,7 @@ export function PPDBForm() {
   }
 
   const step = steps[currentStep];
-  const stepThemes = [
+  const stepThemes: Array<{ bg: string; border: string; iconColor: string; inputFocus: string; glow: string; accent: "emerald" | "pink" | "amber" | "purple" }> = [
     { bg: "bg-[#E6FFFA] dark:bg-emerald-900/20", border: "border-emerald-200 dark:border-emerald-800", iconColor: "text-emerald-600 dark:text-emerald-400", inputFocus: "focus:ring-emerald-200", glow: "shadow-emerald-200", accent: "emerald" },
     { bg: "bg-[#FDF2F8] dark:bg-pink-900/20", border: "border-pink-200 dark:border-pink-800", iconColor: "text-pink-600 dark:text-pink-400", inputFocus: "focus:ring-pink-200", glow: "shadow-pink-200", accent: "pink" },
     { bg: "bg-[#FEFCE8] dark:bg-amber-900/20", border: "border-amber-200 dark:border-amber-800", iconColor: "text-amber-600 dark:text-amber-400", inputFocus: "focus:ring-amber-200", glow: "shadow-amber-200", accent: "amber" },
@@ -229,7 +229,7 @@ export function PPDBForm() {
       animate={reducedMotion ? false : { opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <SparklesAnim count={20} color={theme.accent as any} size="md" />
+      <SparklesAnim count={20} color={theme.accent} size="md" />
 
       <div className="relative z-10">
         {/* Progress Indicator */}
@@ -282,7 +282,7 @@ export function PPDBForm() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.2 }}
           >
-            <SparklesAnim count={8} color={theme.accent as any} size="sm" className="pointer-events-none" />
+            <SparklesAnim count={8} color={theme.accent} size="sm" className="pointer-events-none" />
 
             <motion.div
               className="mb-6 pb-4 border-b border-slate-200 dark:border-slate-700"
@@ -529,7 +529,7 @@ export function PPDBForm() {
                   >
                     <p className="text-sm text-amber-800 dark:text-amber-200 flex items-center gap-2">
                       <Shield className="h-4 w-4 flex-shrink-0" aria-hidden="true" />
-                      <strong>Konfirmasi:</strong> Dengan menekan tombol "Kirim Pendaftaran", saya menyatakan bahwa semua data yang diisi benar dan lengkap. Saya bersedia dihubungi via WhatsApp untuk verifikasi dan informasi lanjutan.
+                      <strong>Konfirmasi:</strong> Dengan menekan tombol &quot;Kirim Pendaftaran&quot;, saya menyatakan bahwa semua data yang diisi benar dan lengkap. Saya bersedia dihubungi via WhatsApp untuk verifikasi dan informasi lanjutan.
                     </p>
                   </motion.div>
                 </motion.div>
@@ -613,7 +613,7 @@ interface InputFieldProps {
   max?: string;
   required?: boolean;
   rows?: number;
-  error?: any;
+  error?: FieldError;
   errorId?: string;
 }
 
@@ -716,7 +716,7 @@ interface SelectFieldProps {
   icon: React.ReactNode;
   register: ReturnType<UseFormRegister<PPDBRegistrationData>>;
   id: string;
-  error?: any;
+  error?: FieldError;
   errorId?: string;
   options: Array<{ value: string; label: string; disabled?: boolean }>;
 }

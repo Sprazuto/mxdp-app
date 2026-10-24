@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { urlFor } from "@/lib/sanity";
+import { urlFor, type SanityImage } from "@/lib/sanity";
 import { getPrograms } from "@/lib/sanity/queries";
 import { ChevronRight, Users, Clock, Award, Shield, Sparkles as SparklesIcon } from "lucide-react";
 import { motion } from "motion/react";
@@ -16,8 +16,8 @@ interface Program {
   title: string;
   slug: { current: string };
   shortDescription: string;
-  fullDescription: any;
-  thumbnail: any;
+  fullDescription: unknown;
+  thumbnail: SanityImage | null;
   duration: string;
   ageGroup: string;
   features: string[];

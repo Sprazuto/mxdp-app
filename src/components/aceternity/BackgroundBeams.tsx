@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
@@ -10,11 +10,9 @@ interface BackgroundBeamsProps {
 
 export function BackgroundBeams({ className }: BackgroundBeamsProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [mounted, setMounted] = useState(false);
   const reducedMotion = useReducedMotion();
 
   useEffect(() => {
-    setMounted(true);
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -102,8 +100,6 @@ export function BackgroundBeams({ className }: BackgroundBeamsProps) {
       cancelAnimationFrame(animationId);
     };
   }, [reducedMotion]);
-
-  if (!mounted) return null;
 
   return (
     <canvas

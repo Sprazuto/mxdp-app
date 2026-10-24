@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import {
@@ -11,7 +10,6 @@ import {
   Mail,
   Phone,
   MapPin,
-  ArrowRight,
 } from 'lucide-react'
 
 const footerLinks = {
@@ -61,11 +59,7 @@ export function Footer({
   contactPhone?: string
   address?: string
 } = {}) {
-  const [currentYear, setCurrentYear] = useState<number>(2026)
-
-  useEffect(() => {
-    setCurrentYear(new Date().getFullYear())
-  }, [])
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800" role="contentinfo">

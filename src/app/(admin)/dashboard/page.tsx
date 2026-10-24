@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { createSupabaseServerClient } from '@/lib/supabase/client'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -5,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Select } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Input } from '@/components/ui/input'
-import { ArrowUpDown, Search, Filter, Download, Eye, Edit } from 'lucide-react'
+import { ArrowUpDown, Eye, Edit } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export const dynamic = 'force-dynamic'
@@ -133,9 +134,9 @@ export default async function AdminDashboardPage() {
               <h1 className="text-xl font-bold text-gray-900 dark:text-white">MXDP Admin Dashboard</h1>
             </div>
             <nav className="flex items-center gap-4 text-sm">
-              <a href="/" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+              <Link href="/" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
                 Lihat Website
-              </a>
+              </Link>
             </nav>
           </div>
         </div>
@@ -258,7 +259,7 @@ export default async function AdminDashboardPage() {
                         <TableCell><StatusBadge status={inquiry.status} /></TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                               <Eye className="h-4 w-4" />
                             </Button>
                             <Select defaultValue={inquiry.status} className="w-28">
@@ -329,7 +330,7 @@ export default async function AdminDashboardPage() {
                         <TableCell><StatusBadge status={reg.status} /></TableCell>
                         <TableCell>
                           <div className="flex items-center gap-2">
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
                               <Eye className="h-4 w-4" />
                             </Button>
                             <Select defaultValue={reg.status} className="w-28">

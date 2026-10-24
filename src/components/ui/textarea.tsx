@@ -1,8 +1,12 @@
-import { cn } from "cn"
+"use client";
 
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+import { type TextareaHTMLAttributes } from "react";
+import { cn } from "@/lib/utils";
 
-function Textarea({ className, ...props }: TextareaProps) {
+function Textarea({
+  className,
+  ...props
+}: TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <textarea
       className={cn(
@@ -11,7 +15,7 @@ function Textarea({ className, ...props }: TextareaProps) {
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Textarea }
+export { Textarea };

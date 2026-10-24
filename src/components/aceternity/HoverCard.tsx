@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { useMotionConfig, cardVariants } from "@/lib/motion";
+import { cardVariants } from "@/lib/motion";
 
 interface HoverCardProps {
   children: React.ReactNode;
@@ -16,22 +16,15 @@ const elevationStyles = {
   high: "shadow-lg",
 };
 
-const elevationHoverStyles = {
-  low: "shadow-md",
-  medium: "shadow-xl",
-  high: "shadow-2xl",
-};
-
 export function HoverCard({ children, className, elevation = "medium" }: HoverCardProps) {
   const reducedMotion = useReducedMotion();
-  const motionConfig = useMotionConfig();
 
   if (reducedMotion) {
     return (
       <div
         className={cn(
-          "group relative rounded-2xl border border-slate-200/60 dark:border-slate-700/60",
-          "bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm",
+          "relative rounded-2xl border border-[var(--color-border)]",
+          "bg-[var(--color-bg-elevated)]",
           elevationStyles[elevation],
           className
         )}
@@ -45,8 +38,8 @@ export function HoverCard({ children, className, elevation = "medium" }: HoverCa
   return (
     <motion.div
       className={cn(
-        "group relative rounded-2xl border border-slate-200/60 dark:border-slate-700/60",
-        "bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm",
+        "relative rounded-2xl border border-[var(--color-border)]",
+        "bg-[var(--color-bg-elevated)]",
         className
       )}
       variants={cardVariants}

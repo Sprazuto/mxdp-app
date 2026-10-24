@@ -1,8 +1,8 @@
-import { cn } from "cn"
+"use client";
 
-interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {}
+import { cn } from "@/lib/utils";
 
-function Label({ className, ...props }: LabelProps) {
+function Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {
   return (
     <label
       className={cn(
@@ -11,7 +11,7 @@ function Label({ className, ...props }: LabelProps) {
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Label }
+export { Label };

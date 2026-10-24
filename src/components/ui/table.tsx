@@ -1,8 +1,12 @@
-import { cn } from "cn"
+"use client";
 
-interface TableProps extends React.TableHTMLAttributes<HTMLTableElement> {}
+import { type HTMLAttributes, type ThHTMLAttributes, type TdHTMLAttributes } from "react";
+import { cn } from "@/lib/utils";
 
-function Table({ className, ...props }: TableProps) {
+function Table({
+  className,
+  ...props
+}: HTMLAttributes<HTMLTableElement>) {
   return (
     <div className="relative w-full overflow-auto">
       <table
@@ -10,28 +14,31 @@ function Table({ className, ...props }: TableProps) {
         {...props}
       />
     </div>
-  )
+  );
 }
 
-interface TableHeaderProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
-
-function TableHeader({ className, ...props }: TableHeaderProps) {
+function TableHeader({
+  className,
+  ...props
+}: HTMLAttributes<HTMLTableSectionElement>) {
   return (
     <thead className={cn("[&_tr]:border-b", className)} {...props} />
-  )
+  );
 }
 
-interface TableBodyProps extends React.HTMLAttributes<HTMLTableSectionElement> {}
-
-function TableBody({ className, ...props }: TableBodyProps) {
+function TableBody({
+  className,
+  ...props
+}: HTMLAttributes<HTMLTableSectionElement>) {
   return (
     <tbody className={cn("[&_tr:last-child]:border-0", className)} {...props} />
-  )
+  );
 }
 
-interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {}
-
-function TableRow({ className, ...props }: TableRowProps) {
+function TableRow({
+  className,
+  ...props
+}: HTMLAttributes<HTMLTableRowElement>) {
   return (
     <tr
       className={cn(
@@ -40,12 +47,13 @@ function TableRow({ className, ...props }: TableRowProps) {
       )}
       {...props}
     />
-  )
+  );
 }
 
-interface TableHeadProps extends React.ThHTMLAttributes<HTMLTableCellElement> {}
-
-function TableHead({ className, ...props }: TableHeadProps) {
+function TableHead({
+  className,
+  ...props
+}: ThHTMLAttributes<HTMLTableCellElement>) {
   return (
     <th
       className={cn(
@@ -54,26 +62,28 @@ function TableHead({ className, ...props }: TableHeadProps) {
       )}
       {...props}
     />
-  )
+  );
 }
 
-interface TableCellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {}
-
-function TableCell({ className, ...props }: TableCellProps) {
+function TableCell({
+  className,
+  ...props
+}: TdHTMLAttributes<HTMLTableCellElement>) {
   return (
     <td
       className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
       {...props}
     />
-  )
+  );
 }
 
-interface TableCaptionProps extends React.HTMLAttributes<HTMLTableCaptionElement> {}
-
-function TableCaption({ className, ...props }: TableCaptionProps) {
+function TableCaption({
+  className,
+  ...props
+}: HTMLAttributes<HTMLTableCaptionElement>) {
   return (
     <caption className={cn("mt-4 text-sm text-muted-foreground", className)} {...props} />
-  )
+  );
 }
 
 export {
@@ -84,4 +94,4 @@ export {
   TableHead,
   TableCell,
   TableCaption,
-}
+};

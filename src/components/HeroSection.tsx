@@ -1,12 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { BackgroundBeams, Sparkles } from "@/components/aceternity";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Users, Award, CheckCircle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { fadeInUp, staggerContainer, buttonVariants, cardVariants } from "@/lib/motion";
+import { fadeInUp, staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion";
 
 interface HeroSectionProps {
   title?: string;
@@ -33,6 +33,7 @@ export function HeroSection({
   ],
 }: HeroSectionProps = {}) {
   const reducedMotion = useReducedMotion();
+  const motionProps = getMotionProps(reducedMotion);
 
   return (
     <section
@@ -48,8 +49,9 @@ export function HeroSection({
       <div className="mx-auto max-w-7xl">
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
-          initial={reducedMotion ? false : fadeInUp.initial}
-          animate={reducedMotion ? false : fadeInUp.animate}
+          {...motionProps}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "50px" }}
         >
           <motion.span
@@ -100,10 +102,12 @@ export function HeroSection({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "50px" }}
+          {...motionProps}
         >
           <motion.button
-            variants={buttonVariants}
             className="w-full sm:w-auto gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 active:scale-[0.98] transition-all duration-200 px-8 py-4 text-white font-semibold text-lg"
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.97, y: 0.5 }}
           >
             <Link href={primaryCtaHref} className="flex items-center gap-2">
               {primaryCtaText}
@@ -122,8 +126,9 @@ export function HeroSection({
           </motion.button>
 
           <motion.button
-            variants={buttonVariants}
             className="w-full sm:w-auto gap-2 rounded-full border-2 border-emerald-300 dark:border-emerald-700 bg-white/90 dark:bg-slate-800/90 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 hover:border-emerald-400 px-8 py-4 font-semibold text-lg"
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.97, y: 0.5 }}
           >
             <Link href={secondaryCtaHref} className="flex items-center gap-2">
               {secondaryCtaText}
@@ -148,13 +153,15 @@ export function HeroSection({
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "50px" }}
+          {...motionProps}
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              variants={cardVariants}
               className="relative p-5 rounded-2xl group"
               style={{ transform: index % 2 === 0 ? "rotate(-1deg)" : "rotate(1deg)" }}
+              whileHover={{ y: -4, boxShadow: "var(--shadow-xl)" }}
+              whileTap={{ y: -2, scale: 0.99 }}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-amber-500/5 rounded-2xl"

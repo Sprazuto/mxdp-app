@@ -1,140 +1,168 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { Variants, Transition } from "motion/react";
 
-/**
- * Hook to detect user's reduced motion preference
- * Respects OS-level "Reduce Motion" accessibility setting
- */
+/* ========================================
+   REDUCED MOTION HOOK
+======================================== */
 export function useReducedMotion(): boolean {
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [reduced, setReduced] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
-
-    const handler = (event: MediaQueryListEvent) => {
-      setReducedMotion(event.matches);
-    };
-
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
+    if (typeof window === "undefined") return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    media.addEventListener("change", handler);
+    return () => media.removeEventListener("change", handler);
   }, []);
 
-  return reducedMotion;
+  return reduced;
 }
 
-/**
- * Hook to safely animate only when user hasn't reduced motion
- * Returns Motion-compatible transition config
- */
-export function useMotionConfig(
-  defaultTransition: { duration?: number; ease?: number[]; type?: string } = {}
-) {
-  const reducedMotion = useReducedMotion();
+/* ========================================
+   BASE TRANSITIONS
+======================================== */
+export const transitions = {
+  micro: { duration: 0.15, ease: "easeOut" },
+  enter: { duration: 0.3, ease: "easeOut" },
+  spring: { type: "spring", stiffness: 400, damping: 30 },
+  page: { duration: 0.5, ease: "easeOut" },
+} satisfies Record<string, Transition>;
 
-  if (reducedMotion) {
-    return {
-      transition: { duration: 0.01, ...defaultTransition },
-      initial: false,
-      animate: false,
-      exit: false,
-      whileHover: false,
-      whileTap: false,
-      whileInView: false,
-    };
-  }
+/* ========================================
+   VARIANTS - Single Source of Truth
+======================================== */
 
-  return {
-    transition: {
-      duration: 0.3,
-      ease: [0.23, 1, 0.32, 1], // ease-out
-      ...defaultTransition,
-    },
-  };
-}
-
-/**
- * Spring transition config for interactive elements
- */
-export const springTransition = {
-  type: "spring" as const,
-  stiffness: 400,
-  damping: 30,
-  mass: 1,
-};
-
-/**
- * Easing transition config for decorative animations
- */
-export const easeTransition = (duration = 0.4) => ({
-  duration,
-  ease: [0.23, 1, 0.32, 1] as const,
-});
-
-/**
- * Stagger config for list animations
- */
-export const staggerContainer = (stagger = 0.1) => ({
-  animate: {
-    transition: {
-      staggerChildren: stagger,
-      delayChildren: 0.1,
-    },
-  },
-});
-
+// Fade + slide up (sections, cards)
 export const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -20 },
-  transition: easeTransition(0.4),
-};
+  exit: { opacity: 0, y: -16 },
+  transition: transitions.enter,
+} as const;
 
+// Fade only (text, badges)
 export const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
   exit: { opacity: 0 },
-  transition: easeTransition(0.3),
-};
+  transition: transitions.micro,
+} as const;
 
+// Scale + fade (modals, popovers, buttons)
 export const scaleIn = {
-  initial: { opacity: 0, scale: 0.9 },
+  initial: { opacity: 0, scale: 0.96 },
   animate: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0.9 },
-  transition: springTransition,
-};
+  exit: { opacity: 0, scale: 0.96 },
+  transition: transitions.spring,
+} as const;
 
+// Slide from left/right (sidebars, drawers)
 export const slideInLeft = {
-  initial: { opacity: 0, x: -30 },
+  initial: { opacity: 0, x: -24 },
   animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 30 },
-  transition: easeTransition(0.4),
-};
+  exit: { opacity: 0, x: -24 },
+  transition: transitions.enter,
+} as const;
 
 export const slideInRight = {
-  initial: { opacity: 0, x: 30 },
+  initial: { opacity: 0, x: 24 },
   animate: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: -30 },
-  transition: easeTransition(0.4),
-};
+  exit: { opacity: 0, x: -24 },
+  transition: transitions.enter,
+} as const;
 
-/**
- * Hover/tap variants for interactive elements
- */
-export const interactiveVariants = {
-  rest: { scale: 1, rotate: 0 },
-  hover: { scale: 1.02, rotate: 1 },
-  tap: { scale: 0.98 },
-};
+/* ========================================
+   STAGGER CONTAINER (for lists, grids)
+======================================== */
+export function staggerContainer(
+  staggerMs = 80,
+  delayChildren = 100
+): Variants {
+  return {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: staggerMs / 1000,
+        delayChildren: delayChildren / 1000,
+      },
+    },
+  };
+}
 
+/* ========================================
+   INTERACTIVE VARIANTS
+======================================== */
+
+// Buttons - spring tap, subtle hover
 export const buttonVariants = {
   rest: { scale: 1, y: 0 },
-  hover: { scale: 1.02, y: -2 },
-  tap: { scale: 0.97, y: 1 },
+  hover: { scale: 1.015, y: -1 },
+  tap: { scale: 0.97, y: 0.5 },
+  focus: { scale: 1 },
+} as const;
+
+// Cards - lift + shadow
+export const cardVariants = {
+  rest: { y: 0, boxShadow: "var(--shadow-md)" },
+  hover: { y: -4, boxShadow: "var(--shadow-xl)" },
+  tap: { y: -2, scale: 0.99 },
+} as const;
+
+// Input fields - border color, subtle scale
+export const inputVariants = {
+  rest: { scale: 1 },
+  focus: { scale: 1.005 },
+  error: { borderColor: "var(--color-error)" },
+} as const;
+
+// Badges - pop on hover
+export const badgeVariants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.08 },
+  tap: { scale: 0.95 },
+} as const;
+
+// Avatar - ring pulse
+export const avatarVariants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.05 },
+} as const;
+
+/* ========================================
+   PAGE TRANSITION VARIANTS
+======================================== */
+export const pageVariants: Variants = {
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -16 },
+  transition: transitions.page,
 };
 
-export const cardVariants = {
-  rest: { y: 0, boxShadow: "0 4px 20px rgba(0,0,0,0.08)" },
-  hover: { y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" },
-};
+/* ========================================
+   HELPER: Reduced Motion Guard
+======================================== */
+export function getMotionProps(reduced: boolean) {
+  if (reduced) {
+    return {
+      initial: false,
+      animate: false,
+      transition: { duration: 0 },
+      whileHover: undefined,
+      whileTap: undefined,
+      whileInView: undefined,
+      viewport: undefined,
+    };
+  }
+  return {};
+}
+
+/* ========================================
+   TYPE EXPORTS
+======================================== */
+export type { Variants, Transition };

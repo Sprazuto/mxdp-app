@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { urlFor } from "@/lib/sanity";
+import { urlFor, type SanityImage } from "@/lib/sanity";
 import { getTeachers } from "@/lib/sanity/queries";
 import { GraduationCap, Award, Heart, Users, Sparkles as SparklesIcon, BookOpen, MessageSquare, Globe, Shield, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
@@ -17,8 +17,8 @@ interface Teacher {
   name: string;
   slug: { current: string };
   role: string;
-  bio: any;
-  photo: any;
+  bio: unknown;
+  photo: SanityImage | null;
   education: string[];
   experience: string[];
   specialties: string[];
@@ -179,7 +179,7 @@ const teacherThemes = [
   },
 ];
 
-const specialtyIcons: Record<string, any> = {
+const specialtyIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   "Literasi Awal": BookOpen,
   "STEAM untuk Anak": SparklesIcon,
   "Art Therapy": Heart,

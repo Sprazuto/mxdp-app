@@ -13,7 +13,15 @@ export const contactFormSchema = z.object({
   notes: z.string().max(500, 'Catatan maksimal 500 karakter').optional(),
 })
 
-export type ContactFormData = z.infer<typeof contactFormSchema>
+export type ContactFormData = {
+  parentName: string;
+  childName: string;
+  childAge: number;
+  whatsapp: string;
+  email?: string;
+  preferredDate: string;
+  notes?: string;
+}
 
 export const contactFormDefaultValues: ContactFormData = {
   parentName: '',

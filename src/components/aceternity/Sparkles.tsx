@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface SparklesProps {
   className?: string;
   count?: number;
-  color?: "emerald" | "amber" | "pink" | "sky" | "multi";
+  color?: "emerald" | "amber" | "pink" | "sky" | "purple" | "multi";
   size?: "sm" | "md" | "lg";
 }
 
@@ -22,6 +22,7 @@ const colorMap = {
   amber: ["text-amber-400", "text-amber-300", "text-yellow-400"],
   pink: ["text-pink-400", "text-rose-300", "text-fuchsia-400"],
   sky: ["text-sky-400", "text-cyan-300", "text-blue-400"],
+  purple: ["text-purple-400", "text-violet-300", "text-fuchsia-400"],
   multi: ["text-emerald-400", "text-amber-400", "text-pink-400", "text-sky-400"],
 };
 
@@ -41,14 +42,11 @@ interface Sparkle {
 
 export function Sparkles({ className, count = 12, color = "multi", size = "md" }: SparklesProps) {
   const reducedMotion = useReducedMotion();
-  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-
+  const [sparkles] = useState<Sparkle[]>(() => {
+    if (reducedMotion) return [];
     const colors = colorMap[color];
     const sizes = sparkleSizes[size];
-    const newSparkles = Array.from({ length: count }, (_, i) => ({
+    return Array.from({ length: count }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -61,8 +59,7 @@ export function Sparkles({ className, count = 12, color = "multi", size = "md" }
       driftX: (Math.random() - 0.5) * 20,
       driftY: (Math.random() - 0.5) * 20,
     }));
-    setSparkles(newSparkles);
-  }, [count, color, size, reducedMotion]);
+  });
 
   if (reducedMotion || sparkles.length === 0) {
     return <div className={cn("absolute inset-0 pointer-events-none overflow-hidden", className)} aria-hidden="true" />;

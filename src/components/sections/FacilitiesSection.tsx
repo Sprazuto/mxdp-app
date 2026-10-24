@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { urlFor } from "@/lib/sanity";
+import { urlFor, type SanityImage } from "@/lib/sanity";
 import { getFacilities } from "@/lib/sanity/queries";
 import { Video, Wifi, Shield, ThermometerSun, Music, BookOpen, Zap, CheckCircle2, Sparkles as SparklesIcon } from "lucide-react";
 import { motion } from "motion/react";
@@ -15,9 +15,9 @@ interface Facility {
   _id: string;
   name: string;
   slug: { current: string };
-  description: any;
-  thumbnail: any;
-  gallery: any[];
+  description: unknown;
+  thumbnail: SanityImage | null;
+  gallery: SanityImage[];
   features: string[];
   hasCctv: boolean;
   order: number;

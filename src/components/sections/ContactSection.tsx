@@ -1,24 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useForm, type UseFormRegister } from "react-hook-form";
+import { useState } from "react";
+import { useForm, type UseFormRegister, type FieldError, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion, useReducedMotion } from "motion/react";
-import { Loader2, CheckCircle, AlertCircle, MessageSquare, Calendar, Mail, Phone, User, Baby, Send, MapPin, Sparkles as SparklesIcon, Star, Shield } from "lucide-react";
+import { motion } from "motion/react";
+import { Loader2, CheckCircle, AlertCircle, MessageSquare, Calendar, Mail, Phone, User, Baby, Send, MapPin, Sparkles as SparklesIcon, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { contactFormSchema, type ContactFormData, contactFormDefaultValues } from "@/lib/validations/contact";
 import { CampusMap } from "@/components/ui/CampusMap";
 import { Sparkles } from "@/components/aceternity";
-import { fadeInUp, staggerContainer, cardVariants, buttonVariants } from "@/lib/motion";
+import { staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion";
 
 const WHATSAPP_ADMIN = "6281234567890";
 
-const formResolver = zodResolver(contactFormSchema) as any;
+const formResolver = zodResolver(contactFormSchema) as Resolver<ContactFormData>;
 
 export function ContactSection() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const reducedMotion = useReducedMotion();
+  const motionProps = getMotionProps(reducedMotion);
 
   const {
     register,
@@ -73,13 +74,11 @@ export function ContactSection() {
     }
   };
 
-  const [tomorrowDate, setTomorrowDate] = useState<string>("");
-
-  useEffect(() => {
+  const [tomorrowDate] = useState<string>(() => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    setTomorrowDate(tomorrow.toISOString().split("T")[0]);
-  }, []);
+    return tomorrow.toISOString().split("T")[0];
+  });
 
   const getTomorrowDate = () => tomorrowDate;
 
@@ -103,8 +102,9 @@ export function ContactSection() {
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
           <motion.div
             className="mb-10 lg:mb-0"
-            initial={reducedMotion ? false : fadeInUp.initial}
-            animate={reducedMotion ? false : fadeInUp.animate}
+            {...motionProps}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "50px" }}
           >
             <motion.span
@@ -141,6 +141,7 @@ export function ContactSection() {
 
             <motion.div
               className="space-y-4"
+              {...motionProps}
               variants={staggerContainer(0.1)}
               initial="hidden"
               whileInView="visible"
@@ -148,7 +149,8 @@ export function ContactSection() {
             >
               <motion.div
                 className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-blue-200 dark:border-blue-800 backdrop-blur-sm hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-xl hover:shadow-blue-200/30 transition-all duration-300"
-                variants={cardVariants}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="flex items-center gap-4">
                   <motion.div
@@ -167,7 +169,8 @@ export function ContactSection() {
 
               <motion.div
                 className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-emerald-200 dark:border-emerald-800 backdrop-blur-sm hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-200/30 transition-all duration-300"
-                variants={cardVariants}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="flex items-center gap-4">
                   <motion.div
@@ -186,7 +189,8 @@ export function ContactSection() {
 
               <motion.div
                 className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-purple-200 dark:border-purple-800 backdrop-blur-sm hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-200/30 transition-all duration-300"
-                variants={cardVariants}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <div className="flex items-center gap-4">
                   <motion.div
@@ -206,6 +210,7 @@ export function ContactSection() {
 
             <motion.div
               className="mt-8"
+              {...motionProps}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -232,8 +237,9 @@ export function ContactSection() {
 
           <motion.div
             className="relative"
-            initial={reducedMotion ? false : fadeInUp.initial}
-            animate={reducedMotion ? false : fadeInUp.animate}
+            {...motionProps}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "50px" }}
           >
             <Sparkles count={15} color="multi" size="sm" className="absolute inset-0 pointer-events-none" />
@@ -285,6 +291,7 @@ export function ContactSection() {
 
               <motion.div
                 className="grid gap-4 sm:grid-cols-2"
+                {...motionProps}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -390,6 +397,7 @@ export function ContactSection() {
 
               <motion.div
                 className="mt-8 flex flex-col sm:flex-row gap-4"
+                {...motionProps}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
@@ -397,7 +405,6 @@ export function ContactSection() {
                 <motion.button
                   type="submit"
                   disabled={submitStatus === "submitting"}
-                  variants={buttonVariants}
                   className={cn(
                     "flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 font-black text-base py-4 transition-all duration-200",
                     "focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2",
@@ -405,6 +412,8 @@ export function ContactSection() {
                       ? "bg-slate-200 dark:bg-slate-700 text-slate-400 border-slate-300 dark:border-slate-600 cursor-not-allowed"
                       : "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-[0_12px_24px_-6px_rgba(16,185,129,0.5)] hover:from-emerald-400 hover:to-teal-400 hover:shadow-[0_16px_32px_-8px_rgba(16,185,129,0.6)]"
                   )}
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   {submitStatus === "submitting" ? (
                     <>
@@ -423,8 +432,9 @@ export function ContactSection() {
                   href={`https://wa.me/${WHATSAPP_ADMIN}?text=${formatWhatsAppMessage(contactFormDefaultValues)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  variants={buttonVariants}
                   className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-900/20 px-6 py-4 text-base font-black text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/30 hover:border-green-400 dark:hover:border-green-600 hover:shadow-xl hover:shadow-green-200/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-offset-2"
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <MessageSquare className="h-5 w-5" aria-hidden="true" />
                   Chat WhatsApp
@@ -433,6 +443,7 @@ export function ContactSection() {
 
               <motion.p
                 className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400"
+                {...motionProps}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
@@ -457,7 +468,7 @@ interface InputFieldProps {
   type?: string;
   min?: string;
   max?: string;
-  error?: any;
+  error?: FieldError;
   errorId?: string;
 }
 
