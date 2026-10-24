@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Loader2, CheckCircle, AlertCircle, MessageSquare, Calendar, Mail, Phone, User, Baby, Send, MapPin, Sparkles, Star, Shield, Sparkle } from 'lucide-react'
+import { Loader2, CheckCircle, AlertCircle, MessageSquare, Calendar, Mail, Phone, User, Baby, Send, MapPin, Sparkles, Star, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { contactFormSchema, type ContactFormData, contactFormDefaultValues } from '@/lib/validations/contact'
 import { CampusMap } from '@/components/ui/CampusMap'
@@ -81,28 +81,25 @@ export function ContactSection() {
   const getTomorrowDate = () => tomorrowDate
 
   return (
-    <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-amber-50 via-orange-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" aria-labelledby="contact-title">
-      <FloatingOrnaments count={35} variant="section" />
+    <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-[#FFFDF9] via-[#FFF8F0] to-[#F0F9FF] dark:from-gray-950 dark:via-gray-900 dark:to-gray-950" aria-labelledby="contact-title">
+      <FloatingOrnaments count={25} variant="section" />
       
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-blue-300/30 via-purple-300/20 to-pink-300/30 blur-3xl animate-float-rotate" />
-        <div className="absolute bottom-20 right-10 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-emerald-300/30 via-teal-300/20 to-cyan-300/30 blur-3xl animate-float-rotate" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-blue-200/15 to-purple-200/15 blur-3xl animate-pulse-slow" />
-        <div className="absolute inset-0 bg-[radial-gradient(#fde047_1px,transparent_1px)] [background-size:20px_20px] opacity-10 animate-shimmer" />
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-400/3 via-transparent to-pink-400/3" />
+        <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-blue-200/40 blur-3xl dark:bg-blue-900/20" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 rounded-full bg-purple-200/40 blur-3xl dark:bg-purple-900/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
       </div>
 
       <div className="mx-auto max-w-7xl relative z-10">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
           <div className="mb-10 lg:mb-0">
-            <span className="relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400/90 via-orange-400/90 to-pink-400/90 px-6 py-3 text-sm font-black text-slate-950 backdrop-blur-sm mb-4 border-2 border-amber-300 shadow-[0_8px_32px_rgba(251,191,36,0.4)] rotate-[-2deg] animate-bounce-slow">
-              <Sparkles className="h-5 w-5 animate-bounce" />
-              <Sparkle className="h-4 w-4 text-amber-300 animate-pulse-glow" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-blue-100/90 px-5 py-2 text-sm font-bold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 backdrop-blur-sm mb-4 border-2 border-blue-200 dark:border-blue-800 shadow-lg shadow-blue-200/50 rotate-[-2deg]">
+              <Sparkles className="h-4 w-4 animate-bounce" />
               Hubungi Kami
             </span>
             <h2 id="contact-title" className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4">
               Jadwalkan Kunjungan
-              <span className="block bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 & Pertanyaan
               </span>
             </h2>
@@ -111,62 +108,47 @@ export function ContactSection() {
             </p>
 
             <div className="space-y-4">
-              <div className="relative p-5 rounded-[24px] bg-white/80 dark:bg-slate-800/80 border-4 border-blue-200 dark:border-blue-800 backdrop-blur-sm hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-[0_20px_40px_rgba(14,165,233,0.3)] hover:-translate-y-1 transition-all duration-500">
-                <FloatingOrnaments count={3} variant="card" className="pointer-events-none" />
-                <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-white/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="relative p-4 rounded-[16px] bg-gradient-to-br from-blue-400 to-purple-400 dark:from-blue-700 dark:to-purple-700 shadow-[0_8px_24px_rgba(14,165,233,0.5),_inset_0_2px_0_rgba(255,255,255,0.3)]">
-                    <MessageSquare className="h-7 w-7 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-b from-white/30 to-transparent" />
+              <div className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-blue-200 dark:border-blue-800 backdrop-blur-sm hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-xl hover:shadow-blue-200/30 transition-all duration-300">
+                <div className="flex items-center gap-4">
+                  <div className="p-4 rounded-[16px] bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-lg shadow-blue-200/50">
+                    <MessageSquare className="h-7 w-7" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="font-black text-slate-900 dark:text-white">WhatsApp Langsung</h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400">Balasan cepat dari tim kami</p>
                   </div>
                 </div>
-                <Star className="absolute top-3 right-3 h-5 w-5 text-amber-300/90 animate-pulse-glow" aria-hidden="true" />
-                <Sparkle className="absolute bottom-3 left-3 h-4 w-4 text-pink-300/80 animate-pulse-glow" aria-hidden="true" />
               </div>
-              <div className="relative p-5 rounded-[24px] bg-white/80 dark:bg-slate-800/80 border-4 border-emerald-200 dark:border-emerald-800 backdrop-blur-sm hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-[0_20px_40px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all duration-500">
-                <FloatingOrnaments count={3} variant="card" className="pointer-events-none" />
-                <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-white/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="relative p-4 rounded-[16px] bg-gradient-to-br from-emerald-400 to-teal-400 dark:from-emerald-700 dark:to-teal-700 shadow-[0_8px_24px_rgba(16,185,129,0.5),_inset_0_2px_0_rgba(255,255,255,0.3)]">
-                    <Phone className="h-7 w-7 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-b from-white/30 to-transparent" />
+              <div className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-emerald-200 dark:border-emerald-800 backdrop-blur-sm hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-200/30 transition-all duration-300">
+                <div className="flex items-center gap-4">
+                  <div className="p-4 rounded-[16px] bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 shadow-lg shadow-emerald-200/50">
+                    <Phone className="h-7 w-7" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="font-black text-slate-900 dark:text-white">Telepon</h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400">+62 21 1234 5678 (Senin-Jumat, 08:00-16:00)</p>
                   </div>
                 </div>
-                <Star className="absolute top-3 right-3 h-5 w-5 text-amber-300/90 animate-pulse-glow" aria-hidden="true" />
-                <Sparkle className="absolute bottom-3 left-3 h-4 w-4 text-pink-300/80 animate-pulse-glow" aria-hidden="true" />
               </div>
-              <div className="relative p-5 rounded-[24px] bg-white/80 dark:bg-slate-800/80 border-4 border-purple-200 dark:border-purple-800 backdrop-blur-sm hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-[0_20px_40px_rgba(168,85,247,0.3)] hover:-translate-y-1 transition-all duration-500">
-                <FloatingOrnaments count={3} variant="card" className="pointer-events-none" />
-                <div className="absolute inset-0 rounded-[24px] bg-gradient-to-b from-white/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className="relative p-4 rounded-[16px] bg-gradient-to-br from-purple-400 to-pink-400 dark:from-purple-700 dark:to-pink-700 shadow-[0_8px_24px_rgba(168,85,247,0.5),_inset_0_2px_0_rgba(255,255,255,0.3)]">
-                    <Mail className="h-7 w-7 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-b from-white/30 to-transparent" />
+              <div className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-purple-200 dark:border-purple-800 backdrop-blur-sm hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-200/30 transition-all duration-300">
+                <div className="flex items-center gap-4">
+                  <div className="p-4 rounded-[16px] bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 shadow-lg shadow-purple-200/50">
+                    <Mail className="h-7 w-7" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="font-black text-slate-900 dark:text-white">Email</h3>
                     <p className="text-sm text-slate-600 dark:text-slate-400">info@mxdp.id</p>
                   </div>
                 </div>
-                <Star className="absolute top-3 right-3 h-5 w-5 text-amber-300/90 animate-pulse-glow" aria-hidden="true" />
-                <Sparkle className="absolute bottom-3 left-3 h-4 w-4 text-pink-300/80 animate-pulse-glow" aria-hidden="true" />
               </div>
             </div>
             
             <div className="mt-8">
               <h3 className="font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <MapPin className="h-6 w-6 text-red-500 animate-bounce-slow" aria-hidden="true" />
+                <MapPin className="h-6 w-6 text-red-500" aria-hidden="true" />
                 Lokasi Kampus
               </h3>
-              <div className="rounded-[40px] overflow-hidden border-8 border-white/90 dark:border-slate-800/90 shadow-[0_30px_60px_-12px_rgba(0,0,0,0.25)]">
+              <div className="rounded-[36px] overflow-hidden border-8 border-white/90 dark:border-slate-800/90 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.2)]">
                 <CampusMap
                   lat={-6.9175}
                   lng={107.6191}
@@ -179,21 +161,13 @@ export function ContactSection() {
           </div>
 
           <div className="relative">
-            <FloatingOrnaments count={20} variant="card" className="absolute inset-0 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-[40px] blur-2xl" aria-hidden="true" />
-            <form onSubmit={handleSubmit(onSubmit)} className="relative p-6 sm:p-8 md:p-10 rounded-[40px] bg-white border-4 border-amber-200 dark:border-amber-800 border-t-2 border-amber-100/50 shadow-[0_30px_70px_-12px_rgba(0,0,0,0.2)] dark:bg-slate-900/95">
-              <FloatingOrnaments count={8} variant="card" className="pointer-events-none" />
-              
-              {/* Glossy highlight overlay */}
-              <div className="absolute inset-0 rounded-[40px] bg-gradient-to-b from-white/40 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-amber-300/20 via-transparent to-pink-300/20 opacity-0 hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
+            <FloatingOrnaments count={15} variant="card" className="absolute inset-0 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-[32px] blur-2xl" aria-hidden="true" />
+            <form onSubmit={handleSubmit(onSubmit)} className="relative p-6 sm:p-8 md:p-10 rounded-[32px] bg-white border-4 border-amber-200 dark:border-amber-800 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] dark:bg-slate-900/90">
               {submitStatus === 'success' && (
-                <div className="relative mb-6 flex items-center gap-3 p-4 rounded-[20px] bg-emerald-50 dark:bg-emerald-900/30 border-4 border-emerald-200 dark:border-emerald-800 animate-fade-in shadow-[0_12px_32px_rgba(16,185,129,0.3)]">
-                  <FloatingOrnaments count={3} variant="card" className="pointer-events-none" />
-                  <div className="relative p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30">
-                    <CheckCircle className="h-8 w-8 text-emerald-600 dark:text-emerald-400 flex-shrink-0 drop-shadow-[0_2px_8px_rgba(16,185,129,0.3)]" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/30 to-transparent" />
+                <div className="mb-6 flex items-center gap-3 p-4 rounded-[16px] bg-emerald-50 dark:bg-emerald-900/30 border-4 border-emerald-200 dark:border-emerald-800 animate-fade-in shadow-lg shadow-emerald-200/50">
+                  <div className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30">
+                    <CheckCircle className="h-7 w-7 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-black text-emerald-800 dark:text-emerald-200">Formulir Terkirim!</p>
@@ -203,11 +177,9 @@ export function ContactSection() {
               )}
 
               {submitStatus === 'error' && (
-                <div className="relative mb-6 flex items-center gap-3 p-4 rounded-[20px] bg-red-50 dark:bg-red-900/30 border-4 border-red-200 dark:border-red-800 animate-fade-in shadow-[0_12px_32px_rgba(239,68,68,0.3)]">
-                  <FloatingOrnaments count={3} variant="card" className="pointer-events-none" />
-                  <div className="relative p-2 rounded-full bg-red-100 dark:bg-red-900/30">
-                    <AlertCircle className="h-8 w-8 text-red-600 dark:text-red-400 flex-shrink-0 drop-shadow-[0_2px_8px_rgba(239,68,68,0.3)]" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-b from-white/30 to-transparent" />
+                <div className="mb-6 flex items-center gap-3 p-4 rounded-[16px] bg-red-50 dark:bg-red-900/30 border-4 border-red-200 dark:border-red-800 animate-fade-in shadow-lg shadow-red-200/50">
+                  <div className="p-2 rounded-full bg-red-100 dark:bg-red-900/30">
+                    <AlertCircle className="h-7 w-7 text-red-600 dark:text-red-400 flex-shrink-0" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="font-black text-red-800 dark:text-red-200">Gagal Mengirim</p>
@@ -229,12 +201,11 @@ export function ContactSection() {
                       type="text"
                       placeholder="Nama lengkap orang tua/wali"
                       className={cn(
-                        'w-full pl-12 pr-4 py-5 rounded-[16px] border-2 bg-white dark:bg-slate-800',
+                        'w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800',
                         'text-slate-900 dark:text-white placeholder-slate-400 font-medium',
                         'focus:outline-none focus:ring-4 focus:ring-emerald-200 focus:border-transparent',
                         'transition-all duration-200',
                         'hover:border-slate-300 dark:hover:border-slate-600',
-                        'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                         errors.parentName
                           ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                           : 'border-slate-200 dark:border-slate-700'
@@ -243,8 +214,6 @@ export function ContactSection() {
                       aria-describedby={errors.parentName ? 'parentName-error' : undefined}
                     />
                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
-                    {/* Input glow ring */}
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-emerald-300/30 to-teal-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                   {errors.parentName && (
                     <p id="parentName-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
@@ -266,12 +235,11 @@ export function ContactSection() {
                       type="text"
                       placeholder="Nama lengkap anak"
                       className={cn(
-                        'w-full pl-12 pr-4 py-5 rounded-[16px] border-2 bg-white dark:bg-slate-800',
+                        'w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800',
                         'text-slate-900 dark:text-white placeholder-slate-400 font-medium',
                         'focus:outline-none focus:ring-4 focus:ring-pink-200 focus:border-transparent',
                         'transition-all duration-200',
                         'hover:border-slate-300 dark:hover:border-slate-600',
-                        'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                         errors.childName
                           ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                           : 'border-slate-200 dark:border-slate-700'
@@ -280,7 +248,6 @@ export function ContactSection() {
                       aria-describedby={errors.childName ? 'childName-error' : undefined}
                     />
                     <Baby className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-pink-300/30 to-rose-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                   {errors.childName && (
                     <p id="childName-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
@@ -304,12 +271,11 @@ export function ContactSection() {
                       max="18"
                       placeholder="Contoh: 4"
                       className={cn(
-                        'w-full pl-12 pr-4 py-5 rounded-[16px] border-2 bg-white dark:bg-slate-800',
+                        'w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800',
                         'text-slate-900 dark:text-white placeholder-slate-400 font-medium',
                         'focus:outline-none focus:ring-4 focus:ring-amber-200 focus:border-transparent',
                         'transition-all duration-200',
                         'hover:border-slate-300 dark:hover:border-slate-600',
-                        'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                         errors.childAge
                           ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                           : 'border-slate-200 dark:border-slate-700'
@@ -318,7 +284,6 @@ export function ContactSection() {
                       aria-describedby={errors.childAge ? 'childAge-error' : undefined}
                     />
                     <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-amber-300/30 to-orange-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                   {errors.childAge && (
                     <p id="childAge-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
@@ -340,12 +305,11 @@ export function ContactSection() {
                       type="tel"
                       placeholder="08xx-xxxx-xxxx"
                       className={cn(
-                        'w-full pl-12 pr-4 py-5 rounded-[16px] border-2 bg-white dark:bg-slate-800',
+                        'w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800',
                         'text-slate-900 dark:text-white placeholder-slate-400 font-medium',
                         'focus:outline-none focus:ring-4 focus:ring-green-200 focus:border-transparent',
                         'transition-all duration-200',
                         'hover:border-slate-300 dark:hover:border-slate-600',
-                        'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                         errors.whatsapp
                           ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                           : 'border-slate-200 dark:border-slate-700'
@@ -354,7 +318,6 @@ export function ContactSection() {
                       aria-describedby={errors.whatsapp ? 'whatsapp-error' : undefined}
                     />
                     <Phone className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-green-300/30 to-emerald-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                   {errors.whatsapp && (
                     <p id="whatsapp-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
@@ -376,12 +339,11 @@ export function ContactSection() {
                       type="email"
                       placeholder="email@contoh.com"
                       className={cn(
-                        'w-full pl-12 pr-4 py-5 rounded-[16px] border-2 bg-white dark:bg-slate-800',
+                        'w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800',
                         'text-slate-900 dark:text-white placeholder-slate-400 font-medium',
                         'focus:outline-none focus:ring-4 focus:ring-purple-200 focus:border-transparent',
                         'transition-all duration-200',
                         'hover:border-slate-300 dark:hover:border-slate-600',
-                        'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                         errors.email
                           ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                           : 'border-slate-200 dark:border-slate-700'
@@ -390,7 +352,6 @@ export function ContactSection() {
                       aria-describedby={errors.email ? 'email-error' : undefined}
                     />
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-purple-300/30 to-pink-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                   {errors.email && (
                     <p id="email-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
@@ -412,12 +373,11 @@ export function ContactSection() {
                       type="date"
                       min={getTomorrowDate()}
                       className={cn(
-                        'w-full pl-12 pr-4 py-5 rounded-[16px] border-2 bg-white dark:bg-slate-800',
+                        'w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800',
                         'text-slate-900 dark:text-white font-medium',
                         'focus:outline-none focus:ring-4 focus:ring-orange-200 focus:border-transparent',
                         'transition-all duration-200',
                         'hover:border-slate-300 dark:hover:border-slate-600',
-                        'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                         errors.preferredDate
                           ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                           : 'border-slate-200 dark:border-slate-700'
@@ -426,7 +386,6 @@ export function ContactSection() {
                       aria-describedby={errors.preferredDate ? 'preferredDate-error' : undefined}
                     />
                     <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
-                    <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-orange-300/30 to-red-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                   {errors.preferredDate && (
                     <p id="preferredDate-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
@@ -452,7 +411,6 @@ export function ContactSection() {
                       'focus:outline-none focus:ring-4 focus:ring-teal-200 focus:border-transparent',
                       'transition-all duration-200',
                       'hover:border-slate-300 dark:hover:border-slate-600',
-                      'shadow-[inset_0_2px_8px_rgba(0,0,0,0.05)]',
                       errors.notes
                         ? 'border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20'
                         : 'border-slate-200 dark:border-slate-700'
@@ -460,7 +418,6 @@ export function ContactSection() {
                     aria-invalid={errors.notes ? 'true' : 'false'}
                     aria-describedby={errors.notes ? 'notes-error' : undefined}
                   />
-                  <div className="absolute inset-0 rounded-[16px] bg-gradient-to-r from-teal-300/30 to-emerald-300/30 opacity-0 focus-within:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   {errors.notes && (
                     <p id="notes-error" className="mt-1.5 text-sm text-red-500 flex items-center gap-1" role="alert">
                       <AlertCircle className="h-4 w-4" aria-hidden="true" />
@@ -475,14 +432,14 @@ export function ContactSection() {
                   type="submit"
                   disabled={submitStatus === 'submitting'}
                   className={cn(
-                    'group relative flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 font-black text-base py-5 transition-all duration-300',
+                    'flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 font-black text-base py-4 transition-all duration-200',
                     'focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2',
                     submitStatus === 'submitting'
                       ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 border-slate-300 dark:border-slate-600 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-500 text-white border-emerald-600 border-t-2 border-emerald-200/50 shadow-[0_16px_40px_-8px_rgba(16,185,129,0.5),_inset_0_2px_0_rgba(255,255,255,0.3)] hover:from-emerald-400 hover:via-teal-400 hover:to-emerald-400 hover:shadow-[0_20px_50px_-10px_rgba(16,185,129,0.6),_inset_0_2px_0_rgba(255,255,255,0.4)] active:translate-y-1.5 active:border-b-4 active:shadow-[0_6px_16px_-4px_rgba(16,185,129,0.4)]'
+                      : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-[0_12px_24px_-6px_rgba(16,185,129,0.5)] hover:from-emerald-400 hover:to-teal-400 hover:shadow-[0_16px_32px_-8px_rgba(16,185,129,0.6)] active:translate-y-1 active:border-b-0 active:shadow-[0_4px_8px_-2px_rgba(16,185,129,0.4)]'
                   )}
                 >
-                  <span className="relative z-10">{submitStatus === 'submitting' ? (
+                  {submitStatus === 'submitting' ? (
                     <>
                       <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />
                       Mengirim...
@@ -492,25 +449,23 @@ export function ContactSection() {
                       <Send className="h-5 w-5" aria-hidden="true" />
                       Kirim Formulir
                     </>
-                  )}</span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+                  )}
                 </button>
 
                 <a
                   href={`https://wa.me/${WHATSAPP_ADMIN}?text=${formatWhatsAppMessage(contactFormDefaultValues)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 border-green-300 dark:border-green-700 border-t-2 border-green-100/50 bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 dark:from-green-900/30 dark:via-emerald-900/30 dark:to-green-900/30 px-6 py-5 text-base font-black text-green-700 dark:text-green-300 hover:bg-gradient-to-r hover:from-green-100 hover:via-emerald-100 hover:to-green-100 dark:hover:from-green-900/40 dark:hover:via-emerald-900/40 dark:hover:to-green-900/40 hover:border-green-400 dark:hover:border-green-600 hover:shadow-[0_16px_40px_-8px_rgba(34,197,94,0.3)] hover:-translate-y-1 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-offset-2"
+                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-900/20 px-6 py-4 text-base font-black text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/30 hover:border-green-400 dark:hover:border-green-600 hover:shadow-xl hover:shadow-green-200/30 hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-offset-2"
                 >
-                  <MessageSquare className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
-                  <span className="relative z-10">Chat WhatsApp</span>
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-green-100/40 to-transparent animate-shimmer" />
+                  <MessageSquare className="h-5 w-5" aria-hidden="true" />
+                  Chat WhatsApp
                 </a>
               </div>
 
               <p className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400">
                 Dengan mengirim formulir ini, Anda menyetujui kebijakan privasi kami. Data Anda aman dan tidak akan dibagikan ke pihak ketiga.
-                <Shield className="h-3.5 w-3.5 inline-block ml-1 text-emerald-500 animate-bounce-slow" aria-hidden="true" />
+                <Shield className="h-3.5 w-3.5 inline-block ml-1 text-emerald-500" aria-hidden="true" />
               </p>
             </form>
           </div>

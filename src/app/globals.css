@@ -51,11 +51,6 @@
   --animate-float-slow: float 10s ease-in-out infinite;
   --animate-pulse-slow: pulse 4s ease-in-out infinite;
   --animate-doodle: doodle 8s linear infinite;
-  --animate-float-rotate: float-rotate 8s ease-in-out infinite;
-  --animate-wiggle: wiggle 1s ease-in-out infinite;
-  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
-  --animate-bounce-slow: bounce-slow 3s ease-in-out infinite;
-  --animate-shimmer: shimmer 2s linear infinite;
 }
 
 @keyframes float {
@@ -63,33 +58,6 @@
   25% { transform: translateY(-20px) translateX(10px); }
   50% { transform: translateY(-10px) translateX(-5px); }
   75% { transform: translateY(-15px) translateX(5px); }
-}
-
-@keyframes float-rotate {
-  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-  25% { transform: translateY(-18px) rotate(6deg) scale(1.05); }
-  50% { transform: translateY(-10px) rotate(-4deg) scale(0.95); }
-  75% { transform: translateY(-22px) rotate(3deg) scale(1.02); }
-}
-
-@keyframes wiggle {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.4), 0 0 40px rgba(249, 115, 22, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.6), 0 0 80px rgba(249, 115, 22, 0.5); }
-}
-
-@keyframes bounce-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
 }
 
 @keyframes doodle {

@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity'
 import { getTeachers } from '@/lib/sanity/queries'
-import { GraduationCap, Award, Heart, Users, Sparkles, BookOpen, MessageSquare, Globe, Star, Shield, ChevronRight, Zap, Brain, Palette, Dumbbell, Microscope, Music, Stethoscope } from 'lucide-react'
+import { GraduationCap, Award, Heart, Users, Sparkles, BookOpen, MessageSquare, Globe, Star, Shield, ChevronRight } from 'lucide-react'
 import { FloatingOrnaments } from '@/components/ui/FloatingOrnaments'
 
 interface Teacher {
@@ -106,124 +106,100 @@ const fallbackTeachers: Teacher[] = [
 
 const teacherThemes = [
   {
-    name: 'Vivid Teal',
-    bg: 'bg-gradient-to-br from-teal-100 via-cyan-100 to-emerald-100 dark:from-teal-900/40 dark:via-cyan-900/40 dark:to-emerald-900/40',
-    border: 'border-teal-300/60 dark:border-teal-700/60',
-    hoverBorder: 'hover:border-teal-400 dark:hover:border-teal-600',
-    iconBg: 'bg-gradient-to-br from-teal-400 to-cyan-400 dark:from-teal-700 dark:to-cyan-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-teal-400 to-cyan-400',
-    badgeBorder: 'border-teal-300/50 dark:border-teal-700/50',
-    cardBorder: 'border-teal-300/60 dark:border-teal-700/60 hover:border-teal-400 dark:hover:border-teal-600',
-    cardBg: 'bg-gradient-to-br from-teal-100 via-cyan-100 to-emerald-100 dark:from-teal-900/40 dark:via-cyan-900/40 dark:to-emerald-900/40',
-    btnBg: 'bg-gradient-to-r from-teal-500 to-cyan-500',
+    name: 'Minty Teal',
+    iconBg: 'bg-teal-100 dark:bg-teal-900/30',
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    ring: 'ring-teal-200 dark:ring-teal-800',
+    badgeBg: 'bg-teal-100 text-teal-800 dark:bg-teal-900/40 dark:text-teal-300',
+    badgeBorder: 'border-teal-200 dark:border-teal-800',
+    cardBorder: 'border-teal-200 dark:border-teal-800 hover:border-teal-400 dark:hover:border-teal-600',
+    cardBg: 'bg-[#E6FFFA]',
+    btnBg: 'bg-teal-500 hover:bg-teal-400',
     btnBorder: 'border-teal-600',
-    glowColor: 'shadow-teal-400/40',
-    glowColorHover: 'shadow-teal-500/60',
+    glowColor: 'shadow-teal-200',
+    glowColorHover: 'shadow-teal-300',
     tilt: 'rotate-[-2deg]',
     speechBubble: 'Halo! Mari Belajar Bersama 👋',
-    shimmerColor: 'from-teal-300/30 via-transparent to-cyan-300/30',
-    accentColor: 'text-teal-600 dark:text-teal-400',
   },
   {
-    name: 'Electric Emerald',
-    bg: 'bg-gradient-to-br from-emerald-100 via-green-100 to-teal-100 dark:from-emerald-900/40 dark:via-green-900/40 dark:to-teal-900/40',
-    border: 'border-emerald-300/60 dark:border-emerald-700/60',
-    hoverBorder: 'hover:border-emerald-400 dark:hover:border-emerald-600',
-    iconBg: 'bg-gradient-to-br from-emerald-400 to-green-400 dark:from-emerald-700 dark:to-green-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-emerald-400 to-green-400',
-    badgeBorder: 'border-emerald-300/50 dark:border-emerald-700/50',
-    cardBorder: 'border-emerald-300/60 dark:border-emerald-700/60 hover:border-emerald-400 dark:hover:border-emerald-600',
-    cardBg: 'bg-gradient-to-br from-emerald-100 via-green-100 to-teal-100 dark:from-emerald-900/40 dark:via-green-900/40 dark:to-teal-900/40',
-    btnBg: 'bg-gradient-to-r from-emerald-500 to-green-500',
+    name: 'Emerald Green',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+    ring: 'ring-emerald-200 dark:ring-emerald-800',
+    badgeBg: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300',
+    badgeBorder: 'border-emerald-200 dark:border-emerald-800',
+    cardBorder: 'border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600',
+    cardBg: 'bg-[#ECFDF5]',
+    btnBg: 'bg-emerald-500 hover:bg-emerald-400',
     btnBorder: 'border-emerald-600',
-    glowColor: 'shadow-emerald-400/40',
-    glowColorHover: 'shadow-emerald-500/60',
+    glowColor: 'shadow-emerald-200',
+    glowColorHover: 'shadow-emerald-300',
     tilt: 'rotate-[2deg]',
     speechBubble: 'Ayo Eksplorasi Dunia! 🌟',
-    shimmerColor: 'from-emerald-300/30 via-transparent to-green-300/30',
-    accentColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
-    name: 'Vivid Sky',
-    bg: 'bg-gradient-to-br from-sky-100 via-cyan-100 to-blue-100 dark:from-sky-900/40 dark:via-cyan-900/40 dark:to-blue-900/40',
-    border: 'border-sky-300/60 dark:border-sky-700/60',
-    hoverBorder: 'hover:border-sky-400 dark:hover:border-sky-600',
-    iconBg: 'bg-gradient-to-br from-sky-400 to-cyan-400 dark:from-sky-700 dark:to-cyan-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-sky-400 to-cyan-400',
-    badgeBorder: 'border-sky-300/50 dark:border-sky-700/50',
-    cardBorder: 'border-sky-300/60 dark:border-sky-700/60 hover:border-sky-400 dark:hover:border-sky-600',
-    cardBg: 'bg-gradient-to-br from-sky-100 via-cyan-100 to-blue-100 dark:from-sky-900/40 dark:via-cyan-900/40 dark:to-blue-900/40',
-    btnBg: 'bg-gradient-to-r from-sky-500 to-cyan-500',
+    name: 'Sky Blue',
+    iconBg: 'bg-sky-100 dark:bg-sky-900/30',
+    iconColor: 'text-sky-600 dark:text-sky-400',
+    ring: 'ring-sky-200 dark:ring-sky-800',
+    badgeBg: 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300',
+    badgeBorder: 'border-sky-200 dark:border-sky-800',
+    cardBorder: 'border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600',
+    cardBg: 'bg-[#F0F9FF]',
+    btnBg: 'bg-sky-500 hover:bg-sky-400',
     btnBorder: 'border-sky-600',
-    glowColor: 'shadow-sky-400/40',
-    glowColorHover: 'shadow-sky-500/60',
+    glowColor: 'shadow-sky-200',
+    glowColorHover: 'shadow-sky-300',
     tilt: 'rotate-[-1deg]',
     speechBubble: 'Pintar itu Menyenangkan! 📚',
-    shimmerColor: 'from-sky-300/30 via-transparent to-cyan-300/30',
-    accentColor: 'text-sky-600 dark:text-sky-400',
   },
   {
-    name: 'Royal Purple',
-    bg: 'bg-gradient-to-br from-purple-100 via-violet-100 to-fuchsia-100 dark:from-purple-900/40 dark:via-violet-900/40 dark:to-fuchsia-900/40',
-    border: 'border-purple-300/60 dark:border-purple-700/60',
-    hoverBorder: 'hover:border-purple-400 dark:hover:border-purple-600',
-    iconBg: 'bg-gradient-to-br from-purple-400 to-violet-400 dark:from-purple-700 dark:to-violet-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-purple-400 to-violet-400',
-    badgeBorder: 'border-purple-300/50 dark:border-purple-700/50',
-    cardBorder: 'border-purple-300/60 dark:border-purple-700/60 hover:border-purple-400 dark:hover:border-purple-600',
-    cardBg: 'bg-gradient-to-br from-purple-100 via-violet-100 to-fuchsia-100 dark:from-purple-900/40 dark:via-violet-900/40 dark:to-fuchsia-900/40',
-    btnBg: 'bg-gradient-to-r from-purple-500 to-violet-500',
+    name: 'Lavender Purple',
+    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    ring: 'ring-purple-200 dark:ring-purple-800',
+    badgeBg: 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300',
+    badgeBorder: 'border-purple-200 dark:border-purple-800',
+    cardBorder: 'border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600',
+    cardBg: 'bg-[#F5F3FF]',
+    btnBg: 'bg-purple-500 hover:bg-purple-400',
     btnBorder: 'border-purple-600',
-    glowColor: 'shadow-purple-400/40',
-    glowColorHover: 'shadow-purple-500/60',
+    glowColor: 'shadow-purple-200',
+    glowColorHover: 'shadow-purple-300',
     tilt: 'rotate-[1deg]',
     speechBubble: 'Setiap Anak Istimewa! 💜',
-    shimmerColor: 'from-purple-300/30 via-transparent to-violet-300/30',
-    accentColor: 'text-purple-600 dark:text-purple-400',
   },
   {
-    name: 'Golden Amber',
-    bg: 'bg-gradient-to-br from-amber-100 via-yellow-100 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/40 dark:to-orange-900/40',
-    border: 'border-amber-300/60 dark:border-amber-700/60',
-    hoverBorder: 'hover:border-amber-400 dark:hover:border-amber-600',
-    iconBg: 'bg-gradient-to-br from-amber-400 to-yellow-400 dark:from-amber-700 dark:to-yellow-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-amber-400 to-yellow-400',
-    badgeBorder: 'border-amber-300/50 dark:border-amber-700/50',
-    cardBorder: 'border-amber-300/60 dark:border-amber-700/60 hover:border-amber-400 dark:hover:border-amber-600',
-    cardBg: 'bg-gradient-to-br from-amber-100 via-yellow-100 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/40 dark:to-orange-900/40',
-    btnBg: 'bg-gradient-to-r from-amber-500 to-yellow-500',
+    name: 'Butter Yellow',
+    iconBg: 'bg-amber-100 dark:bg-amber-900/30',
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    ring: 'ring-amber-200 dark:ring-amber-800',
+    badgeBg: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300',
+    badgeBorder: 'border-amber-200 dark:border-amber-800',
+    cardBorder: 'border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600',
+    cardBg: 'bg-[#FEFCE8]',
+    btnBg: 'bg-amber-500 hover:bg-amber-400',
     btnBorder: 'border-amber-600',
-    glowColor: 'shadow-amber-400/40',
-    glowColorHover: 'shadow-amber-500/60',
+    glowColor: 'shadow-amber-200',
+    glowColorHover: 'shadow-amber-300',
     tilt: 'rotate-[-2deg]',
     speechBubble: 'Gerak & Bersenyum! 🎨',
-    shimmerColor: 'from-amber-300/30 via-transparent to-yellow-300/30',
-    accentColor: 'text-amber-600 dark:text-amber-400',
   },
   {
-    name: 'Candy Pink',
-    bg: 'bg-gradient-to-br from-pink-100 via-rose-100 to-fuchsia-100 dark:from-pink-900/40 dark:via-rose-900/40 dark:to-fuchsia-900/40',
-    border: 'border-pink-300/60 dark:border-pink-700/60',
-    hoverBorder: 'hover:border-pink-400 dark:hover:border-pink-600',
-    iconBg: 'bg-gradient-to-br from-pink-400 to-rose-400 dark:from-pink-700 dark:to-rose-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-pink-400 to-rose-400',
-    badgeBorder: 'border-pink-300/50 dark:border-pink-700/50',
-    cardBorder: 'border-pink-300/60 dark:border-pink-700/60 hover:border-pink-400 dark:hover:border-pink-600',
-    cardBg: 'bg-gradient-to-br from-pink-100 via-rose-100 to-fuchsia-100 dark:from-pink-900/40 dark:via-rose-900/40 dark:to-fuchsia-900/40',
-    btnBg: 'bg-gradient-to-r from-pink-500 to-rose-500',
+    name: 'Bubblegum Pink',
+    iconBg: 'bg-pink-100 dark:bg-pink-900/30',
+    iconColor: 'text-pink-600 dark:text-pink-400',
+    ring: 'ring-pink-200 dark:ring-pink-800',
+    badgeBg: 'bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300',
+    badgeBorder: 'border-pink-200 dark:border-pink-800',
+    cardBorder: 'border-pink-200 dark:border-pink-800 hover:border-pink-400 dark:hover:border-pink-600',
+    cardBg: 'bg-[#FDF2F8]',
+    btnBg: 'bg-pink-500 hover:bg-pink-400',
     btnBorder: 'border-pink-600',
-    glowColor: 'shadow-pink-400/40',
-    glowColorHover: 'shadow-pink-500/60',
+    glowColor: 'shadow-pink-200',
+    glowColorHover: 'shadow-pink-300',
     tilt: 'rotate-[2deg]',
     speechBubble: 'Musik Membuat Bahagia! 🎵',
-    shimmerColor: 'from-pink-300/30 via-transparent to-rose-300/30',
-    accentColor: 'text-pink-600 dark:text-pink-400',
   },
 ]
 
@@ -253,26 +229,24 @@ async function TeachersSectionContent() {
   const displayTeachers = teachers?.length ? teachers : fallbackTeachers
 
   return (
-    <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-amber-50 via-orange-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" aria-labelledby="teachers-title">
-      <FloatingOrnaments count={35} variant="section" />
+    <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-[#FFFDF9] via-[#FFF8F0] to-[#F0F9FF] dark:from-gray-950 dark:via-gray-900 dark:to-gray-950" aria-labelledby="teachers-title">
+      <FloatingOrnaments count={25} variant="section" />
       
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-purple-300/30 via-violet-300/20 to-fuchsia-300/30 blur-3xl animate-float-rotate" />
-        <div className="absolute bottom-20 right-10 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-pink-300/30 via-rose-300/20 to-fuchsia-300/30 blur-3xl animate-float-rotate" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-purple-200/15 to-pink-200/15 blur-3xl animate-pulse-slow" />
-        <div className="absolute inset-0 bg-[radial-gradient(#fde047_1px,transparent_1px)] [background-size:20px_20px] opacity-10 animate-shimmer" />
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-400/3 via-transparent to-pink-400/3" />
+        <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-purple-200/40 blur-3xl dark:bg-purple-900/20" />
+        <div className="absolute bottom-20 right-10 w-72 h-72 rounded-full bg-pink-200/40 blur-3xl dark:bg-pink-900/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
       </div>
 
       <div className="mx-auto max-w-7xl relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400/90 via-orange-400/90 to-pink-400/90 px-6 py-3 text-sm font-black text-slate-950 backdrop-blur-sm mb-4 border-2 border-amber-300 shadow-[0_8px_32px_rgba(251,191,36,0.4)] rotate-[-2deg] animate-bounce-slow">
-            <Sparkles className="h-5 w-5 animate-bounce" />
+          <span className="inline-flex items-center gap-2 rounded-full bg-purple-100/90 px-5 py-2 text-sm font-bold text-purple-800 dark:bg-purple-900/40 dark:text-purple-300 backdrop-blur-sm mb-4 border-2 border-purple-200 dark:border-purple-800 shadow-lg shadow-purple-200/50 rotate-[-2deg]">
+            <Sparkles className="h-4 w-4 animate-bounce" />
             Tim Pendidik
           </span>
           <h2 id="teachers-title" className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4">
             Tim Pengajar
-            <span className="block bg-gradient-to-r from-purple-500 via-pink-500 to-teal-500 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-teal-600 bg-clip-text text-transparent">
               Berpengalaman & Berdedikasi
             </span>
           </h2>
@@ -288,21 +262,15 @@ async function TeachersSectionContent() {
             return (
               <article
                 key={teacher._id}
-                className={`group relative p-6 rounded-[36px] border-4 transition-all duration-700 ${theme.cardBg} ${theme.cardBorder} ${theme.hoverBorder}`}
-                style={{ 
-                  transform: index % 2 === 0 ? 'rotate(-1.5deg)' : 'rotate(1.5deg)',
-                  animationDelay: `${index * 0.1}s`
-                }}
+                className={`group relative p-6 rounded-[32px] border-4 transition-all duration-500 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-3 ${theme.cardBg} ${theme.cardBorder}`}
+                style={{ transform: index % 2 === 0 ? 'rotate(-1deg)' : 'rotate(1deg)' }}
               >
-                <FloatingOrnaments count={6} variant="card" className="pointer-events-none" />
+                <FloatingOrnaments count={4} variant="card" className="pointer-events-none" />
                 
-                {/* Glossy highlight overlay */}
-                <div className="absolute inset-0 rounded-[36px] bg-gradient-to-b from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: theme.shimmerColor }} />
-                <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 <div className="relative mb-5">
-                  <div className="aspect-square w-full max-w-xs mx-auto overflow-hidden rounded-[28px] bg-slate-100 dark:bg-slate-800 border-4 border-white/50 dark:border-slate-700/50 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
+                  <div className="aspect-square w-full max-w-xs mx-auto overflow-hidden rounded-[24px] bg-slate-100 dark:bg-slate-800 border-4 border-white/50 dark:border-slate-700/50 shadow-xl">
                     {teacher.photo ? (
                       (() => {
                         const imageUrl = urlFor(teacher.photo)
@@ -311,21 +279,21 @@ async function TeachersSectionContent() {
                             src={imageUrl.width(400).height(400).auto('format').quality(85).url()}
                             alt={teacher.name}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         ) : (
                           <div className="flex items-center justify-center h-full w-full">
-                            <div className={`h-32 w-32 rounded-full ${theme.iconBg} flex items-center justify-center border-4 border-white/50 dark:border-slate-700/50 shadow-[0_8px_24px_rgba(0,0,0,0.2),_inset_0_2px_0_rgba(255,255,255,0.3)]`}>
-                              <Users className={`h-16 w-16 ${theme.iconColor} drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]`} aria-hidden="true" />
+                            <div className={`h-28 w-28 rounded-full ${theme.iconBg} flex items-center justify-center border-4 border-white/50 dark:border-slate-700/50`}>
+                              <Users className={`h-14 w-14 ${theme.iconColor}`} aria-hidden="true" />
                             </div>
                           </div>
                         )
                       })()
                     ) : (
                       <div className="flex items-center justify-center h-full w-full">
-                        <div className={`h-32 w-32 rounded-full ${theme.iconBg} flex items-center justify-center border-4 border-white/50 dark:border-slate-700/50 shadow-[0_8px_24px_rgba(0,0,0,0.2),_inset_0_2px_0_rgba(255,255,255,0.3)]`}>
-                          <Users className={`h-16 w-16 ${theme.iconColor} drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]`} aria-hidden="true" />
+                        <div className={`h-28 w-28 rounded-full ${theme.iconBg} flex items-center justify-center border-4 border-white/50 dark:border-slate-700/50`}>
+                          <Users className={`h-14 w-14 ${theme.iconColor}`} aria-hidden="true" />
                         </div>
                       </div>
                     )}
@@ -338,11 +306,10 @@ async function TeachersSectionContent() {
                           href={teacher.socialMedia.linkedin}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group relative p-3 rounded-full bg-white/95 dark:bg-slate-800/95 text-sky-600 dark:text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300 shadow-[0_8px_24px_rgba(14,165,233,0.4)]"
+                          className="p-3 rounded-full bg-white/95 dark:bg-slate-800/95 text-sky-600 dark:text-sky-400 hover:bg-sky-500 hover:text-white transition-all duration-300 shadow-xl shadow-sky-500/30"
                           aria-label={`LinkedIn ${teacher.name}`}
                         >
-                          <Globe className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
-                          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-sky-100/40 to-transparent animate-shimmer" />
+                          <Globe className="h-5 w-5" aria-hidden="true" />
                         </a>
                       )}
                       {teacher.socialMedia.instagram && (
@@ -350,31 +317,29 @@ async function TeachersSectionContent() {
                           href={teacher.socialMedia.instagram}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group relative p-3 rounded-full bg-white/95 dark:bg-slate-800/95 text-pink-600 dark:text-pink-400 hover:bg-pink-500 hover:text-white transition-all duration-300 shadow-[0_8px_24px_rgba(244,114,182,0.4)]"
+                          className="p-3 rounded-full bg-white/95 dark:bg-slate-800/95 text-pink-600 dark:text-pink-400 hover:bg-pink-500 hover:text-white transition-all duration-300 shadow-xl shadow-pink-500/30"
                           aria-label={`Instagram ${teacher.name}`}
                         >
-                          <MessageSquare className="h-5 w-5 transition-transform group-hover:scale-110 group-hover:rotate-12" aria-hidden="true" />
-                          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-pink-100/40 to-transparent animate-shimmer" />
+                          <MessageSquare className="h-5 w-5" aria-hidden="true" />
                         </a>
                       )}
                     </div>
                   )}
 
                   <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className={`bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-[16px] px-4 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.2)] border-2 ${theme.badgeBorder} text-sm font-bold ${theme.accentColor} animate-bounce-in`}>
+                    <div className={`bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm rounded-[16px] px-4 py-2 shadow-xl border-2 ${theme.badgeBorder} text-sm font-bold ${theme.iconColor} animate-bounce-in`}>
                       {theme.speechBubble}
                     </div>
                   </div>
 
-                  <Star className="absolute top-3 left-3 h-7 w-7 text-amber-300/90 animate-pulse-glow drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" aria-hidden="true" />
-                  <Sparkles className="absolute bottom-3 right-3 h-5 w-5 text-pink-300/80 animate-pulse-glow" aria-hidden="true" />
+                  <Star className="absolute top-3 left-3 h-6 w-6 text-amber-300/80 animate-pulse-slow" aria-hidden="true" />
                 </div>
 
                 <div className="text-center mb-4">
-                  <h3 className="text-xl font-black text-slate-900 dark:text-white drop-shadow-[0_2px_8px_rgba(251,191,36,0.15)]">
+                  <h3 className="text-xl font-black text-slate-900 dark:text-white">
                     {teacher.name}
                   </h3>
-                  <p className={`text-sm font-black mt-1 ${theme.accentColor}`}>
+                  <p className={`text-sm font-black mt-1 ${theme.iconColor}`}>
                     {teacher.role}
                   </p>
                 </div>
@@ -385,7 +350,7 @@ async function TeachersSectionContent() {
                     return (
                       <span
                         key={i}
-                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 font-bold text-xs ${theme.badgeBg} ${theme.badgeBorder} shadow-[0_4px_12px_rgba(0,0,0,0.15)] text-white`}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border-2 font-bold text-xs ${theme.badgeBg} ${theme.badgeBorder} shadow-sm`}
                       >
                         <IconComponent className="h-3.5 w-3.5" aria-hidden="true" />
                         {specialty}
@@ -394,7 +359,7 @@ async function TeachersSectionContent() {
                   })}
                 </div>
 
-                <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-700/50 pt-4">
+                <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-700 pt-4">
                   <div className="flex items-center justify-center gap-2 text-xs">
                     <GraduationCap className="h-4 w-4 text-slate-400" aria-hidden="true" />
                     <span>{teacher.education[0]}</span>
@@ -407,12 +372,10 @@ async function TeachersSectionContent() {
 
                 <a
                   href={`/guru/${teacher.slug.current}`}
-                  className={`mt-4 group relative block w-full text-center rounded-full border-4 font-black text-sm py-3 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2 ${theme.btnBg} ${theme.btnBorder} text-white ${theme.glowColor} ${theme.glowColorHover} hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.25)] hover:-translate-y-1.5 active:translate-y-0.5 active:shadow-[0_6px_16px_-4px_rgba(0,0,0,0.2)]`}
-                  style={{ borderBottomWidth: '8px' }}
+                  className={`mt-4 block w-full text-center rounded-full border-4 font-black text-sm py-3 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2 ${theme.btnBg} ${theme.btnBorder} text-white ${theme.glowColor} ${theme.glowColorHover} hover:shadow-[0_12px_24px_-6px_rgba(0,0,0,0.2)] hover:-translate-y-1 active:translate-y-0.5 active:shadow-[0_4px_8px_-2px_rgba(0,0,0,0.15)]`}
                 >
-                  <span className="relative z-10">Lihat Profil</span>
-                  <ChevronRight className="h-4 w-4 inline-block ml-2 transition-transform group-hover:translate-x-1 group-hover:rotate-12" aria-hidden="true" />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+                  Lihat Profil
+                  <ChevronRight className="h-4 w-4 inline-block ml-2" aria-hidden="true" />
                 </a>
               </article>
             )
@@ -422,11 +385,10 @@ async function TeachersSectionContent() {
         <div className="mt-16 text-center">
           <a
             href="/guru"
-            className="group relative inline-flex items-center justify-center gap-3 rounded-full border-4 border-purple-300 dark:border-purple-700 border-t-2 border-purple-100/50 bg-gradient-to-r from-purple-50 via-white to-pink-50 dark:from-purple-900/30 dark:via-slate-900 dark:to-pink-900/30 px-10 py-4 text-lg font-black text-purple-700 dark:text-purple-300 hover:bg-gradient-to-r hover:from-purple-100 hover:to-pink-100 dark:hover:from-purple-900/40 dark:hover:to-pink-900/40 hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-[0_16px_40px_-8px_rgba(168,85,247,0.3)] hover:-translate-y-1 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-offset-2"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-4 border-purple-300 dark:border-purple-700 bg-purple-50 dark:bg-purple-900/20 px-10 py-4 text-lg font-black text-purple-700 dark:text-purple-300 hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-200/30 hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-purple-300 focus:ring-offset-2"
           >
-            <span className="relative z-10">Kenal Tim Kami</span>
-            <span className="h-6 w-6 transition-transform group-hover:translate-x-1 group-hover:rotate-12">→</span>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-purple-100/40 to-transparent animate-shimmer" />
+            Kenal Tim Kami
+            <span className="h-6 w-6">→</span>
           </a>
         </div>
       </div>

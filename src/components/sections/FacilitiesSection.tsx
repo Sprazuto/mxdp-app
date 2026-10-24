@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity'
 import { getFacilities } from '@/lib/sanity/queries'
-import { Video, Wifi, Shield, ThermometerSun, Music, BookOpen, Zap, CheckCircle2, Sparkles, Star, Globe, Laptop, Microscope, TreePine, Dumbbell, Stethoscope, Palette } from 'lucide-react'
+import { Video, Wifi, Shield, ThermometerSun, Music, BookOpen, Zap, CheckCircle2, Sparkles, Star } from 'lucide-react'
 import { FloatingOrnaments } from '@/components/ui/FloatingOrnaments'
 
 interface Facility {
@@ -87,88 +87,70 @@ const fallbackFacilities: Facility[] = [
 
 const facilityThemes = [
   {
-    name: 'Vivid Sky',
-    bg: 'bg-gradient-to-br from-sky-100 via-cyan-100 to-blue-100 dark:from-sky-900/40 dark:via-cyan-900/40 dark:to-blue-900/40',
-    border: 'border-sky-300/60 dark:border-sky-700/60',
-    hoverBorder: 'hover:border-sky-400 dark:hover:border-sky-600',
-    iconBg: 'bg-gradient-to-br from-sky-400 to-cyan-400 dark:from-sky-700 dark:to-cyan-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-sky-400 to-cyan-400',
-    badgeBorder: 'border-sky-300/50 dark:border-sky-700/50',
+    name: 'Sky Blue',
+    iconBg: 'bg-sky-100 dark:bg-sky-900/30',
+    iconColor: 'text-sky-600 dark:text-sky-400',
+    badgeBg: 'bg-sky-100 text-sky-800 dark:bg-sky-900/40 dark:text-sky-300',
+    badgeBorder: 'border-sky-200 dark:border-sky-800',
+    cardBorder: 'border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600',
+    cardBg: 'bg-[#F0F9FF]',
     icon: Wifi,
     tilt: 'rotate-[-2deg]',
-    shimmerColor: 'from-sky-300/30 via-transparent to-cyan-300/30',
-    accentColor: 'text-sky-600 dark:text-sky-400',
   },
   {
-    name: 'Electric Purple',
-    bg: 'bg-gradient-to-br from-purple-100 via-violet-100 to-fuchsia-100 dark:from-purple-900/40 dark:via-violet-900/40 dark:to-fuchsia-900/40',
-    border: 'border-purple-300/60 dark:border-purple-700/60',
-    hoverBorder: 'hover:border-purple-400 dark:hover:border-purple-600',
-    iconBg: 'bg-gradient-to-br from-purple-400 to-violet-400 dark:from-purple-700 dark:to-violet-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-purple-400 to-violet-400',
-    badgeBorder: 'border-purple-300/50 dark:border-purple-700/50',
+    name: 'Purple Dream',
+    iconBg: 'bg-purple-100 dark:bg-purple-900/30',
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    badgeBg: 'bg-purple-100 text-purple-800 dark:bg-purple-900/40 dark:text-purple-300',
+    badgeBorder: 'border-purple-200 dark:border-purple-800',
+    cardBorder: 'border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600',
+    cardBg: 'bg-[#F5F3FF]',
     icon: Zap,
     tilt: 'rotate-[2deg]',
-    shimmerColor: 'from-purple-300/30 via-transparent to-violet-300/30',
-    accentColor: 'text-purple-600 dark:text-purple-400',
   },
   {
-    name: 'Vivid Emerald',
-    bg: 'bg-gradient-to-br from-emerald-100 via-teal-100 to-cyan-100 dark:from-emerald-900/40 dark:via-teal-900/40 dark:to-cyan-900/40',
-    border: 'border-emerald-300/60 dark:border-emerald-700/60',
-    hoverBorder: 'hover:border-emerald-400 dark:hover:border-emerald-600',
-    iconBg: 'bg-gradient-to-br from-emerald-400 to-teal-400 dark:from-emerald-700 dark:to-teal-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-emerald-400 to-teal-400',
-    badgeBorder: 'border-emerald-300/50 dark:border-emerald-700/50',
+    name: 'Minty Emerald',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    iconColor: 'text-emerald-600 dark:text-emerald-400',
+    badgeBg: 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300',
+    badgeBorder: 'border-emerald-200 dark:border-emerald-800',
+    cardBorder: 'border-emerald-200 dark:border-emerald-800 hover:border-emerald-400 dark:hover:border-emerald-600',
+    cardBg: 'bg-[#E6FFFA]',
     icon: Shield,
     tilt: 'rotate-[-1deg]',
-    shimmerColor: 'from-emerald-300/30 via-transparent to-teal-300/30',
-    accentColor: 'text-emerald-600 dark:text-emerald-400',
   },
   {
-    name: 'Golden Amber',
-    bg: 'bg-gradient-to-br from-amber-100 via-yellow-100 to-orange-100 dark:from-amber-900/40 dark:via-yellow-900/40 dark:to-orange-900/40',
-    border: 'border-amber-300/60 dark:border-amber-700/60',
-    hoverBorder: 'hover:border-amber-400 dark:hover:border-amber-600',
-    iconBg: 'bg-gradient-to-br from-amber-400 to-yellow-400 dark:from-amber-700 dark:to-yellow-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-amber-400 to-yellow-400',
-    badgeBorder: 'border-amber-300/50 dark:border-amber-700/50',
+    name: 'Butter Yellow',
+    iconBg: 'bg-amber-100 dark:bg-amber-900/30',
+    iconColor: 'text-amber-600 dark:text-amber-400',
+    badgeBg: 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300',
+    badgeBorder: 'border-amber-200 dark:border-amber-800',
+    cardBorder: 'border-amber-200 dark:border-amber-800 hover:border-amber-400 dark:hover:border-amber-600',
+    cardBg: 'bg-[#FEFCE8]',
     icon: BookOpen,
     tilt: 'rotate-[1deg]',
-    shimmerColor: 'from-amber-300/30 via-transparent to-yellow-300/30',
-    accentColor: 'text-amber-600 dark:text-amber-400',
   },
   {
-    name: 'Candy Pink',
-    bg: 'bg-gradient-to-br from-pink-100 via-rose-100 to-fuchsia-100 dark:from-pink-900/40 dark:via-rose-900/40 dark:to-fuchsia-900/40',
-    border: 'border-pink-300/60 dark:border-pink-700/60',
-    hoverBorder: 'hover:border-pink-400 dark:hover:border-pink-600',
-    iconBg: 'bg-gradient-to-br from-pink-400 to-rose-400 dark:from-pink-700 dark:to-rose-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-pink-400 to-rose-400',
-    badgeBorder: 'border-pink-300/50 dark:border-pink-700/50',
+    name: 'Bubblegum Pink',
+    iconBg: 'bg-pink-100 dark:bg-pink-900/30',
+    iconColor: 'text-pink-600 dark:text-pink-400',
+    badgeBg: 'bg-pink-100 text-pink-800 dark:bg-pink-900/40 dark:text-pink-300',
+    badgeBorder: 'border-pink-200 dark:border-pink-800',
+    cardBorder: 'border-pink-200 dark:border-pink-800 hover:border-pink-400 dark:hover:border-pink-600',
+    cardBg: 'bg-[#FDF2F8]',
     icon: Music,
     tilt: 'rotate-[-2deg]',
-    shimmerColor: 'from-pink-300/30 via-transparent to-rose-300/30',
-    accentColor: 'text-pink-600 dark:text-pink-400',
   },
   {
     name: 'Peach Coral',
-    bg: 'bg-gradient-to-br from-orange-100 via-red-100 to-amber-100 dark:from-orange-900/40 dark:via-red-900/40 dark:to-amber-900/40',
-    border: 'border-orange-300/60 dark:border-orange-700/60',
-    hoverBorder: 'hover:border-orange-400 dark:hover:border-orange-600',
-    iconBg: 'bg-gradient-to-br from-orange-400 to-red-400 dark:from-orange-700 dark:to-red-700',
-    iconColor: 'text-white',
-    badgeBg: 'bg-gradient-to-r from-orange-400 to-red-400',
-    badgeBorder: 'border-orange-300/50 dark:border-orange-700/50',
+    iconBg: 'bg-orange-100 dark:bg-orange-900/30',
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    badgeBg: 'bg-orange-100 text-orange-800 dark:bg-orange-900/40 dark:text-orange-300',
+    badgeBorder: 'border-orange-200 dark:border-orange-800',
+    cardBorder: 'border-orange-200 dark:border-orange-800 hover:border-orange-400 dark:hover:border-orange-600',
+    cardBg: 'bg-[#FFF7ED]',
     icon: ThermometerSun,
     tilt: 'rotate-[2deg]',
-    shimmerColor: 'from-orange-300/30 via-transparent to-red-300/30',
-    accentColor: 'text-orange-600 dark:text-orange-400',
   },
 ]
 
@@ -179,75 +161,30 @@ const safetyFeatures = [
   { icon: ThermometerSun, label: 'Kesehatan Terawas', desc: 'Pemeriksaan rutin & klinik sekolah' },
 ]
 
-const safetyThemes = [
-  {
-    name: 'Crimson Red',
-    bg: 'bg-gradient-to-br from-red-900/60 via-red-800/50 to-red-900/60',
-    border: 'border-red-500/50',
-    hoverBorder: 'hover:border-red-400',
-    iconBg: 'bg-gradient-to-br from-red-500 to-pink-500',
-    iconColor: 'text-white',
-    shimmerColor: 'from-red-400/30 via-transparent to-pink-400/30',
-    accentColor: 'text-red-400',
-  },
-  {
-    name: 'Golden Shield',
-    bg: 'bg-gradient-to-br from-amber-900/60 via-yellow-800/50 to-amber-900/60',
-    border: 'border-amber-500/50',
-    hoverBorder: 'hover:border-amber-400',
-    iconBg: 'bg-gradient-to-br from-amber-500 to-yellow-500',
-    iconColor: 'text-white',
-    shimmerColor: 'from-amber-400/30 via-transparent to-yellow-400/30',
-    accentColor: 'text-amber-400',
-  },
-  {
-    name: 'Emerald Safe',
-    bg: 'bg-gradient-to-br from-emerald-900/60 via-teal-800/50 to-emerald-900/60',
-    border: 'border-emerald-500/50',
-    hoverBorder: 'hover:border-emerald-400',
-    iconBg: 'bg-gradient-to-br from-emerald-500 to-teal-500',
-    iconColor: 'text-white',
-    shimmerColor: 'from-emerald-400/30 via-transparent to-teal-400/30',
-    accentColor: 'text-emerald-400',
-  },
-  {
-    name: 'Royal Blue',
-    bg: 'bg-gradient-to-br from-blue-900/60 via-indigo-800/50 to-blue-900/60',
-    border: 'border-blue-500/50',
-    hoverBorder: 'hover:border-blue-400',
-    iconBg: 'bg-gradient-to-br from-blue-500 to-indigo-500',
-    iconColor: 'text-white',
-    shimmerColor: 'from-blue-400/30 via-transparent to-indigo-400/30',
-    accentColor: 'text-blue-400',
-  },
-]
-
 async function FacilitiesSectionContent() {
   const facilities = (await getFacilities()) as Facility[] | null
   const displayFacilities = facilities?.length ? facilities : fallbackFacilities
 
   return (
     <>
-      <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-amber-50 via-orange-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" aria-labelledby="facilities-title">
-        <FloatingOrnaments count={35} variant="section" />
+      <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-[#FFFDF9] via-[#FFF8F0] to-[#F0F9FF] dark:from-gray-950 dark:via-gray-900 dark:to-gray-950" aria-labelledby="facilities-title">
+        <FloatingOrnaments count={25} variant="section" />
         
         <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-          <div className="absolute top-20 left-10 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-sky-300/30 via-cyan-300/20 to-blue-300/30 blur-3xl animate-float-rotate" />
-          <div className="absolute bottom-20 right-10 w-[300px] h-[300px] rounded-full bg-gradient-to-br from-pink-300/30 via-rose-300/20 to-fuchsia-300/30 blur-3xl animate-float-rotate" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-emerald-200/15 to-pink-200/15 blur-3xl animate-pulse-slow" />
-          <div className="absolute inset-0 bg-[radial-gradient(#fde047_1px,transparent_1px)] [background-size:20px_20px] opacity-10 animate-shimmer" />
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-400/3 via-transparent to-pink-400/3" />
+          <div className="absolute top-20 left-10 w-72 h-72 rounded-full bg-sky-200/40 blur-3xl dark:bg-sky-900/20" />
+          <div className="absolute bottom-20 right-10 w-72 h-72 rounded-full bg-amber-200/40 blur-3xl dark:bg-amber-900/20" />
+          <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
         </div>
 
         <div className="mx-auto max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400/90 via-orange-400/90 to-pink-400/90 px-6 py-3 text-sm font-black text-slate-950 backdrop-blur-sm mb-4 border-2 border-amber-300 shadow-[0_8px_32px_rgba(251,191,36,0.4)] rotate-[-2deg] animate-bounce-slow">
-              <Sparkles className="h-5 w-5 animate-bounce" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-5 py-2 text-sm font-bold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border-2 border-emerald-200 dark:border-emerald-800 shadow-lg shadow-emerald-200/50 rotate-[-2deg]">
+              <Sparkles className="h-4 w-4 animate-bounce" />
               Fasilitas Lengkap
             </span>
             <h2 id="facilities-title" className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4">
               Fasilitas Pendukung
-              <span className="block bg-gradient-to-r from-sky-500 via-purple-500 to-emerald-500 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-sky-600 via-purple-600 to-emerald-600 bg-clip-text text-transparent">
                 Pembelajaran Modern
               </span>
             </h2>
@@ -264,62 +201,51 @@ async function FacilitiesSectionContent() {
               return (
                 <article
                   key={facility._id}
-                  className={`group relative p-6 rounded-[36px] border-4 transition-all duration-700 ${theme.bg} ${theme.border} ${theme.hoverBorder}`}
-                  style={{ 
-                    transform: index % 2 === 0 ? 'rotate(-1.5deg)' : 'rotate(1.5deg)',
-                    animationDelay: `${index * 0.1}s`
-                  }}
+                  className={`group relative p-6 rounded-[32px] border-4 transition-all duration-500 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-3 ${theme.cardBg} ${theme.cardBorder}`}
+                  style={{ transform: index % 2 === 0 ? 'rotate(-1deg)' : 'rotate(1deg)' }}
                 >
-                  <FloatingOrnaments count={6} variant="card" className="pointer-events-none" />
+                  <FloatingOrnaments count={4} variant="card" className="pointer-events-none" />
                   
-                  {/* Glossy highlight overlay */}
-                  <div className="absolute inset-0 rounded-[36px] bg-gradient-to-b from-white/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: theme.shimmerColor }} />
-                  <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-emerald-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  <div className="relative mb-4 aspect-video overflow-hidden rounded-[28px] bg-slate-100 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700">
+                  <div className="relative mb-4 aspect-video overflow-hidden rounded-[24px] bg-slate-100 dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700">
                     {facility.thumbnail ? (
                       (() => {
                         const imageUrl = urlFor(facility.thumbnail)
                         return imageUrl ? (
                           <Image
-                            src={imageUrl.width(500).height(350).auto('format').quality(85).url()}
+                            src={imageUrl.width(500).height(350).auto('format').quality(80).url()}
                             alt={facility.name}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         ) : (
                           <div className="flex items-center justify-center h-full w-full">
-                            <IconComponent className="h-20 w-20 text-slate-300 dark:text-slate-600" aria-hidden="true" />
+                            <IconComponent className="h-18 w-18 text-slate-300 dark:text-slate-600" aria-hidden="true" />
                           </div>
                         )
                       })()
                     ) : (
                       <div className="flex items-center justify-center h-full w-full">
-                        <IconComponent className="h-20 w-20 text-slate-300 dark:text-slate-600" aria-hidden="true" />
+                        <IconComponent className="h-18 w-18 text-slate-300 dark:text-slate-600" aria-hidden="true" />
                       </div>
                     )}
-                    {/* Image glossy overlay */}
-                    <div className="absolute inset-0 rounded-[28px] bg-gradient-to-b from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     {facility.hasCctv && (
-                      <div className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs font-black shadow-[0_4px_16px_rgba(239,68,68,0.5)] animate-pulse-glow">
-                        <Video className="h-4 w-4 animate-pulse" aria-hidden="true" />
+                      <div className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-500/90 text-white text-xs font-black shadow-lg">
+                        <Video className="h-3.5 w-3.5 animate-pulse" aria-hidden="true" />
                         <span>LIVE CCTV</span>
                       </div>
                     )}
-                    <Star className="absolute top-3 left-3 h-6 w-6 text-amber-300/90 animate-pulse-glow drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" aria-hidden="true" />
-                    <Sparkles className="absolute bottom-3 right-3 h-5 w-5 text-pink-300/80 animate-pulse-glow" aria-hidden="true" />
+                    <Star className="absolute top-3 left-3 h-5 w-5 text-amber-300/80 animate-pulse-slow" aria-hidden="true" />
                   </div>
 
-                  <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2 drop-shadow-[0_2px_8px_rgba(251,191,36,0.15)]">
+                  <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">
                     {facility.name}
                   </h3>
 
                   <ul className="space-y-1.5 mb-4" role="list">
                     {facility.features.slice(0, 4).map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
-                        <CheckCircle2 className={`h-5 w-5 ${theme.accentColor} flex-shrink-0 animate-bounce-slow drop-shadow-[0_0_6px_rgba(251,191,36,0.5)]`} aria-hidden="true" />
+                      <li key={i} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300">
+                        <CheckCircle2 className={`h-4.5 w-4.5 ${theme.iconColor} flex-shrink-0`} aria-hidden="true" />
                         {feature}
                       </li>
                     ))}
@@ -332,11 +258,11 @@ async function FacilitiesSectionContent() {
                         return galleryUrl ? (
                           <li key={i} className="flex-shrink-0">
                             <Image
-                              src={galleryUrl.width(120).height(90).auto('format').quality(85).url()}
+                              src={galleryUrl.width(120).height(90).auto('format').quality(80).url()}
                               alt={`${facility.name} - Foto ${i + 1}`}
                               width={120}
                               height={90}
-                              className="rounded-[16px] object-cover border-2 border-slate-200 dark:border-slate-700 group-hover:scale-105 transition-transform duration-500"
+                              className="rounded-[16px] object-cover border-2 border-slate-200 dark:border-slate-700"
                             />
                           </li>
                         ) : null
@@ -351,29 +277,27 @@ async function FacilitiesSectionContent() {
           <div className="text-center">
             <a
               href="/fasilitas"
-              className="group relative inline-flex items-center justify-center gap-3 rounded-full border-4 border-emerald-300 dark:border-emerald-700 border-t-2 border-emerald-100/50 bg-gradient-to-r from-emerald-50 via-white to-teal-50 dark:from-emerald-900/30 dark:via-slate-900 dark:to-teal-900/30 px-10 py-4 text-lg font-black text-emerald-700 dark:text-emerald-300 hover:bg-gradient-to-r hover:from-emerald-100 hover:to-teal-100 dark:hover:from-emerald-900/40 dark:hover:to-teal-900/40 hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-[0_16px_40px_-8px_rgba(16,185,129,0.3)] hover:-translate-y-1 transition-all duration-500 focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-4 border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 px-10 py-4 text-lg font-black text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-200/30 hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2"
             >
-              <span className="relative z-10">Lihat Semua Fasilitas</span>
-              <span className="h-6 w-6 transition-transform group-hover:translate-x-1 group-hover:rotate-12">→</span>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-emerald-100/40 to-transparent animate-shimmer" />
+              Lihat Semua Fasilitas
+              <span className="h-6 w-6">→</span>
             </a>
           </div>
         </div>
       </section>
 
       <section className="relative px-4 py-20 sm:py-24 lg:py-32 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950" aria-labelledby="safety-title">
-        <FloatingOrnaments count={30} variant="section" />
+        <FloatingOrnaments count={20} variant="section" />
         
         <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-          <div className="absolute inset-0 bg-gradient-to-br from-red-500/10 via-transparent to-emerald-500/10" />
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-pink-500/10" />
           <div className="absolute inset-0 bg-[radial-gradient(#374151_1px,transparent_1px)] [background-size:24px_24px] opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-red-500/5 via-transparent to-emerald-500/5" />
         </div>
 
         <div className="mx-auto max-w-7xl relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="relative inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-red-500/30 via-amber-500/30 to-emerald-500/30 px-6 py-3 text-sm font-black text-amber-200 dark:bg-red-900/40 dark:text-amber-300 backdrop-blur-sm mb-4 border-2 border-red-500/30 dark:border-red-900/30 shadow-[0_8px_32px_rgba(239,68,68,0.3)] rotate-[2deg] animate-bounce-slow">
-              <Video className="h-5 w-5 animate-pulse" />
+            <span className="inline-flex items-center gap-2 rounded-full bg-red-500/20 px-5 py-2 text-sm font-bold text-red-400 dark:bg-red-900/40 dark:text-red-300 backdrop-blur-sm mb-4 border-2 border-red-500/30 dark:border-red-900/30 shadow-lg shadow-red-500/20 rotate-[2deg]">
+              <Video className="h-4 w-4 animate-pulse" />
               Keamanan & Kesejahteraan
             </span>
             <h2 id="safety-title" className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4">
@@ -389,37 +313,25 @@ async function FacilitiesSectionContent() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {safetyFeatures.map((feature, index) => {
-              const theme = safetyThemes[index % safetyThemes.length]
+              const theme = facilityThemes[index % facilityThemes.length]
               const IconComponent = feature.icon
 
               return (
                 <article
                   key={feature.label}
-                  className={`group p-8 rounded-[36px] border-4 transition-all duration-700 hover:shadow-[0_30px_60px_-12px_rgba(255,255,255,0.15)] hover:-translate-y-3 ${theme.bg} ${theme.border} ${theme.hoverBorder}`}
-                  style={{ 
-                    transform: index % 2 === 0 ? 'rotate(-1.5deg)' : 'rotate(1.5deg)',
-                    animationDelay: `${index * 0.1}s`
-                  }}
+                  className={`group p-8 rounded-[32px] border-4 transition-all duration-500 hover:shadow-[0_24px_48px_-12px_rgba(255,255,255,0.1)] hover:-translate-y-3 ${theme.cardBg} ${theme.cardBorder} dark:bg-slate-800/80 dark:border-slate-700`}
+                  style={{ transform: index % 2 === 0 ? 'rotate(-1deg)' : 'rotate(1deg)' }}
                 >
-                  <FloatingOrnaments count={4} variant="card" className="pointer-events-none" />
-                  
-                  {/* Glossy highlight overlay */}
-                  <div className="absolute inset-0 rounded-[36px] bg-gradient-to-b from-white/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute inset-0 rounded-[36px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: theme.shimmerColor }} />
-                  
-                  <div className={`mb-6 flex h-18 w-18 items-center justify-center rounded-[22px] ${theme.iconBg} group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-[0_12px_32px_rgba(0,0,0,0.3),_inset_0_2px_0_rgba(255,255,255,0.2)]`}>
-                    <IconComponent className={`h-9 w-9 ${theme.iconColor} drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]`} aria-hidden="true" />
-                    {/* Glossy icon highlight */}
-                    <div className="absolute inset-0 rounded-[22px] bg-gradient-to-b from-white/30 to-transparent" />
+                  <div className={`mb-5 flex h-16 w-16 items-center justify-center rounded-[20px] ${theme.iconBg} group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-emerald-500/20`}>
+                    <IconComponent className={`h-8 w-8 ${theme.iconColor}`} aria-hidden="true" />
                   </div>
-                  <h3 className="text-lg font-black text-white mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+                  <h3 className="text-lg font-black text-white mb-2">
                     {feature.label}
                   </h3>
                   <p className="text-slate-300 text-sm leading-relaxed">
                     {feature.desc}
                   </p>
-                  <Star className="absolute top-4 right-4 h-7 w-7 text-amber-300/90 animate-pulse-glow drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" aria-hidden="true" />
-                  <Sparkles className="absolute bottom-4 left-4 h-5 w-5 text-pink-300/80 animate-pulse-glow" aria-hidden="true" />
+                  <Star className="absolute top-4 right-4 h-6 w-6 text-amber-300/80 animate-pulse-slow" aria-hidden="true" />
                 </article>
               )
             })}
