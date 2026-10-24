@@ -1,3 +1,5 @@
+import type { SanityImage } from '@/lib/sanity/client'
+
 export interface SiteSettings {
   _id: string
   siteName: string
@@ -69,16 +71,6 @@ export interface ContactFormData {
   phone: string
   subject: string
   message: string
-}
-
-export interface SanityImage {
-  _type: 'image'
-  asset: {
-    _ref: string
-    _type: 'reference'
-  }
-  alt?: string
-  caption?: string
 }
 
 export interface SanityBlockContent {

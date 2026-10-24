@@ -1,6 +1,8 @@
 import { sanityClient, isSanityConfigured } from './client'
 import { urlFor } from './client'
 
+const cacheOptions = { next: { revalidate: 3600 } }
+
 export async function getSiteSettings() {
   if (!isSanityConfigured() || !sanityClient) return null
   return sanityClient.fetch(`*[_type == "siteSettings"][0] {
@@ -14,7 +16,7 @@ export async function getSiteSettings() {
     address,
     socialMedia,
     seo
-  }`)
+  }`, {}, cacheOptions)
 }
 
 export async function getPrograms() {
@@ -31,7 +33,7 @@ export async function getPrograms() {
     features,
     isActive,
     order
-  }`)
+  }`, {}, cacheOptions)
 }
 
 export async function getProgramBySlug(slug: string) {
@@ -48,7 +50,7 @@ export async function getProgramBySlug(slug: string) {
     features,
     isActive,
     order
-  }`, { slug })
+  }`, { slug }, cacheOptions)
 }
 
 export async function getFacilities() {
@@ -63,7 +65,7 @@ export async function getFacilities() {
     features,
     hasCctv,
     order
-  }`)
+  }`, {}, cacheOptions)
 }
 
 export async function getFacilityBySlug(slug: string) {
@@ -78,7 +80,7 @@ export async function getFacilityBySlug(slug: string) {
     features,
     hasCctv,
     order
-  }`, { slug })
+  }`, { slug }, cacheOptions)
 }
 
 export async function getTeachers() {
@@ -95,7 +97,7 @@ export async function getTeachers() {
     specialties,
     socialMedia,
     order
-  }`)
+  }`, {}, cacheOptions)
 }
 
 export async function getTeacherBySlug(slug: string) {
@@ -112,7 +114,7 @@ export async function getTeacherBySlug(slug: string) {
     specialties,
     socialMedia,
     order
-  }`, { slug })
+  }`, { slug }, cacheOptions)
 }
 
 export { urlFor }

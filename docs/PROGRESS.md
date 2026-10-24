@@ -288,3 +288,158 @@
 4. Program/Facility/Teacher detail pages (`/program/[slug]`, etc.)
 5. Dashboard/admin area for content management
 6. Lighthouse CI integration for performance monitoring
+
+---
+
+## 2026-10-24: Phase 2 Complete — Database Setup, Sanity Studio & Dynamic Detail Pages
+
+### Completed Tasks
+- ✅ **Supabase SQL Migration** (`supabase/migrations/01_inquiries.sql`):
+  - Created `inquiries` table with UUID PK, timestamps, parent_name, child_name, child_age, phone_number, email, preferred_visit_date, notes, status (default 'NEW')
+  - Enabled Row Level Security (RLS)
+  - Added policy for `anon` role to INSERT inquiries (public contact form)
+  - Added policies for authenticated users to SELECT/UPDATE (future admin dashboard)
+
+- ✅ **Sanity Studio Embedded Route**:
+  - Created `/studio/[[...tool]]` route using `next-sanity/studio` (NextStudio component)
+  - Created `sanity/sanity.config.ts` with schema types and structure tool plugin
+  - Added `StudioClient.tsx` client component for dynamic import with `ssr: false`
+  - Configured route group `(public)` to isolate public pages (with Navbar/Footer) from Studio
+  - Created minimal root layout without Navbar/Footer
+  - Created dedicated Studio layout with full-screen Sanity Studio
+
+- ✅ **Dynamic Detail Pages (RSC with Fallback Data)**:
+  - **Program Detail Page** (`src/app/program/[slug]/page.tsx`):
+    - React Server Component with async data fetching
+    - `generateMetadata` for dynamic SEO (title, description, OpenGraph, Twitter)
+    - `generateStaticParams` for SSG/ISR with Sanity slugs + fallback
+    - Hero section with thumbnail, age group badge, duration
+    - Features grid, full description (Portable Text rendering), CTA section
+    - Graceful fallback to static data when Sanity not configured
+  
+  - **Teacher Detail Page** (`src/app/guru/[slug]/page.tsx`):
+    - React Server Component with async data fetching
+    - `generateMetadata` for dynamic SEO (profile type OpenGraph)
+    - `generateStaticParams` for SSG/ISR with Sanity slugs + fallback
+    - Hero section with profile photo, role badge, social links
+    - Bio (Portable Text), Education & Experience grids, Specialties chips
+    - CTA section to schedule visit
+    - Graceful fallback to static data when Sanity not configured
+
+  - **Fallback Data Module** (`src/lib/fallback-data.ts`):
+    - 4 educational programs (Toddler, Playgroup, TK A, TK B) with full descriptions
+    - 6 teachers with bios, education, experience, specialties, social media
+    - Proper TypeScript types matching Sanity schemas
+
+- ✅ **Sanity Client Improvements**:
+  - Added cache options (`next: { revalidate: 3600 }`) to all GROQ queries for ISR
+  - Added `urlFor` null-safety for placeholder images
+  - Exported `SanityImage` type from client for shared usage
+
+- ✅ **Route Group Architecture**:
+  - Moved public pages to `(public)` route group with full Navbar/Footer layout
+  - Studio route at root level with minimal layout (no Navbar/Footer)
+  - Root layout provides only HTML structure, fonts, globals.css
+
+### Files Created
+- `supabase/migrations/01_inquiries.sql`
+- `sanity/sanity.config.ts`
+- `src/app/studio/[[...tool]]/page.tsx`
+- `src/app/studio/[[...tool]]/layout.tsx`
+- `src/app/studio/[[...tool]]/StudioClient.tsx`
+- `src/app/program/[slug]/page.tsx`
+- `src/app/guru/[slug]/page.tsx`
+- `src/lib/fallback-data.ts`
+- `src/app/(public)/layout.tsx` (moved from root)
+- `src/app/(public)/page.tsx` (moved from root)
+- `src/app/(public)/program/` (moved from root)
+- `src/app/(public)/guru/` (moved from root)
+
+### Files Modified
+- `src/app/layout.tsx` — minimal root layout without Navbar/Footer
+- `src/lib/sanity/client.ts` — added `SanityImage` type, null-safe `urlFor`, placeholder handling
+- `src/lib/sanity/queries.ts` — added cache options for ISR
+- `src/types/index.ts` — import `SanityImage` from client
+- `src/lib/fallback-data.ts` — import `SanityImage` from client
+- `next.config.ts` — verified cacheComponents enabled
+- `tsconfig.json` — verified sanity exclusion
+- `TODOS.md` — marked all Phase 2 tasks complete
+
+### Verification
+- ✅ `npm run build` passes successfully
+- ✅ TypeScript compilation passes (strict mode, no `any`)
+- ✅ Next.js 16.4.3 with Turbopack compiles without errors
+- ✅ Static generation works for `/`, `/program/[slug]`, `/guru/[slug]` with fallback data
+- ✅ Sanity Studio accessible at `/studio` (dynamic route)
+- ✅ API routes (`/api/contact`) work dynamically
+- ✅ All 6 free-tier services integrated and build-verified
+
+---
+
+## 2026-10-24: Phase 3 Complete — Digital Admission (PPDB) & Internal Admin Dashboard
+
+### Completed Tasks
+- ✅ **Supabase SQL Migration** (`supabase/migrations/02_ppdb_and_auth.sql`):
+  - Created `registrations` table with UUID PK, timestamps, unique `registration_number`, parent/child fields, `program_applied`, status enum (PENDING/VERIFIED/ACCEPTED/REJECTED)
+  - Enabled Row Level Security (RLS)
+  - Added policy for `anon` role to INSERT registrations (public PPDB form)
+  - Added policies for authenticated users to SELECT/UPDATE (admin dashboard)
+
+- ✅ **PPDB Registration Form** (`/ppdb`):
+  - Multi-step form: Parent Data → Child Data → Program Selection → Confirmation
+  - React Hook Form + Zod validation (`src/lib/validations/ppdb.ts`)
+  - Native HTML `<select>` for gender and program dropdowns (consistent UI)
+  - Client-side validation with Indonesian error messages
+  - Server-side validation in API route
+
+- ✅ **PPDB API Route** (`src/app/api/ppdb/route.ts`):
+  - Zod validation on server-side
+  - Supabase database insertion to `registrations` table
+  - Auto-generated registration number (REG-YYYY-XXXX format)
+  - Resend email notifications:
+    - Admin notification with full registration details
+    - Parent confirmation email with registration number
+  - Graceful handling when Resend API key not configured
+
+- ✅ **Admin Portal Dashboard** (`/dashboard`):
+  - Isolated `(admin)` route group with dedicated layout (no Navbar/Footer, noindex/nofollow)
+  - Stats cards: Total Inquiries, Total PPDB, Verified, Accepted
+  - **Inquiries Table**: Date, Parent, Child, WhatsApp, Visit Date, Status badge, Actions (view, status dropdown)
+  - **Registrations Table**: Date, Reg Number, Parent, Child, Program, Status badge, Actions (view, status dropdown)
+  - Search inputs and status filter dropdowns (native `<select>`) for both tables
+  - Consistent native `<select>` components with PPDB form
+
+- ✅ **UI Components** (reusable, native `<select>` based):
+  - `Input`, `Label`, `Textarea`, `Card`, `Badge`, `Table`, `Select` (wrapper for native `<select>`)
+  - No compound `SelectTrigger/SelectContent/SelectItem` — all use native HTML `<select>` + `<option>`
+  - Consistent styling: `field` class, dark/light mode support, error states
+
+### Files Created
+- `supabase/migrations/02_ppdb_and_auth.sql`
+- `src/lib/validations/ppdb.ts`
+- `src/app/api/ppdb/route.ts`
+- `src/components/ppdb/PPDBForm.tsx`
+- `src/app/(public)/ppdb/page.tsx`
+- `src/app/(admin)/layout.tsx`
+- `src/app/(admin)/dashboard/page.tsx`
+- `src/components/ui/input.tsx`
+- `src/components/ui/label.tsx`
+- `src/components/ui/textarea.tsx`
+- `src/components/ui/select.tsx` (native select wrapper)
+- `src/components/ui/table.tsx`
+- `src/components/ui/card.tsx` (re-export)
+- `src/components/ui/badge.tsx` (re-export)
+
+### Files Modified
+- `next.config.ts` — removed `cacheComponents` and `partialPrefetching` to support dynamic admin dashboard
+- `TODOS.md` — marked all Phase 3 tasks complete
+
+### Verification
+- ✅ `npm run build` passes successfully
+- ✅ TypeScript compilation passes (strict mode, no `any`)
+- ✅ Next.js 16.4.3 with Turbopack compiles without errors
+- ✅ All routes compile:
+  - Static: `/`, `/ppdb`, `/robots.txt`, `/sitemap.xml`
+  - SSG/ISR: `/program/[slug]` (4 paths), `/guru/[slug]` (6 paths)
+  - Dynamic: `/dashboard`, `/api/contact`, `/api/ppdb`, `/studio/[[...tool]]`
+- ✅ All 6 free-tier services integrated and build-verified

@@ -30,7 +30,20 @@ export function isSanityConfigured(): boolean {
 
 const builder = hasConfig && sanityClient ? imageUrlBuilder(sanityClient) : null
 
-export function urlFor(source: any) {
+export function urlFor(source: SanityImage | null | undefined) {
   if (!builder) return null
+  if (!source) return null
+  // Skip placeholder images that don't have valid Sanity asset references
+  if (source.asset?._ref === 'placeholder') return null
   return builder.image(source)
+}
+
+export interface SanityImage {
+  _type: 'image'
+  asset: {
+    _ref: string
+    _type: 'reference'
+  }
+  alt?: string
+  caption?: string
 }
