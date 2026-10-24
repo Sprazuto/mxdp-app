@@ -81,6 +81,7 @@ pnpm-lock.yaml
 # resend - no local files, only env vars
 
 # supabase - no local files, only env vars
+supabase/.temp/
 
 # generated files
 *.generated.ts

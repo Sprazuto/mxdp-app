@@ -27,6 +27,7 @@ mxdp-app/
 │   ├── ARCHITECTURE.md          # Cetak Biru Arsitektur & Diagram Sistem
 │   ├── TECH-STACK.md            # Batasan Library, SDK, & Aturan $0 Free Tier
 │   ├── PROGRESS.md              # Catatan histori pencapaian & log perubahan fitur
+│   ├── DESIGN-POLICY.md       
 │   ├── SANITY-FREE-SPEC.md       
 │   ├── SUPABASE-FREE-SPEC.md       
 │   ├── RESEND-FREE-SPEC.md       
