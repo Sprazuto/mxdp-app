@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { MapPin, ExternalLink, Navigation, Loader2 } from 'lucide-react'
+import { MapPin, ExternalLink, Navigation, Loader2, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const CampusMapComponent = dynamic(
@@ -9,10 +9,11 @@ const CampusMapComponent = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="aspect-video w-full rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3 text-gray-500 dark:text-gray-400">
-          <Loader2 className="h-8 w-8 animate-spin text-blue-600 dark:text-blue-400" aria-hidden="true" />
-          <p className="text-sm font-medium">Memuat peta...</p>
+      <div className="aspect-video w-full rounded-[24px] bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400">
+          <Loader2 className="h-8 w-8 animate-spin text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          <p className="text-sm font-bold">Memuat peta...</p>
+          <Sparkles className="h-4 w-4 text-amber-400 animate-bounce" />
         </div>
       </div>
     ),
@@ -39,7 +40,7 @@ export function CampusMap({
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name}, ${address}`)}`
 
   return (
-    <div className={cn('relative rounded-2xl overflow-hidden', className)}>
+    <div className={cn('relative rounded-[24px] overflow-hidden', className)}>
       <CampusMapComponent
         lat={lat}
         lng={lng}
@@ -53,12 +54,12 @@ export function CampusMap({
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
-            'p-3 rounded-xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm',
-            'text-gray-700 dark:text-gray-300',
-            'hover:bg-blue-50 dark:hover:bg-blue-900/30',
-            'hover:text-blue-600 dark:hover:text-blue-400',
-            'shadow-lg shadow-gray-900/10',
-            'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
+            'p-3 rounded-[16px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm',
+            'text-slate-700 dark:text-slate-300',
+            'hover:bg-emerald-50 dark:hover:bg-emerald-900/30',
+            'hover:text-emerald-600 dark:hover:text-emerald-400',
+            'shadow-xl shadow-slate-900/10',
+            'transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-emerald-300'
           )}
           aria-label={`Buka ${name} di Google Maps`}
           title="Buka di Google Maps"
@@ -67,11 +68,11 @@ export function CampusMap({
         </a>
         <button
           className={cn(
-            'p-3 rounded-xl bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm',
-            'text-gray-700 dark:text-gray-300',
-            'hover:bg-gray-100 dark:hover:bg-gray-800',
-            'shadow-lg shadow-gray-900/10',
-            'transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
+            'p-3 rounded-[16px] bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm',
+            'text-slate-700 dark:text-slate-300',
+            'hover:bg-slate-100 dark:hover:bg-slate-800',
+            'shadow-xl shadow-slate-900/10',
+            'transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-emerald-300'
           )}
           aria-label="Lokasi saya"
           title="Lokasi saya"
@@ -79,12 +80,12 @@ export function CampusMap({
           <Navigation className="h-5 w-5" aria-hidden="true" />
         </button>
       </div>
-      <div className="absolute bottom-4 left-4 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm rounded-xl p-3 shadow-lg shadow-gray-900/10">
-        <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+      <div className="absolute bottom-4 left-4 z-10 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-[16px] p-4 shadow-xl shadow-slate-900/10 border-2 border-slate-200 dark:border-slate-700">
+        <div className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
           <MapPin className="h-4 w-4 text-red-500 flex-shrink-0" aria-hidden="true" />
-          <span className="font-medium whitespace-nowrap max-w-xs truncate">{name}</span>
+          <span className="font-black whitespace-nowrap max-w-xs truncate">{name}</span>
         </div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 max-w-xs truncate">{address}</p>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 max-w-xs truncate">{address}</p>
       </div>
     </div>
   )
