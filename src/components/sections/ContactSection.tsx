@@ -104,10 +104,10 @@ export function ContactSection() {
           {/* Left Panel - parent controls children via variants */}
           <motion.div
             className="mb-10 lg:mb-0"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={staggerContainer(0.1, 100)}
+            initial="hidden"
+            whileInView="visible"
             viewport={viewportOnce}
-            {...motionProps}
           >
             <motion.div
               variants={staggerContainer(0.1, 100)}
@@ -149,7 +149,6 @@ export function ContactSection() {
               initial="hidden"
               whileInView="visible"
               viewport={viewportOnce}
-              {...motionProps}
             >
               <motion.div
                 className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-blue-200 dark:border-blue-800 backdrop-blur-sm hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-xl hover:shadow-blue-200/30 transition-all duration-300"
@@ -218,7 +217,6 @@ export function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.4 }}
-              {...motionProps}
             >
               <h3 className="font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <MapPin className="h-6 w-6 text-red-500" aria-hidden="true" />
@@ -246,7 +244,6 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={viewportOnce}
-            {...motionProps}
           >
             <Sparkles count={15} color="multi" size="sm" className="absolute inset-0 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-[32px] blur-2xl" aria-hidden="true" />
@@ -302,7 +299,6 @@ export function ContactSection() {
                 whileInView="visible"
                 viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                {...motionProps}
               >
                 <InputField
                   label="Nama Orang Tua"
@@ -410,7 +406,6 @@ export function ContactSection() {
                 whileInView="visible"
                 viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.3 }}
-                {...motionProps}
               >
                 <motion.button
                   type="submit"
@@ -457,7 +452,6 @@ export function ContactSection() {
                 whileInView={{ opacity: 1 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                {...motionProps}
               >
                 Dengan mengirim formulir ini, Anda menyetujui kebijakan privasi kami. Data Anda aman dan tidak akan dibagikan ke pihak ketiga.
                 <Shield className="h-3.5 w-3.5 inline-block ml-1 text-emerald-500" aria-hidden="true" />

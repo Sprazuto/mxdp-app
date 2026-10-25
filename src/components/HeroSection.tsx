@@ -55,7 +55,6 @@ export function HeroSection({
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          {...motionProps}
         >
           <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
@@ -102,7 +101,6 @@ export function HeroSection({
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          {...motionProps}
         >
           <motion.button
             className="w-full sm:w-auto gap-2 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-700 hover:to-emerald-600 shadow-lg shadow-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/40 active:scale-[0.98] transition-all duration-200 px-8 py-4 text-white font-semibold text-lg"
@@ -154,7 +152,6 @@ export function HeroSection({
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          {...motionProps}
         >
           {stats.map((stat, index) => (
             <motion.div
