@@ -53,7 +53,7 @@ export default function Home() {
           <div data-sc-stage>
             <img
               className="sc-stage__poster"
-              src="/assets/hero-poster.svg"
+              src="/assets/hero-poster.webp"
               alt=""
               width="1920"
               height="1080"
@@ -135,7 +135,7 @@ export default function Home() {
               className="turn-figure"
             >
               <img
-                src="/assets/turn-moment.svg"
+                src="/assets/turn-moment.webp"
                 width="1920"
                 height="1080"
                 alt="Anak-anak MXDP tersenyum saat belajar di kelas yang cerah"
@@ -158,7 +158,7 @@ export default function Home() {
           <div data-sc-stage>
             <img
               className="sc-stage__poster"
-              src="/assets/act4-poster.svg"
+              src="/assets/act4-poster.webp"
               alt=""
               width="1920"
               height="1080"
@@ -203,7 +203,7 @@ export default function Home() {
               {/* Program 1: Toddler */}
               <article className="program-card" data-sc-tilt="6">
                 <div className="program-card__media">
-                  <img src="/assets/program-toddler.svg" alt="Toddler Class activities" width="400" height="300" />
+                  <img src="/assets/program-toddler.webp" alt="Toddler Class activities" width="400" height="300" />
                 </div>
                 <div className="program-card__content">
                   <span className="sc-label">1.5 – 3 Tahun</span>
@@ -221,7 +221,7 @@ export default function Home() {
               {/* Program 2: Playgroup */}
               <article className="program-card" data-sc-tilt="6">
                 <div className="program-card__media">
-                  <img src="/assets/program-playgroup.svg" alt="Playgroup activities" width="400" height="300" />
+                  <img src="/assets/program-playgroup.webp" alt="Playgroup activities" width="400" height="300" />
                 </div>
                 <div className="program-card__content">
                   <span className="sc-label">3 – 4 Tahun</span>
@@ -239,7 +239,7 @@ export default function Home() {
               {/* Program 3: TK A */}
               <article className="program-card" data-sc-tilt="6">
                 <div className="program-card__media">
-                  <img src="/assets/program-tka.svg" alt="TK A classroom" width="400" height="300" />
+                  <img src="/assets/program-tka.webp" alt="TK A classroom" width="400" height="300" />
                 </div>
                 <div className="program-card__content">
                   <span className="sc-label">4 – 5 Tahun</span>
@@ -257,7 +257,7 @@ export default function Home() {
               {/* Program 4: TK B */}
               <article className="program-card" data-sc-tilt="6">
                 <div className="program-card__media">
-                  <img src="/assets/program-tkb.svg" alt="TK B graduation" width="400" height="300" />
+                  <img src="/assets/program-tkb.webp" alt="TK B graduation" width="400" height="300" />
                 </div>
                 <div className="program-card__content">
                   <span className="sc-label">5 – 6 Tahun</span>
@@ -308,7 +308,7 @@ export default function Home() {
 
               <article className="facility-card" data-sc-tilt="6">
                 <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                  <img src="/assets/facility-classroom.svg" alt="Smart Classroom" width="400" height="300" />
+                  <img src="/assets/facility-classroom.webp" alt="Smart Classroom" width="400" height="300" />
                 </figure>
                 <div className="facility-card__content">
                   <h3 className="sc-display sc-display--md">Ruang Kelas Cerdas</h3>
@@ -318,7 +318,7 @@ export default function Home() {
 
               <article className="facility-card" data-sc-tilt="6">
                 <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                  <img src="/assets/facility-steam.svg" alt="STEAM Laboratory" width="400" height="300" />
+                  <img src="/assets/facility-steam.webp" alt="STEAM Laboratory" width="400" height="300" />
                 </figure>
                 <div className="facility-card__content">
                   <h3 className="sc-display sc-display--md">Laboratorium STEAM</h3>
@@ -328,7 +328,7 @@ export default function Home() {
 
               <article className="facility-card" data-sc-tilt="6">
                 <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                  <img src="/assets/facility-playground.svg" alt="Safe Playground" width="400" height="300" />
+                  <img src="/assets/facility-playground.webp" alt="Safe Playground" width="400" height="300" />
                 </figure>
                 <div className="facility-card__content">
                   <h3 className="sc-display sc-display--md">Area Bermain Aman</h3>
@@ -338,7 +338,7 @@ export default function Home() {
 
               <article className="facility-card" data-sc-tilt="6">
                 <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                  <img src="/assets/facility-library.svg" alt="Library Reading Corner" width="400" height="300" />
+                  <img src="/assets/facility-library.webp" alt="Library Reading Corner" width="400" height="300" />
                 </figure>
                 <div className="facility-card__content">
                   <h3 className="sc-display sc-display--md">Perpustakaan & Reading Corner</h3>
