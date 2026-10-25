@@ -49,7 +49,6 @@ export function HeroSection({
       <div className="mx-auto max-w-7xl">
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
-          {...motionProps}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "50px" }}
@@ -58,6 +57,7 @@ export function HeroSection({
             className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             <span className="relative flex h-1.5 w-1.5">
@@ -82,6 +82,7 @@ export function HeroSection({
             )}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             {title}
@@ -91,6 +92,7 @@ export function HeroSection({
             className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           >
             {subtitle}
