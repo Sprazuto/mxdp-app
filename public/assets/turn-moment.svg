@@ -1,13 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#141a2a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#121826;stop-opacity:1" />
+      <stop offset="0%" stop-color="#141a2a"/>
+      <stop offset="100%" stop-color="#0e1320"/>
     </linearGradient>
+    <radialGradient id="turnGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.18"/>
+      <stop offset="60%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="turnBloom">
+      <feGaussianBlur stdDeviation="40" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
   <rect width="1920" height="1080" fill="url(#bg)"/>
-  <circle cx="960" cy="400" r="120" fill="none" stroke="#22d3ee" stroke-width="4" opacity="0.5"/>
-  <text x="960" y="400" font-family="system-ui, sans-serif" font-size="64" fill="#22d3ee" text-anchor="middle" dominant-baseline="middle">✦</text>
-  <text x="960" y="580" font-family="system-ui, sans-serif" font-size="48" fill="#f1f5f9" text-anchor="middle" dominant-baseline="middle" font-weight="600">The Turn Moment</text>
-  <text x="960" y="650" font-family="system-ui, sans-serif" font-size="24" fill="#94a3b8" text-anchor="middle" dominant-baseline="middle">Replace with actual turn moment image</text>
+  <ellipse cx="960" cy="430" rx="500" ry="300" fill="url(#turnGlow)" filter="url(#turnBloom)"/>
+  <g transform="translate(960, 540)">
+    <!-- Central turning point symbol -->
+    <circle r="4" fill="#22d3ee"/>
+    <g stroke="#22d3ee" stroke-width="2" fill="none" opacity="0.7">
+      <path d="M0,-60 A60,60 0 1,1 0,60 A60,60 0 1,1 0,-60" stroke-dasharray="8,6"/>
+      <path d="M0,-80 A80,80 0 1,1 0,80 A80,80 0 1,1 0,-80" stroke-dasharray="10,8" opacity="0.4"/>
+    </g>
+    <!-- Arrow suggesting forward motion -->
+    <polygon points="0,-95 -8,-80 0,-85 8,-80" fill="#22d3ee" opacity="0.9"/>
+    <!-- Radiating energy lines -->
+    <g stroke="#22d3ee" stroke-width="1.5" opacity="0.5" fill="none">
+      <line x1="0" y1="-110" x2="0" y2="-130"/>
+      <line x1="0" y1="110" x2="0" y2="130"/>
+      <line x1="-110" y1="0" x2="-130" y2="0"/>
+      <line x1="110" y1="0" x2="130" y2="0"/>
+    </g>
+    <!-- Particles of transformation -->
+    <g fill="#22d3ee" opacity="0.6">
+      <circle cx="-140" cy="-90" r="2"/>
+      <circle cx="150" cy="-70" r="1.5"/>
+      <circle cx="-170" cy="40" r="1.8"/>
+      <circle cx="180" cy="60" r="1.2"/>
+      <circle cx="-80" cy="120" r="1.5"/>
+      <circle cx="120" cy="110" r="1"/>
+      <circle cx="-200" cy="-20" r="1"/>
+      <circle cx="220" cy="10" r="1.3"/>
+    </g>
+  </g>
 </svg>
