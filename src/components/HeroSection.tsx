@@ -6,7 +6,7 @@ import { BackgroundBeams, Sparkles } from "@/components/aceternity";
 import { cn } from "@/lib/utils";
 import { ArrowRight, Users, Award, CheckCircle, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { fadeInUp, staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion";
+import { fadeInUp, staggerContainer, cardVariants, getMotionProps, useReducedMotion } from "@/lib/motion";
 
 interface HeroSectionProps {
   title?: string;
@@ -48,19 +48,19 @@ export function HeroSection({
       <Sparkles count={15} color="multi" size="md" />
 
       <div className="mx-auto max-w-7xl">
+        {/* Header section - parent controls children via variants */}
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={staggerContainer(0.1, 100)}
+          initial="hidden"
+          whileInView="visible"
           viewport={viewportOnce}
-          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+          {...motionProps}
         >
           <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            variants={fadeInUp}
+            style={{ transformOrigin: "center" }}
           >
             <span className="relative flex h-1.5 w-1.5">
               <motion.span
@@ -82,25 +82,20 @@ export function HeroSection({
               "bg-clip-text text-transparent dark:from-white dark:via-emerald-400 dark:to-amber-400",
               "mb-4"
             )}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+            variants={fadeInUp}
           >
             {title}
           </motion.h1>
 
           <motion.p
             className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            variants={fadeInUp}
           >
             {subtitle}
           </motion.p>
         </motion.div>
 
+        {/* CTA Buttons - stagger container */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12"
           variants={staggerContainer(0.1)}
@@ -152,6 +147,7 @@ export function HeroSection({
           </motion.button>
         </motion.div>
 
+        {/* Stats Grid - stagger container */}
         <motion.div
           className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-4xl mx-auto"
           variants={staggerContainer(0.1)}
@@ -163,6 +159,7 @@ export function HeroSection({
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
+              variants={cardVariants}
               className="relative p-5 rounded-2xl group"
               style={{ transform: index % 2 === 0 ? "rotate(-1deg)" : "rotate(1deg)" }}
               whileHover={{ y: -4, boxShadow: "var(--shadow-xl)" }}

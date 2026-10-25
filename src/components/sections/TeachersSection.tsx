@@ -242,18 +242,18 @@ async function TeachersSectionContent() {
       <Sparkles count={20} color="multi" size="md" />
 
       <div className="mx-auto max-w-7xl">
+        {/* Header - parent controls children via variants */}
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
-          initial={fadeInUp.initial}
-          whileInView={fadeInUp.animate}
+          variants={staggerContainer(0.1, 100)}
+          initial="hidden"
+          whileInView="visible"
           viewport={viewportOnce}
         >
           <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-violet-100/90 px-4 py-1.5 text-sm font-semibold text-violet-800 dark:bg-violet-900/40 dark:text-violet-300 backdrop-blur-sm mb-4 border border-violet-200/50 dark:border-violet-800/50"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.4, delay: 0.1 }}
+            variants={fadeInUp}
+            style={{ transformOrigin: "center" }}
           >
             <SparklesIcon className="h-4 w-4 animate-bounce" aria-hidden="true" />
             Tim Pendidik
@@ -262,10 +262,7 @@ async function TeachersSectionContent() {
           <motion.h2
             id="teachers-title"
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+            variants={fadeInUp}
           >
             Tim Pengajar
             <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-violet-600 via-pink-600 to-teal-600 bg-clip-text text-transparent">
@@ -275,15 +272,13 @@ async function TeachersSectionContent() {
 
           <motion.p
             className="text-lg text-slate-600 dark:text-slate-300 font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            variants={fadeInUp}
           >
             Para pendidik kami bersertifikat, berpengalaman, dan memiliki hati yang peduli untuk mengembangkan potensi setiap anak.
           </motion.p>
         </motion.div>
 
+        {/* Teachers Grid - stagger container */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           variants={staggerContainer(0.1)}
@@ -372,10 +367,7 @@ async function TeachersSectionContent() {
 
                 <motion.div
                   className="text-center mb-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                  variants={fadeInUp}
                 >
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                     {teacher.name}
@@ -387,20 +379,17 @@ async function TeachersSectionContent() {
 
                 <motion.div
                   className="mb-4 flex flex-wrap justify-center gap-1.5"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  variants={staggerContainer(0.1)}
+                  initial="hidden"
+                  whileInView="visible"
                   viewport={viewportOnce}
-                  transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   {teacher.specialties.slice(0, 3).map((specialty, i) => {
                     const IconComponent = specialtyIcons[specialty] || SparklesIcon;
                     return (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={viewportOnce}
-                        transition={{ duration: 0.3, delay: 0.3 + i * 0.1, type: "spring", stiffness: 400, damping: 30 }}
+                        variants={fadeInUp}
                       >
                         <Badge variant="secondary" className="bg-teal-100 text-teal-800 dark:bg-teal-900/40 dark:text-teal-300 border border-teal-200/50 dark:border-teal-800/50 gap-1.5 px-3 py-1.5 text-xs font-bold">
                           <IconComponent className="h-3.5 w-3.5" aria-hidden="true" />
@@ -413,10 +402,7 @@ async function TeachersSectionContent() {
 
                 <motion.div
                   className="space-y-2 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-700/50 pt-4"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={viewportOnce}
-                  transition={{ duration: 0.4, delay: 0.4 }}
+                  variants={fadeInUp}
                 >
                   <div className="flex items-center justify-center gap-2 text-xs">
                     <GraduationCap className="h-4 w-4 text-slate-400" aria-hidden="true" />

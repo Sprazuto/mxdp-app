@@ -175,18 +175,18 @@ async function FacilitiesSectionContent() {
         <Sparkles count={20} color="multi" size="md" />
 
         <div className="mx-auto max-w-7xl">
+          {/* Facilities Header - parent controls children via variants */}
           <motion.div
             className="text-center max-w-3xl mx-auto mb-12"
-            initial={fadeInUp.initial}
-            whileInView={fadeInUp.animate}
+            variants={staggerContainer(0.1, 100)}
+            initial="hidden"
+            whileInView="visible"
             viewport={viewportOnce}
           >
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              variants={fadeInUp}
+              style={{ transformOrigin: "center" }}
             >
               <SparklesIcon className="h-4 w-4 animate-bounce" aria-hidden="true" />
               Fasilitas Lengkap
@@ -195,10 +195,7 @@ async function FacilitiesSectionContent() {
             <motion.h2
               id="facilities-title"
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+              variants={fadeInUp}
             >
               Fasilitas Pendukung
               <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-sky-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent">
@@ -208,15 +205,13 @@ async function FacilitiesSectionContent() {
 
             <motion.p
               className="text-lg text-slate-600 dark:text-slate-300 font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+              variants={fadeInUp}
             >
               Lingkungan belajar modern dengan fasilitas standar internasional untuk mendukung perkembangan optimal siswa.
             </motion.p>
           </motion.div>
 
+          {/* Facilities Grid - stagger container */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12"
             variants={staggerContainer(0.1)}
@@ -278,8 +273,7 @@ async function FacilitiesSectionContent() {
                       <motion.div
                         className="absolute top-3 right-3"
                         initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={viewportOnce}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, delay: 0.2 }}
                       >
                         <Badge variant="destructive" className="gap-1.5 px-3 py-1.5 text-xs font-black animate-pulse">
@@ -292,10 +286,7 @@ async function FacilitiesSectionContent() {
 
                   <motion.h3
                     className="text-lg font-bold text-slate-900 dark:text-white mb-2"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.4, delay: 0.1 }}
+                    variants={fadeInUp}
                   >
                     {facility.name}
                   </motion.h3>
@@ -303,19 +294,16 @@ async function FacilitiesSectionContent() {
                   <motion.ul
                     className="space-y-1.5 mb-4"
                     role="list"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    variants={staggerContainer(0.08)}
+                    initial="hidden"
+                    whileInView="visible"
                     viewport={viewportOnce}
-                    transition={{ duration: 0.4, delay: 0.2 }}
                   >
                     {facility.features.slice(0, 4).map((feature, i) => (
                       <motion.li
                         key={i}
+                        variants={fadeInUp}
                         className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={viewportOnce}
-                        transition={{ duration: 0.3, delay: 0.3 + i * 0.08 }}
                       >
                         <motion.span
                           className="h-4.5 w-4.5 text-emerald-500 flex-shrink-0"
@@ -389,18 +377,18 @@ async function FacilitiesSectionContent() {
         <Sparkles count={15} color="amber" size="md" />
 
         <div className="mx-auto max-w-7xl">
+          {/* Safety Header - parent controls children via variants */}
           <motion.div
             className="text-center max-w-3xl mx-auto mb-12"
-            initial={fadeInUp.initial}
-            whileInView={fadeInUp.animate}
+            variants={staggerContainer(0.1, 100)}
+            initial="hidden"
+            whileInView="visible"
             viewport={viewportOnce}
           >
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-red-500/20 px-4 py-1.5 text-sm font-semibold text-red-400 dark:bg-red-900/40 dark:text-red-300 backdrop-blur-sm mb-4 border border-red-500/30"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.4, delay: 0.1 }}
+              variants={fadeInUp}
+              style={{ transformOrigin: "center" }}
             >
               <Video className="h-4 w-4 animate-pulse" aria-hidden="true" />
               Keamanan & Kesejahteraan
@@ -409,10 +397,7 @@ async function FacilitiesSectionContent() {
             <motion.h2
               id="safety-title"
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+              variants={fadeInUp}
             >
               Sistem Keamanan & Keselamatan
               <span className="block text-white bg-gradient-to-r from-red-400 via-amber-400 to-emerald-400 bg-clip-text text-transparent">
@@ -422,15 +407,13 @@ async function FacilitiesSectionContent() {
 
             <motion.p
               className="text-lg text-slate-300 font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+              variants={fadeInUp}
             >
               Komitmen kami untuk menyediakan lingkungan yang aman, nyaman, dan sehat bagi setiap siswa.
             </motion.p>
           </motion.div>
 
+          {/* Safety Grid - stagger container */}
           <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
             variants={staggerContainer(0.1)}
@@ -465,20 +448,14 @@ async function FacilitiesSectionContent() {
 
                   <motion.h3
                     className="text-lg font-bold text-white mb-2"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.4, delay: 0.1 }}
+                    variants={fadeInUp}
                   >
                     {feature.label}
                   </motion.h3>
 
                   <motion.p
                     className="text-slate-300 text-sm leading-relaxed"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={viewportOnce}
-                    transition={{ duration: 0.4, delay: 0.2 }}
+                    variants={fadeInUp}
                   >
                     {feature.desc}
                   </motion.p>

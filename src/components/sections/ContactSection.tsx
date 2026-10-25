@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { contactFormSchema, type ContactFormData, contactFormDefaultValues } from "@/lib/validations/contact";
 import { CampusMap } from "@/components/ui/CampusMap";
 import { Sparkles } from "@/components/aceternity";
-import { staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion";
+import { fadeInUp, staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion";
 
 const WHATSAPP_ADMIN = "6281234567890";
 
@@ -101,6 +101,7 @@ export function ContactSection() {
 
       <div className="mx-auto max-w-7xl relative z-10">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
+          {/* Left Panel - parent controls children via variants */}
           <motion.div
             className="mb-10 lg:mb-0"
             initial={{ opacity: 0, y: 16 }}
@@ -108,40 +109,39 @@ export function ContactSection() {
             viewport={viewportOnce}
             {...motionProps}
           >
-            <motion.span
-              className="inline-flex items-center gap-2 rounded-full bg-blue-100/90 px-5 py-2 text-sm font-bold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 backdrop-blur-sm mb-4 border-2 border-blue-200 dark:border-blue-800 shadow-lg shadow-blue-200/50 rotate-[-2deg]"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+            <motion.div
+              variants={staggerContainer(0.1, 100)}
+              initial="hidden"
+              whileInView="visible"
               viewport={viewportOnce}
-              transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <SparklesIcon className="h-4 w-4 animate-bounce" />
-              Hubungi Kami
-            </motion.span>
+              <motion.span
+                className="inline-flex items-center gap-2 rounded-full bg-blue-100/90 px-5 py-2 text-sm font-bold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 backdrop-blur-sm mb-4 border-2 border-blue-200 dark:border-blue-800 shadow-lg shadow-blue-200/50 rotate-[-2deg]"
+                variants={fadeInUp}
+                style={{ transformOrigin: "center" }}
+              >
+                <SparklesIcon className="h-4 w-4 animate-bounce" />
+                Hubungi Kami
+              </motion.span>
 
-            <motion.h2
-              id="contact-title"
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
-            >
-              Jadwalkan Kunjungan
-              <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                & Pertanyaan
-              </span>
-            </motion.h2>
+              <motion.h2
+                id="contact-title"
+                className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4"
+                variants={fadeInUp}
+              >
+                Jadwalkan Kunjungan
+                <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  & Pertanyaan
+                </span>
+              </motion.h2>
 
-            <motion.p
-              className="text-lg text-slate-600 dark:text-slate-300 mb-8 font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
-            >
-              Isi formulir di samping untuk menjadwalkan kunjungan ke kampus MXDP atau mengajukan pertanyaan. Tim kami akan menghubungi Anda dalam 1x24 jam.
-            </motion.p>
+              <motion.p
+                className="text-lg text-slate-600 dark:text-slate-300 mb-8 font-medium"
+                variants={fadeInUp}
+              >
+                Isi formulir di samping untuk menjadwalkan kunjungan ke kampus MXDP atau mengajukan pertanyaan. Tim kami akan menghubungi Anda dalam 1x24 jam.
+              </motion.p>
+            </motion.div>
 
             <motion.div
               className="space-y-4"
@@ -240,6 +240,7 @@ export function ContactSection() {
             </motion.div>
           </motion.div>
 
+          {/* Right Panel - Form */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, y: 16 }}
@@ -296,8 +297,9 @@ export function ContactSection() {
 
               <motion.div
                 className="grid gap-4 sm:grid-cols-2"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={staggerContainer(0.1)}
+                initial="hidden"
+                whileInView="visible"
                 viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 {...motionProps}
@@ -403,8 +405,9 @@ export function ContactSection() {
 
               <motion.div
                 className="mt-8 flex flex-col sm:flex-row gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                variants={staggerContainer(0.1)}
+                initial="hidden"
+                whileInView="visible"
                 viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 {...motionProps}
@@ -483,10 +486,7 @@ interface InputFieldProps {
 function InputField({ label, icon, register, id, placeholder, type = "text", min, max, error, errorId }: InputFieldProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={viewportOnce}
-      transition={{ duration: 0.4 }}
+      variants={fadeInUp}
     >
       <label htmlFor={id} className="block text-sm font-black text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1">
         {icon}
