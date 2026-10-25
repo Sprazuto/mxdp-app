@@ -14,6 +14,7 @@ import { staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion
 const WHATSAPP_ADMIN = "6281234567890";
 
 const formResolver = zodResolver(contactFormSchema) as Resolver<ContactFormData>;
+const viewportOnce = { once: true, margin: "50px" };
 
 export function ContactSection() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -102,15 +103,16 @@ export function ContactSection() {
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
           <motion.div
             className="mb-10 lg:mb-0"
-            {...motionProps}
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            {...motionProps}
           >
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-blue-100/90 px-5 py-2 text-sm font-bold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 backdrop-blur-sm mb-4 border-2 border-blue-200 dark:border-blue-800 shadow-lg shadow-blue-200/50 rotate-[-2deg]"
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               <SparklesIcon className="h-4 w-4 animate-bounce" />
@@ -121,7 +123,8 @@ export function ContactSection() {
               id="contact-title"
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               Jadwalkan Kunjungan
@@ -133,7 +136,8 @@ export function ContactSection() {
             <motion.p
               className="text-lg text-slate-600 dark:text-slate-300 mb-8 font-medium"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
             >
               Isi formulir di samping untuk menjadwalkan kunjungan ke kampus MXDP atau mengajukan pertanyaan. Tim kami akan menghubungi Anda dalam 1x24 jam.
@@ -141,11 +145,11 @@ export function ContactSection() {
 
             <motion.div
               className="space-y-4"
-              {...motionProps}
               variants={staggerContainer(0.1)}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "50px" }}
+              viewport={viewportOnce}
+              {...motionProps}
             >
               <motion.div
                 className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-blue-200 dark:border-blue-800 backdrop-blur-sm hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-xl hover:shadow-blue-200/30 transition-all duration-300"
@@ -210,10 +214,11 @@ export function ContactSection() {
 
             <motion.div
               className="mt-8"
-              {...motionProps}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.4 }}
+              {...motionProps}
             >
               <h3 className="font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <MapPin className="h-6 w-6 text-red-500" aria-hidden="true" />
@@ -237,10 +242,10 @@ export function ContactSection() {
 
           <motion.div
             className="relative"
-            {...motionProps}
             initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "50px" }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            {...motionProps}
           >
             <Sparkles count={15} color="multi" size="sm" className="absolute inset-0 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-[32px] blur-2xl" aria-hidden="true" />
@@ -291,10 +296,11 @@ export function ContactSection() {
 
               <motion.div
                 className="grid gap-4 sm:grid-cols-2"
-                {...motionProps}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.2 }}
+                {...motionProps}
               >
                 <InputField
                   label="Nama Orang Tua"
@@ -397,10 +403,11 @@ export function ContactSection() {
 
               <motion.div
                 className="mt-8 flex flex-col sm:flex-row gap-4"
-                {...motionProps}
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.3 }}
+                {...motionProps}
               >
                 <motion.button
                   type="submit"
@@ -443,10 +450,11 @@ export function ContactSection() {
 
               <motion.p
                 className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400"
-                {...motionProps}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                whileInView={{ opacity: 1 }}
+                viewport={viewportOnce}
                 transition={{ duration: 0.5, delay: 0.4 }}
+                {...motionProps}
               >
                 Dengan mengirim formulir ini, Anda menyetujui kebijakan privasi kami. Data Anda aman dan tidak akan dibagikan ke pihak ketiga.
                 <Shield className="h-3.5 w-3.5 inline-block ml-1 text-emerald-500" aria-hidden="true" />
@@ -476,7 +484,8 @@ function InputField({ label, icon, register, id, placeholder, type = "text", min
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={viewportOnce}
       transition={{ duration: 0.4 }}
     >
       <label htmlFor={id} className="block text-sm font-black text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1">

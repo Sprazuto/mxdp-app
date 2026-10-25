@@ -135,6 +135,8 @@ const programThemes = [
   },
 ];
 
+const viewportOnce = { once: true, margin: "50px" };
+
 async function ProgramsSectionContent() {
   const programs = (await getPrograms()) as Program[] | null;
   const displayPrograms = programs?.length ? programs : fallbackPrograms;
@@ -147,13 +149,14 @@ async function ProgramsSectionContent() {
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
           initial={fadeInUp.initial}
-          animate={fadeInUp.animate}
-          viewport={{ once: true, margin: "50px" }}
+          whileInView={fadeInUp.animate}
+          viewport={viewportOnce}
         >
           <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             <SparklesIcon className="h-4 w-4 animate-bounce" aria-hidden="true" />
@@ -164,7 +167,8 @@ async function ProgramsSectionContent() {
             id="programs-title"
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             Program Pendidikan
@@ -176,7 +180,8 @@ async function ProgramsSectionContent() {
           <motion.p
             className="text-lg text-slate-600 dark:text-slate-300 font-medium"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           >
             Kurikulum holistik yang dirancang untuk setiap tahap perkembangan anak, dari Toddler hingga persiapan SD.
@@ -188,7 +193,7 @@ async function ProgramsSectionContent() {
           variants={staggerContainer(0.1)}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "50px" }}
+          viewport={viewportOnce}
         >
           {displayPrograms.map((program, index) => {
             const theme = programThemes[index % programThemes.length];
@@ -264,7 +269,8 @@ async function ProgramsSectionContent() {
                 <motion.p
                   className="text-slate-600 dark:text-slate-400 text-sm mb-4 line-clamp-2"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   {program.shortDescription}
@@ -274,7 +280,8 @@ async function ProgramsSectionContent() {
                   className="mb-6 space-y-2"
                   role="list"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
                   transition={{ duration: 0.4, delay: 0.3 }}
                 >
                   {program.features.slice(0, 4).map((feature, i) => (
@@ -282,7 +289,8 @@ async function ProgramsSectionContent() {
                       key={i}
                       className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-300"
                       initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={viewportOnce}
                       transition={{ duration: 0.3, delay: 0.4 + i * 0.08 }}
                     >
                       <motion.span
@@ -320,9 +328,9 @@ async function ProgramsSectionContent() {
         <motion.div
           className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
           transition={{ duration: 0.5, delay: 0.5 }}
-          viewport={{ once: true, margin: "50px" }}
         >
           <Button variant="outline" size="lg" className="rounded-full border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 px-8 py-3 text-lg font-semibold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-400">
             <Link href="/program" className="flex items-center justify-center gap-2">

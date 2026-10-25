@@ -163,6 +163,8 @@ const safetyThemes = [
   { bg: "bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30", border: "border-blue-200/60 dark:border-blue-800/60", hoverBorder: "hover:border-blue-300 dark:hover:border-blue-700", iconBg: "bg-blue-100 dark:bg-blue-900/30", iconColor: "text-blue-600 dark:text-blue-400", icon: ThermometerSun },
 ];
 
+const viewportOnce = { once: true, margin: "50px" };
+
 async function FacilitiesSectionContent() {
   const facilities = (await getFacilities()) as Facility[] | null;
   const displayFacilities = facilities?.length ? facilities : fallbackFacilities;
@@ -176,13 +178,14 @@ async function FacilitiesSectionContent() {
           <motion.div
             className="text-center max-w-3xl mx-auto mb-12"
             initial={fadeInUp.initial}
-            animate={fadeInUp.animate}
-            viewport={{ once: true, margin: "50px" }}
+            whileInView={fadeInUp.animate}
+            viewport={viewportOnce}
           >
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-emerald-100/90 px-4 py-1.5 text-sm font-semibold text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300 backdrop-blur-sm mb-4 border border-emerald-200/50 dark:border-emerald-800/50"
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               <SparklesIcon className="h-4 w-4 animate-bounce" aria-hidden="true" />
@@ -193,7 +196,8 @@ async function FacilitiesSectionContent() {
               id="facilities-title"
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               Fasilitas Pendukung
@@ -205,7 +209,8 @@ async function FacilitiesSectionContent() {
             <motion.p
               className="text-lg text-slate-600 dark:text-slate-300 font-medium"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
             >
               Lingkungan belajar modern dengan fasilitas standar internasional untuk mendukung perkembangan optimal siswa.
@@ -217,7 +222,7 @@ async function FacilitiesSectionContent() {
             variants={staggerContainer(0.1)}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "50px" }}
+            viewport={viewportOnce}
           >
             {displayFacilities.map((facility, index) => {
               const theme = facilityThemes[index % facilityThemes.length];
@@ -273,7 +278,8 @@ async function FacilitiesSectionContent() {
                       <motion.div
                         className="absolute top-3 right-3"
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={viewportOnce}
                         transition={{ duration: 0.3, delay: 0.2 }}
                       >
                         <Badge variant="destructive" className="gap-1.5 px-3 py-1.5 text-xs font-black animate-pulse">
@@ -287,7 +293,8 @@ async function FacilitiesSectionContent() {
                   <motion.h3
                     className="text-lg font-bold text-slate-900 dark:text-white mb-2"
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewportOnce}
                     transition={{ duration: 0.4, delay: 0.1 }}
                   >
                     {facility.name}
@@ -297,7 +304,8 @@ async function FacilitiesSectionContent() {
                     className="space-y-1.5 mb-4"
                     role="list"
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewportOnce}
                     transition={{ duration: 0.4, delay: 0.2 }}
                   >
                     {facility.features.slice(0, 4).map((feature, i) => (
@@ -305,7 +313,8 @@ async function FacilitiesSectionContent() {
                         key={i}
                         className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-300"
                         initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={viewportOnce}
                         transition={{ duration: 0.3, delay: 0.3 + i * 0.08 }}
                       >
                         <motion.span
@@ -327,7 +336,8 @@ async function FacilitiesSectionContent() {
                       role="list"
                       aria-label={`Galeri ${facility.name}`}
                       initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={viewportOnce}
                       transition={{ duration: 0.4, delay: 0.5 }}
                     >
                       {facility.gallery.slice(0, 4).map((img, i) => {
@@ -337,7 +347,8 @@ async function FacilitiesSectionContent() {
                             key={i}
                             className="flex-shrink-0"
                             initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={viewportOnce}
                             transition={{ duration: 0.3, delay: 0.5 + i * 0.1 }}
                           >
                             <Image
@@ -360,9 +371,9 @@ async function FacilitiesSectionContent() {
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.5, delay: 0.5 }}
-            viewport={{ once: true, margin: "50px" }}
           >
             <Button variant="outline" size="lg" className="rounded-full border-2 border-emerald-300 dark:border-emerald-700 bg-emerald-50 dark:bg-emerald-900/20 px-8 py-3 text-lg font-semibold text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:border-emerald-400">
               <Link href="/fasilitas" className="flex items-center justify-center gap-2">
@@ -381,13 +392,14 @@ async function FacilitiesSectionContent() {
           <motion.div
             className="text-center max-w-3xl mx-auto mb-12"
             initial={fadeInUp.initial}
-            animate={fadeInUp.animate}
-            viewport={{ once: true, margin: "50px" }}
+            whileInView={fadeInUp.animate}
+            viewport={viewportOnce}
           >
             <motion.span
               className="inline-flex items-center gap-2 rounded-full bg-red-500/20 px-4 py-1.5 text-sm font-semibold text-red-400 dark:bg-red-900/40 dark:text-red-300 backdrop-blur-sm mb-4 border border-red-500/30"
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               <Video className="h-4 w-4 animate-pulse" aria-hidden="true" />
@@ -398,7 +410,8 @@ async function FacilitiesSectionContent() {
               id="safety-title"
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               Sistem Keamanan & Keselamatan
@@ -410,7 +423,8 @@ async function FacilitiesSectionContent() {
             <motion.p
               className="text-lg text-slate-300 font-medium"
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
             >
               Komitmen kami untuk menyediakan lingkungan yang aman, nyaman, dan sehat bagi setiap siswa.
@@ -422,7 +436,7 @@ async function FacilitiesSectionContent() {
             variants={staggerContainer(0.1)}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "50px" }}
+            viewport={viewportOnce}
           >
             {safetyFeatures.map((feature, index) => {
               const theme = safetyThemes[index % safetyThemes.length];
@@ -452,7 +466,8 @@ async function FacilitiesSectionContent() {
                   <motion.h3
                     className="text-lg font-bold text-white mb-2"
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewportOnce}
                     transition={{ duration: 0.4, delay: 0.1 }}
                   >
                     {feature.label}
@@ -461,7 +476,8 @@ async function FacilitiesSectionContent() {
                   <motion.p
                     className="text-slate-300 text-sm leading-relaxed"
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={viewportOnce}
                     transition={{ duration: 0.4, delay: 0.2 }}
                   >
                     {feature.desc}

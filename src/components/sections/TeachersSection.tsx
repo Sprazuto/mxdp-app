@@ -231,6 +231,8 @@ function getTeacherImage(teacher: Teacher, theme: typeof teacherThemes[0]) {
   );
 }
 
+const viewportOnce = { once: true, margin: "50px" };
+
 async function TeachersSectionContent() {
   const teachers = (await getTeachers()) as Teacher[] | null;
   const displayTeachers = teachers?.length ? teachers : fallbackTeachers;
@@ -243,13 +245,14 @@ async function TeachersSectionContent() {
         <motion.div
           className="text-center max-w-3xl mx-auto mb-12"
           initial={fadeInUp.initial}
-          animate={fadeInUp.animate}
-          viewport={{ once: true, margin: "50px" }}
+          whileInView={fadeInUp.animate}
+          viewport={viewportOnce}
         >
           <motion.span
             className="inline-flex items-center gap-2 rounded-full bg-violet-100/90 px-4 py-1.5 text-sm font-semibold text-violet-800 dark:bg-violet-900/40 dark:text-violet-300 backdrop-blur-sm mb-4 border border-violet-200/50 dark:border-violet-800/50"
             initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.4, delay: 0.1 }}
           >
             <SparklesIcon className="h-4 w-4 animate-bounce" aria-hidden="true" />
@@ -260,7 +263,8 @@ async function TeachersSectionContent() {
             id="teachers-title"
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             Tim Pengajar
@@ -272,7 +276,8 @@ async function TeachersSectionContent() {
           <motion.p
             className="text-lg text-slate-600 dark:text-slate-300 font-medium"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
             transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           >
             Para pendidik kami bersertifikat, berpengalaman, dan memiliki hati yang peduli untuk mengembangkan potensi setiap anak.
@@ -284,7 +289,7 @@ async function TeachersSectionContent() {
           variants={staggerContainer(0.1)}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "50px" }}
+          viewport={viewportOnce}
         >
           {displayTeachers.map((teacher, index) => {
             const theme = teacherThemes[index % teacherThemes.length];
@@ -368,7 +373,8 @@ async function TeachersSectionContent() {
                 <motion.div
                   className="text-center mb-4"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white">
@@ -382,7 +388,8 @@ async function TeachersSectionContent() {
                 <motion.div
                   className="mb-4 flex flex-wrap justify-center gap-1.5"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
                   transition={{ duration: 0.4, delay: 0.2 }}
                 >
                   {teacher.specialties.slice(0, 3).map((specialty, i) => {
@@ -391,7 +398,8 @@ async function TeachersSectionContent() {
                       <motion.div
                         key={i}
                         initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={viewportOnce}
                         transition={{ duration: 0.3, delay: 0.3 + i * 0.1, type: "spring", stiffness: 400, damping: 30 }}
                       >
                         <Badge variant="secondary" className="bg-teal-100 text-teal-800 dark:bg-teal-900/40 dark:text-teal-300 border border-teal-200/50 dark:border-teal-800/50 gap-1.5 px-3 py-1.5 text-xs font-bold">
@@ -406,7 +414,8 @@ async function TeachersSectionContent() {
                 <motion.div
                   className="space-y-2 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200/50 dark:border-slate-700/50 pt-4"
                   initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={viewportOnce}
                   transition={{ duration: 0.4, delay: 0.4 }}
                 >
                   <div className="flex items-center justify-center gap-2 text-xs">
@@ -443,9 +452,9 @@ async function TeachersSectionContent() {
         <motion.div
           className="mt-12 text-center"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
           transition={{ duration: 0.5, delay: 0.5 }}
-          viewport={{ once: true, margin: "50px" }}
         >
           <Button variant="outline" size="lg" className="rounded-full border-2 border-violet-300 dark:border-violet-700 bg-violet-50 dark:bg-violet-900/20 px-8 py-3 text-lg font-semibold text-violet-700 dark:text-violet-300 hover:bg-violet-100 dark:hover:bg-violet-900/30 hover:border-violet-400">
             <Link href="/guru" className="flex items-center justify-center gap-2">
