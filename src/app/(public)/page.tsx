@@ -44,7 +44,7 @@ export default function Home() {
            Headline greets on arrival (greet cue), kinetic lines.
            ================================================================ */}
         <section
-          data-sc-act="scrub"
+          data-sc-act="pin"
           data-sc-span="2.8"
           data-sc-dwell="0.35"
           data-sc-drift="#0a0f1a"
@@ -58,13 +58,6 @@ export default function Home() {
               width="1920"
               height="1080"
             />
-            <video
-              data-sc-scrub
-              data-sc-src="/assets/act1-recognition.mp4"
-              data-sc-src-mobile="/assets/act1-recognition-m.mp4"
-              muted
-              playsInline
-            ></video>
             <div className="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
 
             <div className="sc-copy sc-copy--lead" data-sc-cue="0 0.78 0">
@@ -156,7 +149,7 @@ export default function Home() {
            Macro texture: close-ups of real learning moments. Trail-anchored copy.
            ================================================================ */}
         <section
-          data-sc-act="scrub"
+          data-sc-act="pin"
           data-sc-span="2.2"
           data-sc-dwell="0.28"
           data-sc-drift="#181f33"
@@ -170,13 +163,6 @@ export default function Home() {
               width="1920"
               height="1080"
             />
-            <video
-              data-sc-scrub
-              data-sc-src="/assets/act4-substance.mp4"
-              data-sc-src-mobile="/assets/act4-substance-m.mp4"
-              muted
-              playsInline
-            ></video>
             <div className="sc-scrim sc-scrim--trail" aria-hidden="true"></div>
 
             <div className="sc-copy sc-copy--trail" data-sc-cue="0.14 0.86">
