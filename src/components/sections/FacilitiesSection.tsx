@@ -197,7 +197,7 @@ async function FacilitiesSectionContent() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               Fasilitas Pendukung
-              <span className="block bg-gradient-to-r from-sky-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent">
+              <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-sky-600 via-violet-600 to-emerald-600 bg-clip-text text-transparent">
                 Pembelajaran Modern
               </span>
             </motion.h2>
@@ -402,7 +402,7 @@ async function FacilitiesSectionContent() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               Sistem Keamanan & Keselamatan
-              <span className="block bg-gradient-to-r from-red-400 via-amber-400 to-emerald-400 bg-clip-text text-transparent">
+              <span className="block text-white bg-gradient-to-r from-red-400 via-amber-400 to-emerald-400 bg-clip-text text-transparent">
                 Terintegrasi
               </span>
             </motion.h2>

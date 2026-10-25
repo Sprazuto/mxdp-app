@@ -125,7 +125,7 @@ export function ContactSection() {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               Jadwalkan Kunjungan
-              <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 & Pertanyaan
               </span>
             </motion.h2>

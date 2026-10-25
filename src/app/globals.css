@@ -279,13 +279,13 @@
 @layer utilities {
   /* Text gradient */
   .text-gradient-rose-teal {
-    @apply bg-gradient-to-r from-[var(--color-rose)] to-[var(--color-teal)] bg-clip-text text-transparent;
+    @apply text-[var(--color-text-primary)] dark:text-[var(--color-text-inverse)] bg-gradient-to-r from-[var(--color-rose)] to-[var(--color-teal)] bg-clip-text text-transparent;
   }
   .text-gradient-violet-sky {
-    @apply bg-gradient-to-r from-[var(--color-violet)] to-[var(--color-sky)] bg-clip-text text-transparent;
+    @apply text-[var(--color-text-primary)] dark:text-[var(--color-text-inverse)] bg-gradient-to-r from-[var(--color-violet)] to-[var(--color-sky)] bg-clip-text text-transparent;
   }
   .text-gradient-yellow-orange {
-    @apply bg-gradient-to-r from-[var(--color-yellow)] to-[var(--color-orange)] bg-clip-text text-transparent;
+    @apply text-[var(--color-text-primary)] dark:text-[var(--color-text-inverse)] bg-gradient-to-r from-[var(--color-yellow)] to-[var(--color-orange)] bg-clip-text text-transparent;
   }
 
   /* Glassmorphism */

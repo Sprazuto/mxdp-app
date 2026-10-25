@@ -75,6 +75,7 @@ export function HeroSection({
             id="hero-title"
             className={cn(
               "text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold tracking-tight leading-[1.1]",
+              "text-slate-900 dark:text-white",
               "bg-gradient-to-r from-slate-900 via-emerald-600 to-amber-600",
               "bg-clip-text text-transparent dark:from-white dark:via-emerald-400 dark:to-amber-400",
               "mb-4"

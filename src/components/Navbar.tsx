@@ -38,7 +38,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white" aria-label="MXDP Home">
-            <span className="text-2xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">MXDP</span>
+            <span className="text-2xl font-extrabold text-gray-900 dark:text-white bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">MXDP</span>
             <span className="hidden sm:block text-sm text-gray-500 dark:text-gray-400">EdTech Platform</span>
           </Link>
 

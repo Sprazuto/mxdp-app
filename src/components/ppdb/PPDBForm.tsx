@@ -96,7 +96,7 @@ export function PPDBForm() {
             transition={{ duration: 0.4, delay: 0.3 }}
           >
             Pendaftaran
-            <span className="block bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
               Berhasil!
             </span>
           </motion.h2>

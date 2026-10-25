@@ -264,7 +264,7 @@ async function TeachersSectionContent() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             Tim Pengajar
-            <span className="block bg-gradient-to-r from-violet-600 via-pink-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-violet-600 via-pink-600 to-teal-600 bg-clip-text text-transparent">
               Berpengalaman & Berdedikasi
             </span>
           </motion.h2>

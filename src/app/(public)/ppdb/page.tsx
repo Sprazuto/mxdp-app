@@ -56,7 +56,7 @@ export default function PPDBPage() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             Pendaftaran Siswa Baru
-            <span className="block bg-gradient-to-r from-emerald-600 via-teal-600 to-pink-600 bg-clip-text text-transparent">
+            <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-pink-600 bg-clip-text text-transparent">
               (PPDB)
             </span>
           </motion.h1>

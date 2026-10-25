@@ -168,7 +168,7 @@ async function ProgramsSectionContent() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
           >
             Program Pendidikan
-            <span className="block bg-gradient-to-r from-emerald-600 via-pink-600 to-violet-600 bg-clip-text text-transparent">
+            <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-emerald-600 via-pink-600 to-violet-600 bg-clip-text text-transparent">
               Terpadu & Holistik
             </span>
           </motion.h2>
