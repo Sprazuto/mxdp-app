@@ -5,7 +5,7 @@ import { ArrowLeft, Sparkles, Shield, CheckCircle, Mail, Clock, Sparkle } from "
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Sparkles as SparklesAnim } from "@/components/aceternity";
-import { fadeInUp, staggerContainer, cardVariants } from "@/lib/motion";
+import { fadeInUp, staggerContainer, cardVariants, viewportOnce } from "@/lib/motion";
 
 export default function PPDBPage() {
   return (
@@ -35,12 +35,13 @@ export default function PPDBPage() {
           </Link>
         </motion.div>
 
-        {/* Header */}
+        {/* Header - parent controls children via variants */}
         <motion.div
           className="text-center mb-12"
-          initial={fadeInUp.initial}
-          animate={fadeInUp.animate}
-          viewport={{ once: true, margin: "50px" }}
+          variants={staggerContainer(0.1, 100)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
         >
           <motion.div
             className="inline-flex items-center justify-center w-20 h-20 rounded-[24px] bg-gradient-to-br from-emerald-500 to-teal-500 mb-6 shadow-xl shadow-emerald-200/50 border-4 border-emerald-200 dark:border-emerald-800"
@@ -49,22 +50,20 @@ export default function PPDBPage() {
           >
             <Sparkles className="h-10 w-10 text-white" aria-hidden="true" />
           </motion.div>
+
           <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
+            variants={fadeInUp}
           >
             Pendaftaran Siswa Baru
             <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-pink-600 bg-clip-text text-transparent">
               (PPDB)
             </span>
           </motion.h1>
+
           <motion.p
             className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            variants={fadeInUp}
           >
             Isi formulir pendaftaran di bawah ini. Proses pendaftaran terdiri dari 4 langkah mudah:
             Data Orang Tua → Data Anak → Pilih Program → Konfirmasi.
@@ -77,7 +76,7 @@ export default function PPDBPage() {
           variants={staggerContainer(0.1)}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "50px" }}
+          viewport={viewportOnce}
         >
           <motion.div
             className="relative p-6 rounded-[24px] bg-white/80 dark:bg-slate-800/80 border-4 border-emerald-200 dark:border-emerald-800 backdrop-blur-sm hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-200/30 hover:-translate-y-1 transition-all duration-300"
@@ -183,9 +182,9 @@ export default function PPDBPage() {
         <motion.div
           className="mt-12 relative rounded-[24px] bg-white/80 dark:bg-slate-800/80 border-4 border-amber-200 dark:border-amber-800 p-6 backdrop-blur-sm"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewportOnce}
           transition={{ duration: 0.5, delay: 0.6 }}
-          viewport={{ once: true, margin: "50px" }}
         >
           <SparklesAnim count={4} color="amber" size="sm" className="pointer-events-none" />
           <h3 className="font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
