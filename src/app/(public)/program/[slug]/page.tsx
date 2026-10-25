@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { getProgramBySlug, getPrograms, urlFor } from '@/lib/sanity/queries'
 import { Program } from '@/types'
 import { programsFallback } from '@/lib/fallback-data'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
 
 interface ProgramPageProps {
   params: Promise<{ slug: string }>
@@ -200,5 +202,11 @@ export default async function ProgramDetailPage({ params }: ProgramPageProps) {
     notFound()
   }
 
-  return <ProgramDetailContent program={program} />
+  return (
+    <>
+      <Navbar />
+      <ProgramDetailContent program={program} />
+      <Footer />
+    </>
+  )
 }

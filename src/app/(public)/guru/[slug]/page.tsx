@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { getTeacherBySlug, getTeachers, urlFor } from '@/lib/sanity/queries'
 import { Teacher } from '@/types'
 import { teachersFallback } from '@/lib/fallback-data'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
 
 interface TeacherPageProps {
   params: Promise<{ slug: string }>
@@ -258,5 +260,11 @@ export default async function TeacherDetailPage({ params }: TeacherPageProps) {
     notFound()
   }
 
-  return <TeacherDetailContent teacher={teacher} />
+  return (
+    <>
+      <Navbar />
+      <TeacherDetailContent teacher={teacher} />
+      <Footer />
+    </>
+  )
 }

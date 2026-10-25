@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
 import '../globals.css'
-import { Navbar } from '@/components/Navbar'
-import { Footer } from '@/components/Footer'
 import { EducationalOrganizationJsonLd } from '@/components/JsonLd'
 
 const geistSans = Geist({
@@ -13,6 +11,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  variable: '--font-space-grotesk',
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -54,14 +58,14 @@ export const metadata: Metadata = {
     google: 'google-site-verification-code',
   },
   other: {
-    'theme-color': '#0d9488',
+    'theme-color': '#0a0f1a',
   },
 }
 
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#030712' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0f1a' },
   ],
   width: 'device-width',
   initialScale: 1,
@@ -72,14 +76,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+    <html lang="id" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <head>
         <EducationalOrganizationJsonLd />
+        {/* ScrollCraft Engine - loads before page content */}
+        <script src="/scrollcraft/scrollcraft.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full flex flex-col">
-        <Navbar />
         <main className="flex-1">{children}</main>
-        <Footer />
       </body>
     </html>
   )
