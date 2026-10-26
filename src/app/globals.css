@@ -195,6 +195,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   [data-sc-act="pin"] .sc-copy--lead { bottom: clamp(6rem, 16vh, 12rem); }
   [data-sc-act="pin"] .sc-copy--trail { bottom: clamp(6rem, 16vh, 12rem); }
   [data-sc-act="pin"] [data-sc-stage] { padding-top: var(--sc-section-padding); padding-bottom: var(--sc-section-padding); }
+  [data-sc-act="pan"] [data-sc-stage] { padding-top: var(--sc-section-padding); padding-bottom: var(--sc-section-padding); }
   [data-sc-act="pan"] .rail__lead { padding-top: var(--sc-8); }
 }
 
@@ -858,6 +859,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .sc-confetti { display: none; }
   main#top { padding-bottom: var(--sc-8); }
   [data-sc-act="pin"] [data-sc-stage] { padding-top: var(--sc-6); padding-bottom: var(--sc-10); }
+  [data-sc-act="pan"] [data-sc-stage] { padding-top: var(--sc-6); padding-bottom: var(--sc-10); }
   [data-sc-act="pin"] .sc-copy--lead { bottom: clamp(5rem, 18vh, 14rem); }
   [data-sc-act="pin"] .sc-copy--trail { bottom: clamp(5rem, 18vh, 14rem); }
   [data-sc-act="pan"] .rail__lead { padding-top: var(--sc-8); }
