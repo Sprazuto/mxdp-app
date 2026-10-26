@@ -96,7 +96,7 @@ export default function Home() {
 
         {/* ================================================================
            ACT 2 — TENSION (pin)
-           The weight of the wrong choice. Lines crossfade while the frame holds.
+           The weight of the wrong choice. Visual cards with stagger reveal.
            Overlapping cues ~15% so there's never a gap.
            ================================================================ */}
         <section
@@ -106,18 +106,40 @@ export default function Home() {
           aria-labelledby="act2-title"
         >
           <div data-sc-stage className="argument">
-            <p className="sc-lede" data-sc-cue="0 0.32 0">
-              Pilihan TK yang salah: fondasi 6 tahun goyah.
-            </p>
-            <p className="sc-lede" data-sc-cue="0.26 0.60">
-              Kurikulum tidak seimbang. Guru kurang sabar. Fasilitas tidak aman.
-            </p>
-            <p className="sc-lede" data-sc-cue="0.54 0.88">
-              Anak kehilangan rasa ingin tahu & cinta belajar sebelum waktunya.
-            </p>
-            <p className="sc-lede" data-sc-cue="0.82">
-              Bukan soal biaya. Soal masa depan yang tak terulang.
-            </p>
+            <div className="tension-stack" data-sc-in data-sc-stagger="100">
+              <header className="tension-header">
+                <span className="sc-label">Masalah Nyata</span>
+                <h2 id="act2-title" className="sc-display sc-display--lg" data-sc-kinetic="lines">
+                  Pilihan TK yang salah: fondasi 6 tahun goyah.
+                </h2>
+              </header>
+
+              <div className="tension-cards" role="list">
+                {[
+                  { icon: BookOpen, label: "Kurikulum Tidak Seimbang", desc: "Fokus akademik terlalu dini, mengabaikan bermain & eksplorasi — fondasi karakter goyah." },
+                  { icon: Users, label: "Guru Kurang Sabar & Terlatih", desc: "Tanpa sertifikasi PG-PAUD, rasio guru:anak tidak ideal, turnover tinggi." },
+                  { icon: Shield, label: "Fasilitas Tidak Aman & Standar", desc: "Peralatan tidak SNI, area bermain minim, CCTV tidak penuh, akses tidak terkontrol." },
+                  { icon: Zap, label: "Rasa Ingin Tahu Sirna", desc: "Anak kehilangan cinta belajar & kepercayaan diri sebelum waktunya." },
+                ].map((item, i) => (
+                  <article key={item.label} className="tension-card" style={{ transitionDelay: `${i * 100}ms` }} data-sc-cue={`${0.15 + i * 0.2} ${0.45 + i * 0.2}`}>
+                    <div className="tension-card__icon" aria-hidden="true">
+                      <item.icon className="h-7 w-7" />
+                    </div>
+                    <div className="tension-card__content">
+                      <h3 className="sc-display sc-display--md">{item.label}</h3>
+                      <p className="sc-body">{item.desc}</p>
+                    </div>
+                    <span className="tension-card__pulse" aria-hidden="true" />
+                  </article>
+                ))}
+              </div>
+
+              <footer className="tension-close" data-sc-cue="0.88">
+                <p className="sc-lede sc-lede--impact" data-sc-kinetic="chars">
+                  Bukan soal biaya. Soal masa depan yang tak terulang.
+                </p>
+              </footer>
+            </div>
           </div>
         </section>
 
