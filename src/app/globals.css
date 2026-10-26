@@ -194,7 +194,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (min-width: 861px) {
   [data-sc-act="pin"] .sc-copy--lead { bottom: clamp(6rem, 16vh, 12rem); }
   [data-sc-act="pin"] .sc-copy--trail { bottom: clamp(6rem, 16vh, 12rem); }
-  [data-sc-act="pin"] [data-sc-stage] { padding-bottom: var(--sc-section-padding); }
+  [data-sc-act="pin"] [data-sc-stage] { padding-top: var(--sc-section-padding); padding-bottom: var(--sc-section-padding); }
+  [data-sc-act="pan"] .rail__lead { padding-top: var(--sc-section-padding); }
 }
 
 .sc-stage :is(video[data-sc-scrub], canvas[data-sc-sequence], .sc-stage__poster) {
@@ -855,10 +856,11 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .sc-atmosphere { display: none; }
   .sc-floaties { display: none; }
   .sc-confetti { display: none; }
-  main#top { padding-top: var(--sc-6); padding-bottom: var(--sc-8); }
-  [data-sc-act="pin"] [data-sc-stage] { padding-bottom: var(--sc-10); }
+  main#top { padding-bottom: var(--sc-8); }
+  [data-sc-act="pin"] [data-sc-stage] { padding-top: var(--sc-6); padding-bottom: var(--sc-10); }
   [data-sc-act="pin"] .sc-copy--lead { bottom: clamp(5rem, 18vh, 14rem); }
   [data-sc-act="pin"] .sc-copy--trail { bottom: clamp(5rem, 18vh, 14rem); }
+  [data-sc-act="pan"] .rail__lead { padding-top: var(--sc-6); }
   .teachers-header { padding-block: var(--sc-10); }
   .teachers-close { padding-bottom: var(--sc-10); }
   .teacher-showcase { padding-block: var(--sc-6); }
