@@ -140,6 +140,7 @@
   'use strict';
 
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var darkMQ = matchMedia('(prefers-color-scheme: dark)');
   var fineMQ = matchMedia('(hover: hover) and (pointer: fine)');
   var smallMQ = matchMedia('(max-width: 860px)');
   var coarse = matchMedia('(hover: none) and (pointer: coarse)').matches;
@@ -1008,7 +1009,7 @@
         }
         if (D.act.raw >= 1) { driftA = D; driftB = D; driftT = 1; }
       }
-      if (driftA) {
+      if (driftA && !darkMQ.matches) {
         docEl.style.setProperty('--sc-canvas', mixColor(driftB.rgb, driftA.rgb, driftT));
       }
 
