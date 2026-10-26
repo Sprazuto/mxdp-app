@@ -145,6 +145,7 @@
   var smallMQ = matchMedia('(max-width: 860px)');
   var coarse = matchMedia('(hover: none) and (pointer: coarse)').matches;
   var isMobile = function () { return coarse || smallMQ.matches; };
+  var visualViewport = (typeof window !== 'undefined' && window.visualViewport) ? window.visualViewport : null;
 
   var clamp = function (x, a, b) { return x < a ? a : x > b ? b : x; };
   var clamp01 = function (x) { return clamp(x, 0, 1); };
@@ -574,14 +575,15 @@
     })();
 
     // ---- layout -----------------------------------------------------------
-    function layout() {
-      // layout() and read() are both on the returned api, so a framework's
-      // updated() arriving after destroyed() enters them directly.
-      if (scDead) return;
-      vh = innerHeight; vw = innerWidth;
-      acts.forEach(function (a) {
-        if (a.pinned) a.el.style.height = (a.span * 100) + 'vh';
-      });
+    	function layout() {
+    	  // layout() and read() are both on the returned api, so a framework's
+    	  // updated() arriving after destroyed() enters them directly.
+    	  if (scDead) return;
+    	  vh = visualViewport && isMobile() ? visualViewport.height : innerHeight;
+    	  vw = innerWidth;
+    	  acts.forEach(function (a) {
+    	    if (a.pinned) a.el.style.height = (a.span * 100) + 'vh';
+    	  });
       // The spacer is the whole document flow of a worldflight. Its height is
       // the sum of the leg weights plus one viewport: without that extra screen
       // the track runs out at the moment the last leg reaches p=1, so the last
@@ -1214,13 +1216,27 @@
 
     var lastW = innerWidth;
     on('resize', function () {
-      // Ignore URL-bar-only height changes on phones. Relaying out on those
-      // makes the page jump under the reader's thumb for no reason.
       if (scDead) return;
-      if (innerWidth === lastW && isMobile()) { vh = innerHeight; return; }
+      if (innerWidth === lastW && isMobile()) {
+        vh = visualViewport ? visualViewport.height : innerHeight;
+        return;
+      }
       lastW = innerWidth;
       layout();
     }, { passive: true });
+
+    if (visualViewport) {
+      visualViewport.addEventListener('resize', function () {
+        if (scDead) return;
+        vh = visualViewport.height;
+        layout();
+      }, { passive: true });
+      visualViewport.addEventListener('scroll', function () {
+        if (scDead) return;
+        // visualViewport scroll doesn't change layout but may affect fixed elements
+        read();
+      }, { passive: true });
+    }
 
     if (document.fonts && document.fonts.ready) {
       // Line splitting measures line boxes, so it has to wait for the real face.
