@@ -61,6 +61,7 @@
 
   --sc-section: clamp(5rem, 10vw, 14rem);
   --sc-gutter:  clamp(1.5rem, 6vw, 6rem);
+  --sc-gutter-mobile: clamp(1.5rem, 8vw, 2.5rem);
   --sc-maxw:    88rem;
 
   /* ---- RADIUS — Extra round for friendliness ------------------------------ */
@@ -627,6 +628,81 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 }
 .sc-lede--impact[data-sc-kinetic="chars"] .sc-split__i { display: inline-block; will-change: transform, opacity; }
 
+/* ---- Teacher Showcase (ACT 7) — Premium pinned cards ---------------------- */
+.teachers-stage { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; }
+
+.teachers-header { text-align: center; max-width: 70ch; margin-inline: auto; padding-block: var(--sc-8); }
+.teachers-header .sc-label { color: var(--c-teal); font-weight: 700; }
+.teachers-header .sc-display { margin-top: var(--sc-3); }
+.teachers-header .sc-body { margin-top: var(--sc-4); margin-inline: auto; max-width: 60ch; }
+
+.teacher-showcase { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-5); align-content: start; padding-inline: var(--sc-gutter); padding-block: var(--sc-6); max-width: var(--sc-maxw); margin-inline: auto; }
+@media (max-width: 860px) { .teacher-showcase { grid-template-columns: 1fr; gap: var(--sc-4); padding-block: var(--sc-4); } }
+
+.teacher-showcase__card {
+  position: relative;
+  background: var(--sc-surface);
+  border: 2px solid transparent;
+  border-radius: var(--sc-r-xl);
+  padding: var(--sc-5);
+  display: flex;
+  gap: var(--sc-4);
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(28px) scale(0.95);
+  transition: opacity 0.8s var(--sc-ease-out), transform 0.8s var(--sc-ease-out),
+              box-shadow 0.3s var(--sc-ease-out), border-color 0.3s var(--sc-ease-out);
+  background-image:
+    linear-gradient(var(--sc-surface), var(--sc-surface)),
+    linear-gradient(135deg, var(--teacher-start, var(--c-teal)), var(--teacher-end, var(--c-sky)));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.teacher-showcase__card.sc-in { opacity: 1; transform: none; }
+.teacher-showcase__card:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: var(--sc-e3);
+  border-color: color-mix(in oklab, var(--teacher-end) 40%, transparent);
+}
+
+.teacher-showcase__avatar {
+  flex-shrink: 0;
+  width: 64px; height: 64px; border-radius: var(--sc-r-lg);
+  display: flex; align-items: center; justify-content: center; color: white;
+  box-shadow: 0 8px 24px -6px color-mix(in oklab, var(--teacher-start) 40%, transparent);
+}
+
+.teacher-showcase__content { flex: 1; display: flex; flex-direction: column; gap: var(--sc-2); min-width: 0; }
+.teacher-showcase__content h3 { font-size: var(--sc-t-lg); font-weight: 700; line-height: 1.3; }
+.teacher-showcase__content .sc-label { font-size: var(--sc-t-xs); color: var(--c-teal); font-weight: 700; }
+.teacher-showcase__specialty { font-size: var(--sc-t-sm); line-height: 1.6; color: var(--sc-ink-soft); }
+
+.teacher-showcase__meta { display: flex; flex-wrap: wrap; gap: var(--sc-2); margin-top: var(--sc-2); }
+.teacher-showcase__exp {
+  font-family: var(--sc-font-mono);
+  font-size: var(--sc-t-xs);
+  letter-spacing: var(--sc-track-wide);
+  color: var(--sc-ink-soft);
+  padding: var(--sc-1) var(--sc-3);
+  background: var(--sc-canvas);
+  border-radius: var(--sc-r-pill);
+  border: 1px solid var(--sc-hairline);
+}
+.teacher-showcase__badge { font-size: var(--sc-t-xs); }
+
+.teacher-showcase__glow {
+  position: absolute; inset: -2px; border-radius: var(--sc-r-xl);
+  opacity: 0; pointer-events: none; z-index: -1;
+  animation: teacher-glow 4s ease-in-out infinite;
+}
+@keyframes teacher-glow {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.1; transform: scale(1.02); }
+}
+
+.teachers-close { text-align: center; margin-top: auto; padding-top: var(--sc-6); padding-bottom: var(--sc-8); }
+.teachers-close .cta { margin-bottom: var(--sc-3); }
+
 /* ---- Safety Stage (Close Act) — Colorful cards -------------------------- */
 .safety-stage { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; }
 .safety-grid {
@@ -751,7 +827,8 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 
 /* Mobile Adjustments */
 @media (max-width: 860px) {
-  .sc-copy { inset-inline: var(--sc-gutter); max-width: none; }
+  .sc-wrap { padding-inline: var(--sc-gutter-mobile); }
+  .sc-copy { inset-inline: var(--sc-gutter-mobile); max-width: none; }
   .sc-copy--trail { text-align: left; }
   .sc-stage { height: 100svh; }
   .sc-scrim--trail { background: linear-gradient(to top, color-mix(in oklab, var(--sc-canvas) 96%, transparent) 0%, color-mix(in oklab, var(--sc-canvas) 78%, transparent) 25%, color-mix(in oklab, var(--sc-canvas) 35%, transparent) 50%, transparent 65%); }
@@ -762,6 +839,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .sc-atmosphere { display: none; }
   .sc-floaties { display: none; }
   .sc-confetti { display: none; }
+  main#top { padding-top: var(--sc-4); }
 }
 
 /* Print */

@@ -400,53 +400,70 @@ export default function Home() {
         </section>
 
         {/* ================================================================
-           ACT 7 — TEACHERS (flow + in)
-           Ordinary section done well. Stagger reveal on entry.
+           ACT 7 — TEACHERS (pin + stagger)
+           Pinned stage with magnetic reveal. Teacher cards cascade in.
+           Spotlight follows pointer. Close CTA magnetizes.
            ================================================================ */}
         <section
-          className="sc-section"
-          data-sc-act="flow"
+          data-sc-act="pin"
+          data-sc-span="3.5"
           data-sc-drift="#fefcf8"
           aria-labelledby="act7-title"
         >
-          <div className="sc-wrap">
-            <div className="sc-stack" data-sc-in data-sc-stagger="80">
-              <h2 id="act7-title" className="sc-display sc-display--lg">
-                Guru yang mengasuh, bukan hanya mengajar
-              </h2>
-              <p className="sc-body">
-                Lebih dari 150 pendidik bersertifikat S1 PG-PAUD dengan pengalaman rata-rata 8 tahun.
-                Setiap guru menjalani pelatihan berkala: pedagogi Islami, psikologi anak, first aid,
-                tahsin & hafalan, dan integrasi teknologi. Mereka tidak hanya mengajar —
-                mereka mengasuh, mendengar, dan meneladani akhlak mulia setiap hari.
-              </p>
-            </div>
+          <div data-sc-stage className="teachers-stage" data-sc-spotlight>
+            <div className="sc-wrap">
+              <header className="teachers-header sc-stack" data-sc-in data-sc-cue="0.05 0.4">
+                <span className="sc-label">Tim Pendidik</span>
+                <h2 id="act7-title" className="sc-display sc-display--lg" data-sc-kinetic="lines">
+                  Guru yang mengasuh, bukan hanya mengajar
+                </h2>
+                <p className="sc-body" data-sc-kinetic="lines">
+                  Lebih dari 150 pendidik bersertifikat S1 PG-PAUD dengan pengalaman rata-rata 8 tahun.
+                  Setiap guru menjalani pelatihan berkala: pedagogi Islami, psikologi anak, first aid,
+                  tahsin & hafalan, dan integrasi teknologi. Mereka tidak hanya mengajar —
+                  mereka mengasuh, mendengar, dan meneladani akhlak mulia setiap hari.
+                </p>
+              </header>
 
-            <div className="teacher-grid" role="list">
-              {[
-                { name: "Ibu Sari Dewi, S.Pd", role: "Kepala TK & Guru Kelas TK B", exp: "12 tahun", icon: Award },
-                { name: "Bapak Ahmad Rizki, M.Pd", role: "Koordinator STEAM & Coding", exp: "9 tahun", icon: Zap },
-                { name: "Ibu Maya Putri, S.Psi", role: "Guru Bimbingan & Konseling", exp: "7 tahun", icon: Users },
-                { name: "Ustazah Rina Wijaya, S.Pd.I", role: "Guru Tahsin, Hafalan & Akhlak", exp: "10 tahun", icon: BookOpen },
-              ].map((teacher, i) => (
-                <article key={teacher.name} className="teacher-card" style={{ transitionDelay: `${i * 80}ms` }}>
-                  <div className="teacher-card__avatar" aria-hidden="true">
-                    <teacher.icon className="h-8 w-8" />
-                  </div>
-                  <div className="teacher-card__info">
-                    <h3 className="sc-display sc-display--md">{teacher.name}</h3>
-                    <p className="sc-label">{teacher.role}</p>
-                    <p className="sc-body">{teacher.exp} pengalaman</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+              <div className="teacher-showcase" data-sc-in data-sc-stagger="100" role="list">
+                {[
+                  { name: "Ibu Sari Dewi, S.Pd", role: "Kepala TK & Guru Kelas TK B", exp: "12 tahun", specialty: "Pedagogi Islami & Kurikulum Merdeka", icon: Award, colorStart: "var(--c-teal)", colorEnd: "var(--c-sky)" },
+                  { name: "Bapak Ahmad Rizki, M.Pd", role: "Koordinator STEAM & Coding", exp: "9 tahun", specialty: "Computational Thinking & Robotik", icon: Zap, colorStart: "var(--c-violet)", colorEnd: "var(--c-pink)" },
+                  { name: "Ibu Maya Putri, S.Psi", role: "Guru Bimbingan & Konseling", exp: "7 tahun", specialty: "Psikologi Anak & Kecerdasan Emosional", icon: Users, colorStart: "var(--c-amber)", colorEnd: "var(--c-orange)" },
+                  { name: "Ustazah Rina Wijaya, S.Pd.I", role: "Guru Tahsin, Hafalan & Akhlak", exp: "10 tahun", specialty: "Tahsin, Hafalan Juz 30, Pendidikan Karakter", icon: BookOpen, colorStart: "var(--c-lime)", colorEnd: "var(--c-teal)" },
+                ].map((teacher, i) => (
+                  <article
+                    key={teacher.name}
+                    className="teacher-showcase__card"
+                    style={{
+                      transitionDelay: `${i * 100}ms`,
+                    } as React.CSSProperties}
+                    data-sc-cue={`${0.15 + i * 0.18} ${0.55 + i * 0.18}`}
+                  >
+                    <div className="teacher-showcase__avatar" aria-hidden="true" style={{ background: `linear-gradient(135deg, ${teacher.colorStart}, ${teacher.colorEnd})` }}>
+                      <teacher.icon className="h-8 w-8" />
+                    </div>
+                    <div className="teacher-showcase__content">
+                      <h3 className="sc-display sc-display--md">{teacher.name}</h3>
+                      <p className="sc-label">{teacher.role}</p>
+                      <p className="sc-body teacher-showcase__specialty">{teacher.specialty}</p>
+                      <div className="teacher-showcase__meta">
+                        <span className="teacher-showcase__exp">{teacher.exp} pengalaman</span>
+                        <span className="teacher-showcase__badge badge-3d badge-mint">Sertifikat PG-PAUD</span>
+                      </div>
+                    </div>
+                    <div className="teacher-showcase__glow" aria-hidden="true" style={{ background: `linear-gradient(135deg, ${teacher.colorStart}, ${teacher.colorEnd})` }} />
+                  </article>
+                ))}
+              </div>
 
-            <div className="sc-stack" style={{ marginTop: 'var(--sc-8)' }}>
-              <Link href="/guru" className="cta cta--secondary inline-flex">
-                Kenali Semua Guru Kami
-                <ArrowRight className="h-5 w-5" aria-hidden="true" />
-              </Link>
+              <footer className="teachers-close sc-stack" data-sc-cue="0.85">
+                <Link href="/guru" className="cta cta--primary cta--magnet" data-sc-magnet="0.2" data-sc-rise="0">
+                  Kenali Semua Guru Kami
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </Link>
+                <p className="foot-note">150+ guru &bull; Rata-rata 8 th pengalaman &bull; Pelatihan berkala &bull; First Aid certified</p>
+              </footer>
             </div>
           </div>
         </section>
