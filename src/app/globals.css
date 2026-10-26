@@ -386,7 +386,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 
 /* ---- Site Bar (Playful Chrome) ------------------------------------------ */
 .site-bar {
-  position: fixed; top: 0; left: 0; right: 0;
+  position: relative;
   z-index: var(--sc-z-chrome);
   background: linear-gradient(180deg, color-mix(in oklab, var(--sc-canvas) 95%, transparent) 0%, transparent 100%);
   backdrop-filter: blur(16px);
@@ -759,6 +759,9 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .cta { width: 100%; }
   .growth-compass { display: none; }
   .sc-page-ornaments { display: none; }
+  .sc-atmosphere { display: none; }
+  .sc-floaties { display: none; }
+  .sc-confetti { display: none; }
 }
 
 /* Print */
