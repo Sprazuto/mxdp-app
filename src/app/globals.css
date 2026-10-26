@@ -62,6 +62,7 @@
   --sc-section: clamp(5rem, 10vw, 14rem);
   --sc-gutter:  clamp(1.5rem, 6vw, 6rem);
   --sc-gutter-mobile: clamp(1.5rem, 8vw, 2.5rem);
+  --sc-section-padding: clamp(2rem, 6vw, 4rem);
   --sc-maxw:    88rem;
 
   /* ---- RADIUS — Extra round for friendliness ------------------------------ */
@@ -187,6 +188,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   height: 100vh; height: 100svh;
   overflow: clip;
   z-index: var(--sc-z-stage);
+  padding-bottom: var(--sc-section-padding);
+}
+
+@media (min-width: 861px) {
+  [data-sc-act="pin"] .sc-copy--lead { bottom: clamp(6rem, 16vh, 12rem); }
+  [data-sc-act="pin"] .sc-copy--trail { bottom: clamp(6rem, 16vh, 12rem); }
+  [data-sc-act="pin"] [data-sc-stage] { padding-bottom: var(--sc-section-padding); }
 }
 
 .sc-stage :is(video[data-sc-scrub], canvas[data-sc-sequence], .sc-stage__poster) {
@@ -700,6 +708,14 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   50% { opacity: 0.1; transform: scale(1.02); }
 }
 
+@media (min-width: 861px) {
+  .teachers-header { padding-block: var(--sc-10); }
+  .teachers-close { padding-bottom: var(--sc-10); }
+  .teacher-showcase { padding-block: var(--sc-8); gap: var(--sc-6); }
+  .tension-stack { padding-block: var(--sc-10); }
+  .tension-cards { gap: var(--sc-5); }
+}
+
 .teachers-close { text-align: center; margin-top: auto; padding-top: var(--sc-6); padding-bottom: var(--sc-8); }
 .teachers-close .cta { margin-bottom: var(--sc-3); }
 
@@ -839,7 +855,14 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .sc-atmosphere { display: none; }
   .sc-floaties { display: none; }
   .sc-confetti { display: none; }
-  main#top { padding-top: var(--sc-4); }
+  main#top { padding-top: var(--sc-6); padding-bottom: var(--sc-8); }
+  [data-sc-act="pin"] [data-sc-stage] { padding-bottom: var(--sc-10); }
+  [data-sc-act="pin"] .sc-copy--lead { bottom: clamp(5rem, 18vh, 14rem); }
+  [data-sc-act="pin"] .sc-copy--trail { bottom: clamp(5rem, 18vh, 14rem); }
+  .teachers-header { padding-block: var(--sc-10); }
+  .teachers-close { padding-bottom: var(--sc-10); }
+  .teacher-showcase { padding-block: var(--sc-6); }
+  .tension-stack { padding-block: var(--sc-8); }
 }
 
 /* Print */
