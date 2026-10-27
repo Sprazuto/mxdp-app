@@ -639,14 +639,14 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .sc-lede--impact[data-sc-kinetic="chars"] .sc-split__i { display: inline-block; will-change: transform, opacity; }
 
 /* ---- Teacher Showcase (ACT 7) — Premium pinned cards ---------------------- */
-.teachers-stage { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; }
+.teachers-stage { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; overflow: visible; }
 
 .teachers-header { text-align: center; max-width: 70ch; margin-inline: auto; padding-block: var(--sc-8); }
 .teachers-header .sc-label { color: var(--c-teal); font-weight: 700; }
 .teachers-header .sc-display { margin-top: var(--sc-3); }
 .teachers-header .sc-body { margin-top: var(--sc-4); margin-inline: auto; max-width: 60ch; }
 
-.teacher-showcase { flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-5); align-content: start; padding-inline: var(--sc-gutter); padding-block: var(--sc-6); max-width: var(--sc-maxw); margin-inline: auto; }
+.teacher-showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-5); align-content: start; padding-inline: var(--sc-gutter); padding-block: var(--sc-6); max-width: var(--sc-maxw); margin-inline: auto; }
 @media (max-width: 860px) { .teacher-showcase { grid-template-columns: 1fr; gap: var(--sc-4); padding-block: var(--sc-4); } }
 
 .teacher-showcase__card {
@@ -722,11 +722,8 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .teachers-close .cta { margin-bottom: var(--sc-3); }
 
 /* ---- Safety Stage (Close Act) — Colorful cards -------------------------- */
-.safety-stage { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; }
-.safety-grid {
-  flex: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-4); padding: var(--sc-6);
-  align-content: center;
-}
+.safety-stage { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; overflow: visible; }
+.safety-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-4); padding: var(--sc-6); align-content: start; }
 .safety-card {
   background: var(--sc-surface); border: 2px solid transparent;
   border-radius: var(--sc-r-xl); padding: var(--sc-6); text-align: center;
