@@ -72,21 +72,13 @@ export const viewport: Viewport = {
   maximumScale: 5,
 }
 
-export default function RootLayout({
+export default function PublicLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}>
-      <head>
-        <EducationalOrganizationJsonLd />
-        {/* ScrollCraft Engine - loads before page content */}
-        <script src="/scrollcraft/scrollcraft.js" defer></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className="min-h-full flex flex-col">
-        <main className="flex-1">{children}</main>
-      </body>
-    </html>
+    <>
+      <EducationalOrganizationJsonLd />
+      {children}
+    </>
   )
 }
