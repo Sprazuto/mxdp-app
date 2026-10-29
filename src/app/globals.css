@@ -1,31 +1,21 @@
 /* ============================================================================
-   MXDP TK — PLAYFUL KINDERGARTEN DESIGN SYSTEM
+   MXDP TK — ORGANIC CLAYMORPHISM DESIGN SYSTEM
    ============================================================================
-   Colorful, eye-catching, particle-rich, child-friendly but parent-trustworthy.
+   Asymmetric blob shapes, layered shadows, colorful gradients — tactile & playful.
    Built on scroll-craft engine — tokens drive the engine, ornaments are additive.
    ============================================================================ */
 
 /* ---------------------------------------------------------- TOKENS --------- */
 :root {
-  /* ---- PLAYFUL COLOR PALETTE — Multiple friendly accents ----------------- */
-  --sc-canvas:      #fefcf8;        /* warm cream base */
-  --sc-surface:     #ffffff;        /* pure white cards */
-  --sc-ink:         #1e293b;        /* slate-800 for readability */
-  --sc-ink-soft:    #64748b;        /* slate-500 */
-  --sc-accent:      #f97316;        /* primary: warm orange */
+  /* ---- CLAY CANVAS & SURFACE -------------------------------------------- */
+  --sc-canvas:      #fdfbf7;        /* warm clay base */
+  --sc-surface:     #ffffff;        /* pure white blobs */
+  --sc-ink:         #3d352d;        /* warm dark for readability */
+  --sc-ink-soft:    #8a7d6e;        /* warm muted */
+  --sc-accent:      #ff9aa2;        /* primary: clay pink */
   --sc-accent-ink:  #ffffff;
 
-  /* Extended playful palette — use freely for ornaments, gradients, badges */
-  --c-orange:       #f97316;  --c-orange-light:   #fed7aa;  --c-orange-soft:   #fff7ed;
-  --c-teal:         #0d9488;  --c-teal-light:     #99f6e4;  --c-teal-soft:     #f0fdfa;
-  --c-pink:         #ec4899;  --c-pink-light:     #fbcfe8;  --c-pink-soft:     #fdf2f8;
-  --c-sky:          #0ea5e9;  --c-sky-light:      #bae6fd;  --c-sky-soft:      #f0f9ff;
-  --c-lime:         #84cc16;  --c-lime-light:     #d9f99d;  --c-lime-soft:     #f7fee7;
-  --c-amber:        #f59e0b;  --c-amber-light:    #fde68a;  --c-amber-soft:    #fffbeb;
-  --c-violet:       #a855f7;  --c-violet-light:   #e9d5ff;  --c-violet-soft:   #faf5ff;
-  --c-rose:         #f43f5e;  --c-rose-light:     #fecdd3;  --c-rose-soft:     #fff1f2;
-
-  /* Claymorphism palette — softer, more tactile */
+  /* ---- CLAY COLOR PALETTE — 8 harmonious clay tones --------------------- */
   --clay-1: #ff9aa2;   /* pink */
   --clay-2: #ffd8a8;   /* peach */
   --clay-3: #b5ead7;   /* mint */
@@ -34,6 +24,16 @@
   --clay-6: #a1c4fd;   /* blue */
   --clay-7: #ffb3d9;   /* rose */
   --clay-8: #d4f6d4;   /* pale mint */
+
+  /* Extended palette for ornaments, gradients (kept for compatibility) */
+  --c-orange:       #ff9aa2;  --c-orange-light:   #ffe5e8;  --c-orange-soft:   #fff0f2;
+  --c-teal:         #b5ead7;  --c-teal-light:     #e8f7f0;  --c-teal-soft:     #f0fdf8;
+  --c-pink:         #ffb3d9;  --c-pink-light:     #ffe8f4;  --c-pink-soft:     #fdf2f8;
+  --c-sky:          #a1c4fd;  --c-sky-light:      #e8f0fd;  --c-sky-soft:      #f0f5ff;
+  --c-lime:         #d4f6d4;  --c-lime-light:     #f0fdf0;  --c-lime-soft:     #f7fee7;
+  --c-amber:        #ffd3b6;  --c-amber-light:    #fff3e0;  --c-amber-soft:    #fffbeb;
+  --c-violet:       #c7ceea;  --c-violet-light:   #f0efff;  --c-violet-soft:   #faf5ff;
+  --c-rose:         #ff9aa2;  --c-rose-light:     #ffe5e8;  --c-rose-soft:     #fff1f2;
 
   --sc-hairline:    color-mix(in oklab, var(--sc-ink) 10%, transparent);
   --sc-hairline-strong: color-mix(in oklab, var(--sc-ink) 18%, transparent);
@@ -53,6 +53,11 @@
   --clay-shadow-in: inset 5px 5px 10px rgba(120,95,70,0.08), inset -5px -5px 10px rgba(255,255,255,0.6);
   --clay-shadow-deep: 20px 20px 40px rgba(120,95,70,0.18), -10px -10px 20px rgba(255,255,255,0.9);
   --clay-shadow-press: inset 8px 8px 16px rgba(120,95,70,0.12), inset -4px -4px 8px rgba(255,255,255,0.7);
+
+  /* Clay easing — springy, organic */
+  --clay-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --clay-ease-out: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --clay-ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
 
   /* ---- TYPE — Friendly, rounded display; clean readable text -------------- */
   --sc-font-display: "Nunito", "Quicksand", "Space Grotesk", system-ui, sans-serif;
@@ -115,16 +120,16 @@
   --sc-z-stage: 1; --sc-z-copy: 20; --sc-z-chrome: 60; --sc-z-ornament: 0;
 }
 
-/* Dark mode — warm, not harsh */
+/* Dark mode — warm clay, not harsh */
 @media (prefers-color-scheme: dark) {
   :root {
-    --sc-canvas:      #1a1620;
-    --sc-surface:     #231f2a;
-    --sc-ink:         #f5f0f8;
-    --sc-ink-soft:    #a89bb8;
-    --sc-accent:      #fb923c;
-    --sc-accent-ink:  #1a1620;
-    --sc-shadow-color: 280 40% 25%;
+    --sc-canvas:      #1f1a16;
+    --sc-surface:     #2a241f;
+    --sc-ink:         #f5f0ea;
+    --sc-ink-soft:    #b8a894;
+    --sc-accent:      #ffb3b8;
+    --sc-accent-ink:  #1f1a16;
+    --sc-shadow-color: 30 30% 15%;
     --sc-edge: inset 0 1px 0 color-mix(in oklab, var(--c-orange) 12%, transparent);
   }
 }
@@ -421,14 +426,15 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 
 /* ---------------------------------------------------------- COMPONENTS ----- */
 
-/* ---- Site Bar (Playful Chrome) ------------------------------------------ */
+/* ---- Site Bar (Organic Clay Chrome) -------------------------------------- */
 .site-bar {
   position: relative;
   z-index: var(--sc-z-chrome);
-  background: linear-gradient(180deg, color-mix(in oklab, var(--sc-canvas) 95%, transparent) 0%, transparent 100%);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--sc-hairline);
+  background: linear-gradient(145deg, var(--sc-canvas), var(--sc-surface));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: 0 0 var(--blob-1) var(--blob-1);
   padding-block: var(--sc-3);
+  border-bottom: none;
 }
 .site-bar .sc-wrap { display: flex; align-items: center; justify-content: space-between; }
 
@@ -438,9 +444,9 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   font-size: var(--sc-t-xl);
   font-weight: 800;
   letter-spacing: var(--sc-track-tight);
-  background: linear-gradient(135deg, var(--c-orange) 0%, var(--c-pink) 50%, var(--c-teal) 100%);
+  background: linear-gradient(135deg, var(--clay-1) 0%, var(--clay-7) 50%, var(--clay-3) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 2px 4px color-mix(in oklab, var(--c-orange) 30%, transparent));
+  filter: drop-shadow(0 2px 4px color-mix(in oklab, var(--clay-1) 30%, transparent));
 }
 .wordmark__tagline {
   font-size: var(--sc-t-xs);
@@ -450,7 +456,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   font-weight: 600;
 }
 
-/* ---- CTA Buttons — Bouncy, colorful ------------------------------------- */
+/* ---- CTA Buttons — Organic Clay Pills ------------------------------------ */
 .cta {
   display: inline-flex; align-items: center; justify-content: center; gap: var(--sc-2);
   padding: var(--sc-3) var(--sc-7);
@@ -460,38 +466,40 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   border-radius: var(--sc-r-pill);
   text-decoration: none;
   white-space: nowrap;
-  transition: transform var(--sc-d-fast) var(--sc-ease-bounce),
-              box-shadow var(--sc-d-fast) var(--sc-ease-out),
-              background var(--sc-d-fast) var(--sc-ease-out);
+  transition: transform var(--sc-d-fast) var(--clay-ease),
+              box-shadow var(--sc-d-fast) var(--clay-ease-out),
+              background var(--sc-d-fast) var(--clay-ease-out);
   position: relative; overflow: hidden;
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
 }
 .cta::before {
   content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
   transform: translateX(-100%); transition: transform 0.5s ease;
 }
 .cta:hover::before { transform: translateX(100%); }
-.cta:active { transform: scale(0.94); }
+.cta:active { transform: scale(0.94); box-shadow: var(--clay-shadow-press); }
 .cta:focus-visible { outline-offset: 4px; }
 
 .cta--primary {
-  background: linear-gradient(135deg, var(--c-orange) 0%, var(--c-amber) 100%);
+  background: linear-gradient(145deg, var(--clay-1), var(--clay-7));
   color: var(--sc-accent-ink);
-  box-shadow: 0 6px 24px -4px color-mix(in oklab, var(--c-orange) 50%, transparent);
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in), 0 6px 24px -4px color-mix(in oklab, var(--clay-1) 50%, transparent);
 }
 .cta--primary:hover {
-  box-shadow: 0 10px 32px -6px color-mix(in oklab, var(--c-orange) 60%, transparent);
-  transform: translateY(-3px) scale(1.02);
+  box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in), 0 10px 32px -6px color-mix(in oklab, var(--clay-1) 60%, transparent);
+  transform: translateY(-4px) scale(1.02);
 }
 
 .cta--secondary {
-  background: var(--sc-surface);
-  color: var(--sc-accent);
-  border: 2px solid var(--sc-accent);
+  background: linear-gradient(145deg, #fff, var(--clay-3));
+  color: var(--clay-4);
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border: 2px solid var(--clay-3);
 }
 .cta--secondary:hover {
-  background: var(--c-orange-soft);
-  border-color: var(--c-orange);
-  color: var(--c-orange);
+  background: linear-gradient(145deg, var(--clay-3), var(--clay-4));
+  border-color: var(--clay-4);
+  color: white;
   transform: translateY(-2px);
 }
 
@@ -501,7 +509,13 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 /* ---- Split Layout (Turn Act) -------------------------------------------- */
 .split { display: grid; grid-template-columns: 1fr; gap: var(--sc-8); align-items: start; }
 @media (min-width: 1024px) { .split { grid-template-columns: 1.2fr 0.8fr; } }
-.turn-figure { margin: 0; border-radius: var(--sc-r-xl); overflow: hidden; box-shadow: var(--sc-e3); }
+.turn-figure { 
+  margin: 0; 
+  border-radius: var(--blob-3); 
+  overflow: hidden; 
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  background: linear-gradient(145deg, #fff, var(--clay-2));
+}
 .turn-figure img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; }
 
 /* ---- Pan Rail ----------------------------------------------------------- */
@@ -510,25 +524,21 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .rail__lead { min-width: clamp(280px, 35vw, 420px); }
 .rail__close { min-width: clamp(280px, 30vw, 380px); text-align: right; }
 
-/* ---- Program Cards — Colorful, animated --------------------------------- */
+/* ---- Program Cards — Organic Clay Blobs -------------------------------- */
 .program-card {
-  background: var(--sc-surface);
-  border: 2px solid transparent;
-  border-radius: var(--sc-r-xl);
+  background: linear-gradient(145deg, #fff, var(--clay-2));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: var(--blob-1);
   overflow: hidden;
   will-change: transform;
-  background-image:
-    linear-gradient(var(--sc-surface), var(--sc-surface)),
-    linear-gradient(135deg, var(--c-orange-light), var(--c-pink-light), var(--c-teal-light));
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  transition: all 0.5s var(--clay-ease);
 }
 .program-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: var(--sc-e3);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in);
 }
-.program-card__media { position: relative; overflow: hidden; aspect-ratio: 4/3; }
-.program-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--sc-ease-out); }
+.program-card__media { position: relative; overflow: hidden; aspect-ratio: 4/3; border-radius: var(--blob-1) var(--blob-1) 0 0; }
+.program-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--clay-ease-out); }
 .program-card:hover .program-card__media img { transform: scale(1.06) rotate(1deg); }
 .program-card__content { padding: var(--sc-5); display: flex; flex-direction: column; gap: var(--sc-3); }
 .program-card__features { list-style: none; padding: 0; margin: var(--sc-2) 0 0; display: flex; flex-direction: column; gap: var(--sc-2); }
@@ -541,62 +551,67 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .program-card__features li::before {
   content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
   width: 8px; height: 8px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--c-orange), var(--c-pink));
+  background: linear-gradient(135deg, var(--clay-1), var(--clay-7));
   animation: pulse-dot 2s ease-in-out infinite;
 }
 @keyframes pulse-dot { 0%, 100% { transform: translateY(-50%) scale(1); } 50% { transform: translateY(-50%) scale(1.2); } }
 
-/* ---- Facility Cards — Color-coded borders ------------------------------- */
+/* Program card color variants */
+.program-card:nth-child(4n+1) { background: linear-gradient(145deg, #fff, var(--clay-2)); }
+.program-card:nth-child(4n+2) { background: linear-gradient(145deg, #fff, var(--clay-3)); }
+.program-card:nth-child(4n+3) { background: linear-gradient(145deg, #fff, var(--clay-4)); }
+.program-card:nth-child(4n+4) { background: linear-gradient(145deg, #fff, var(--clay-5)); }
+
+/* ---- Facility Cards — Organic Clay Blobs ------------------------------- */
 .facility-card {
-  background: var(--sc-surface);
-  border: 2px solid transparent;
-  border-radius: var(--sc-r-xl);
+  background: linear-gradient(145deg, #fff, var(--clay-3));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: var(--blob-2);
   overflow: hidden;
   will-change: transform;
-  background-image:
-    linear-gradient(var(--sc-surface), var(--sc-surface)),
-    linear-gradient(135deg, var(--border-start), var(--border-end));
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  transition: all 0.5s var(--clay-ease);
 }
-.facility-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--sc-e3); }
-.facility-card figure { margin: 0; overflow: hidden; border-radius: var(--sc-r-xl) var(--sc-r-xl) 0 0; }
-.facility-card figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--sc-ease-out); }
+.facility-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in); }
+.facility-card figure { margin: 0; overflow: hidden; border-radius: var(--blob-2) var(--blob-2) 0 0; }
+.facility-card figure img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--clay-ease-out); }
 .facility-card:hover figure img { transform: scale(1.06) rotate(-1deg); }
 .facility-card__content { padding: var(--sc-5); display: flex; flex-direction: column; gap: var(--sc-2); }
 
-/* Border colors per facility */
-.facility-card:nth-child(4n+1) { --border-start: var(--c-teal); --border-end: var(--c-sky); }
-.facility-card:nth-child(4n+2) { --border-start: var(--c-violet); --border-end: var(--c-pink); }
-.facility-card:nth-child(4n+3) { --border-start: var(--c-amber); --border-end: var(--c-orange); }
-.facility-card:nth-child(4n+4) { --border-start: var(--c-lime); --border-end: var(--c-teal); }
+/* Facility card color variants */
+.facility-card:nth-child(4n+1) { background: linear-gradient(145deg, #fff, var(--clay-3)); }
+.facility-card:nth-child(4n+2) { background: linear-gradient(145deg, #fff, var(--clay-4)); }
+.facility-card:nth-child(4n+3) { background: linear-gradient(145deg, #fff, var(--clay-5)); }
+.facility-card:nth-child(4n+4) { background: linear-gradient(145deg, #fff, var(--clay-6)); }
 
-/* ---- Teacher Grid — Warm, friendly -------------------------------------- */
+/* ---- Teacher Grid — Organic Clay Blobs ----------------------------------- */
 .teacher-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sc-4); margin-top: var(--sc-6); }
 .teacher-card {
   display: flex; gap: var(--sc-4); align-items: flex-start;
-  padding: var(--sc-5); background: var(--sc-surface);
-  border: 2px solid var(--sc-hairline); border-radius: var(--sc-r-xl);
-  opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--sc-ease-out), transform 0.7s var(--sc-ease-out);
+  padding: var(--sc-5);
+  background: linear-gradient(145deg, #fff, var(--clay-1));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: var(--blob-3);
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.7s var(--clay-ease-out), transform 0.7s var(--clay-ease-out);
 }
 .teacher-card.active { opacity: 1; transform: none; }
-.teacher-card:hover { border-color: var(--c-orange-light); box-shadow: var(--sc-e2); }
+.teacher-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in); }
 .teacher-card__avatar {
-  flex-shrink: 0; width: 56px; height: 56px; border-radius: var(--sc-r-lg);
-  background: linear-gradient(135deg, var(--c-orange-light), var(--c-pink-light));
-  display: flex; align-items: center; justify-content: center; color: var(--c-orange);
+  flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--clay-1), var(--clay-7));
+  display: flex; align-items: center; justify-content: center; color: white;
   box-shadow: inset 0 0 0 3px var(--sc-surface);
 }
 .teacher-card__info { display: flex; flex-direction: column; gap: var(--sc-1); }
 .teacher-card__info h3 { font-size: var(--sc-t-base); font-weight: 700; }
-.teacher-card__info .sc-label { font-size: var(--sc-t-xs); color: var(--c-teal); font-weight: 700; }
+.teacher-card__info .sc-label { font-size: var(--sc-t-xs); color: var(--clay-3); font-weight: 700; }
 .teacher-card__info .sc-body { font-size: var(--sc-t-sm); }
 
-/* ---- Tension Act (ACT 2) — Visual problem cards --------------------------- */
+/* ---- Tension Act (ACT 2) — Organic Clay Problem Cards -------------------- */
 .tension-stack { display: flex; flex-direction: column; gap: var(--sc-5); height: 100%; padding-block: var(--sc-5); }
 
 .tension-header { text-align: center; max-width: 60ch; margin-inline: auto; }
-.tension-header .sc-label { color: var(--c-rose); font-weight: 700; }
+.tension-header .sc-label { color: var(--clay-7); font-weight: 700; }
 .tension-header .sc-display { margin-top: var(--sc-3); }
 
 .tension-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-3); max-width: var(--sc-maxw); margin-inline: auto; }
@@ -604,36 +619,33 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 
 .tension-card {
   position: relative;
-  background: var(--sc-surface);
-  border: 2px solid transparent;
-  border-radius: var(--sc-r-lg);
+  background: linear-gradient(145deg, #fff, var(--clay-2));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: var(--blob-4);
   padding: var(--sc-4);
   display: flex; flex-direction: column; gap: var(--sc-2);
   opacity: 0;
   transform: translateY(20px) scale(0.97);
-  transition: opacity 0.7s var(--sc-ease-out), transform 0.7s var(--sc-ease-out),
-              box-shadow 0.3s var(--sc-ease-out), border-color 0.3s var(--sc-ease-out);
-  background-image:
-    linear-gradient(var(--sc-surface), var(--sc-surface)),
-    linear-gradient(135deg, var(--tension-start), var(--tension-end));
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  transition: opacity 0.7s var(--clay-ease-out), transform 0.7s var(--clay-ease-out),
+              box-shadow 0.3s var(--clay-ease-out);
 }
 .tension-card.sc-in { opacity: 1; transform: none; }
 .tension-card:hover {
-  transform: translateY(-4px) scale(1.005);
-  box-shadow: var(--sc-e2);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in);
 }
-.tension-card:nth-child(4n+1) { --tension-start: var(--c-sky); --tension-end: var(--c-teal); }
-.tension-card:nth-child(4n+2) { --tension-start: var(--c-rose); --tension-end: var(--c-pink); }
-.tension-card:nth-child(4n+3) { --tension-start: var(--c-amber); --tension-end: var(--c-orange); }
-.tension-card:nth-child(4n+4) { --tension-start: var(--c-violet); --tension-end: var(--c-pink); }
+
+/* Tension card color variants */
+.tension-card:nth-child(4n+1) { background: linear-gradient(145deg, #fff, var(--clay-2)); }
+.tension-card:nth-child(4n+2) { background: linear-gradient(145deg, #fff, var(--clay-3)); }
+.tension-card:nth-child(4n+3) { background: linear-gradient(145deg, #fff, var(--clay-4)); }
+.tension-card:nth-child(4n+4) { background: linear-gradient(145deg, #fff, var(--clay-5)); }
 
 .tension-card__icon {
   width: 44px; height: 44px; border-radius: var(--sc-r-md);
-  background: linear-gradient(135deg, var(--tension-start), var(--tension-end));
+  background: linear-gradient(135deg, var(--clay-1), var(--clay-7));
   display: flex; align-items: center; justify-content: center; color: white;
-  box-shadow: 0 6px 16px -4px color-mix(in oklab, var(--tension-start) 40%, transparent);
+  box-shadow: 0 6px 16px -4px color-mix(in oklab, var(--clay-1) 40%, transparent);
   flex-shrink: 0;
 }
 
@@ -642,8 +654,8 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .tension-card__content .sc-body { font-size: var(--sc-t-sm); line-height: 1.5; }
 
 .tension-card__pulse {
-  position: absolute; inset: -2px; border-radius: var(--sc-r-lg);
-  background: linear-gradient(135deg, var(--tension-start), var(--tension-end));
+  position: absolute; inset: -2px; border-radius: var(--blob-4);
+  background: linear-gradient(135deg, var(--clay-1), var(--clay-7));
   opacity: 0; pointer-events: none; z-index: -1;
   animation: tension-pulse 3s ease-in-out infinite;
 }
@@ -664,11 +676,11 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 }
 .sc-lede--impact[data-sc-kinetic="chars"] .sc-split__i { display: inline-block; will-change: transform, opacity; }
 
-/* ---- Teacher Showcase (ACT 7) — Premium pinned cards ---------------------- */
+/* ---- Teacher Showcase (ACT 7) — Premium Organic Clay Cards --------------- */
 .teachers-stage { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; overflow: visible; }
 
 .teachers-header { text-align: center; max-width: 70ch; margin-inline: auto; padding-block: var(--sc-8); }
-.teachers-header .sc-label { color: var(--c-teal); font-weight: 700; }
+.teachers-header .sc-label { color: var(--clay-3); font-weight: 700; }
 .teachers-header .sc-display { margin-top: var(--sc-3); }
 .teachers-header .sc-body { margin-top: var(--sc-4); margin-inline: auto; max-width: 60ch; }
 
@@ -677,40 +689,40 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 
 .teacher-showcase__card {
   position: relative;
-  background: var(--sc-surface);
-  border: 2px solid transparent;
-  border-radius: var(--sc-r-xl);
+  background: linear-gradient(145deg, #fff, var(--clay-4));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: var(--blob-5);
   padding: var(--sc-5);
   display: flex;
   gap: var(--sc-4);
   align-items: flex-start;
   opacity: 0;
   transform: translateY(28px) scale(0.95);
-  transition: opacity 0.8s var(--sc-ease-out), transform 0.8s var(--sc-ease-out),
-              box-shadow 0.3s var(--sc-ease-out), border-color 0.3s var(--sc-ease-out);
-  background-image:
-    linear-gradient(var(--sc-surface), var(--sc-surface)),
-    linear-gradient(135deg, var(--teacher-start, var(--c-teal)), var(--teacher-end, var(--c-sky)));
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  transition: opacity 0.8s var(--clay-ease-out), transform 0.8s var(--clay-ease-out),
+              box-shadow 0.3s var(--clay-ease-out);
 }
 .teacher-showcase__card.sc-in { opacity: 1; transform: none; }
 .teacher-showcase__card:hover {
-  transform: translateY(-8px) scale(1.015);
-  box-shadow: var(--sc-e3);
-  border-color: color-mix(in oklab, var(--teacher-end) 40%, transparent);
+  transform: translateY(-12px) scale(1.015);
+  box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in);
 }
+
+/* Teacher showcase color variants */
+.teacher-showcase__card:nth-child(4n+1) { background: linear-gradient(145deg, #fff, var(--clay-4)); }
+.teacher-showcase__card:nth-child(4n+2) { background: linear-gradient(145deg, #fff, var(--clay-5)); }
+.teacher-showcase__card:nth-child(4n+3) { background: linear-gradient(145deg, #fff, var(--clay-6)); }
+.teacher-showcase__card:nth-child(4n+4) { background: linear-gradient(145deg, #fff, var(--clay-7)); }
 
 .teacher-showcase__avatar {
   flex-shrink: 0;
-  width: 64px; height: 64px; border-radius: var(--sc-r-lg);
+  width: 64px; height: 64px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center; color: white;
-  box-shadow: 0 8px 24px -6px color-mix(in oklab, var(--teacher-start) 40%, transparent);
+  box-shadow: 0 8px 24px -6px color-mix(in oklab, var(--clay-1) 40%, transparent);
 }
 
 .teacher-showcase__content { flex: 1; display: flex; flex-direction: column; gap: var(--sc-2); min-width: 0; }
 .teacher-showcase__content h3 { font-size: var(--sc-t-lg); font-weight: 700; line-height: 1.3; }
-.teacher-showcase__content .sc-label { font-size: var(--sc-t-xs); color: var(--c-teal); font-weight: 700; }
+.teacher-showcase__content .sc-label { font-size: var(--sc-t-xs); color: var(--clay-3); font-weight: 700; }
 .teacher-showcase__specialty { font-size: var(--sc-t-sm); line-height: 1.6; color: var(--sc-ink-soft); }
 
 .teacher-showcase__meta { display: flex; flex-wrap: wrap; gap: var(--sc-2); margin-top: var(--sc-2); }
@@ -727,7 +739,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .teacher-showcase__badge { font-size: var(--sc-t-xs); }
 
 .teacher-showcase__glow {
-  position: absolute; inset: -2px; border-radius: var(--sc-r-xl);
+  position: absolute; inset: -2px; border-radius: var(--blob-5);
   opacity: 0; pointer-events: none; z-index: -1;
   animation: teacher-glow 4s ease-in-out infinite;
 }
@@ -747,31 +759,33 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .teachers-close { text-align: center; margin-top: auto; padding-top: var(--sc-6); padding-bottom: var(--sc-8); }
 .teachers-close .cta { margin-bottom: var(--sc-3); }
 
-/* ---- Safety Stage (Close Act) — Colorful cards -------------------------- */
+/* ---- Safety Stage (Close Act) — Organic Clay Cards ----------------------- */
 .safety-stage { position: relative; min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; overflow: visible; }
 .safety-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sc-4); padding: var(--sc-6); align-content: start; }
 .safety-card {
-  background: var(--sc-surface); border: 2px solid transparent;
-  border-radius: var(--sc-r-xl); padding: var(--sc-6); text-align: center;
+  background: linear-gradient(145deg, #fff, var(--clay-5));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  border-radius: var(--blob-6);
+  padding: var(--sc-6);
+  text-align: center;
   display: flex; flex-direction: column; align-items: center; gap: var(--sc-4);
-  opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--sc-ease-out), transform 0.6s var(--sc-ease-out);
-  background-image:
-    linear-gradient(var(--sc-surface), var(--sc-surface)),
-    linear-gradient(135deg, var(--safety-start), var(--safety-end));
-  background-origin: border-box; background-clip: padding-box, border-box;
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s var(--clay-ease-out), transform 0.6s var(--clay-ease-out);
 }
 .safety-card.active { opacity: 1; transform: none; }
-.safety-card:hover { transform: translateY(-6px); box-shadow: var(--sc-e2); }
-.safety-card:nth-child(4n+1) { --safety-start: var(--c-teal); --safety-end: var(--c-sky); }
-.safety-card:nth-child(4n+2) { --safety-start: var(--c-violet); --safety-end: var(--c-pink); }
-.safety-card:nth-child(4n+3) { --safety-start: var(--c-amber); --safety-end: var(--c-orange); }
-.safety-card:nth-child(4n+4) { --safety-start: var(--c-lime); --safety-end: var(--c-teal); }
+.safety-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in); }
+
+/* Safety card color variants */
+.safety-card:nth-child(4n+1) { background: linear-gradient(145deg, #fff, var(--clay-5)); }
+.safety-card:nth-child(4n+2) { background: linear-gradient(145deg, #fff, var(--clay-6)); }
+.safety-card:nth-child(4n+3) { background: linear-gradient(145deg, #fff, var(--clay-7)); }
+.safety-card:nth-child(4n+4) { background: linear-gradient(145deg, #fff, var(--clay-8)); }
 
 .safety-card__icon {
-  width: 64px; height: 64px; border-radius: var(--sc-r-lg);
-  background: linear-gradient(135deg, var(--safety-start), var(--safety-end));
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--clay-1), var(--clay-7));
   display: flex; align-items: center; justify-content: center; color: white;
-  box-shadow: 0 8px 24px -6px color-mix(in oklab, var(--safety-start) 40%, transparent);
+  box-shadow: 0 8px 24px -6px color-mix(in oklab, var(--clay-1) 40%, transparent);
 }
 .safety-card h3 { font-size: var(--sc-t-lg); font-weight: 700; }
 .safety-card .sc-body { font-size: var(--sc-t-sm); max-width: 30ch; line-height: 1.6; }
@@ -780,7 +794,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .close-foot .sc-display { margin-bottom: var(--sc-4); }
 .foot-note { color: var(--sc-ink-soft); font-size: var(--sc-t-sm); margin-top: var(--sc-3); font-weight: 500; }
 
-/* ---- Growth Compass (Signature Move) — Colorful, playful ---------------- */
+/* ---- Growth Compass (Signature Move) — Organic Clay ---------------------- */
 .growth-compass {
   position: fixed; right: var(--sc-gutter); bottom: var(--sc-gutter); z-index: 50;
   width: 140px; height: 140px; pointer-events: none;
@@ -796,24 +810,25 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   fill: none; stroke: url(#compass-gradient); stroke-width: 5; stroke-linecap: round;
   stroke-dasharray: 395.8; stroke-dashoffset: 395.8;
   transform: rotate(-90deg); transform-origin: 70px 70px;
-  transition: stroke-dashoffset 0.4s var(--sc-ease-out);
+  transition: stroke-dashoffset 0.4s var(--clay-ease-out);
 }
 .compass-stages { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
 .compass-stage {
   font-family: var(--sc-font-display); font-size: var(--sc-t-xs); font-weight: 700;
   color: var(--sc-hairline-strong); text-transform: uppercase; letter-spacing: var(--sc-track-wide);
   writing-mode: vertical-rl; text-orientation: mixed;
-  opacity: 0.5; transition: opacity 0.3s, color 0.3s, transform 0.3s var(--sc-ease-bounce);
+  opacity: 0.5; transition: opacity 0.3s, color 0.3s, transform 0.3s var(--clay-ease);
 }
 .compass-stage.active { opacity: 1; color: var(--sc-accent); transform: scale(1.15); }
 .compass-tooltip {
   position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, -10px);
-  background: var(--sc-surface); border: 2px solid var(--c-orange-light);
+  background: linear-gradient(145deg, #fff, var(--clay-1));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
   border-radius: var(--sc-r-md); padding: var(--sc-3) var(--sc-4); min-width: 220px; text-align: left;
-  opacity: 0; pointer-events: none; transition: opacity 0.2s var(--sc-ease-out), transform 0.2s var(--sc-ease-out);
-  box-shadow: var(--sc-e3); white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s var(--clay-ease-out), transform 0.2s var(--clay-ease-out);
+  border: none;
 }
-.compass-tooltip::after { content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--sc-surface); }
+.compass-tooltip::after { content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-top-color: var(--clay-1); }
 .tooltip-stage { display: block; font-family: var(--sc-font-display); font-size: var(--sc-t-sm); color: var(--sc-accent); margin-bottom: var(--sc-1); }
 .tooltip-desc { display: block; font-size: var(--sc-t-xs); color: var(--sc-ink-soft); line-height: 1.5; }
 
@@ -948,6 +963,8 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .cta { transition: transform 100ms, box-shadow 100ms, background 100ms; }
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
   .clay-blob, .clay-pill, .clay-badge, .clay-input { animation: none !important; transition: none !important; transform: none !important; }
+  .program-card, .facility-card, .teacher-card, .tension-card, .teacher-showcase__card, .safety-card,
+  .cta, .site-bar, .compass-tooltip { animation: none !important; transition: none !important; transform: none !important; }
 }
 
 /* Mobile Adjustments */
