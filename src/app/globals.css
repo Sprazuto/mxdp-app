@@ -902,6 +902,32 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   box-shadow: var(--clay-shadow-in), 0 0 0 4px color-mix(in oklab, var(--clay-1) 25%, transparent);
 }
 
+/* Safe inner container for clay-blob — prevents text clipping at asymmetric curves */
+.clay-inner {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.clay-inner--sm { padding: var(--sc-4) var(--sc-5); }
+.clay-inner--md { padding: var(--sc-5) var(--sc-6); }
+.clay-inner--lg { padding: var(--sc-6) var(--sc-8); }
+.clay-inner--xl { padding: var(--sc-8) var(--sc-10); }
+
+@media (min-width: 1024px) {
+  .clay-inner--sm { padding: var(--sc-5) var(--sc-8); }
+  .clay-inner--md { padding: var(--sc-6) var(--sc-10); }
+  .clay-inner--lg { padding: var(--sc-8) var(--sc-12); }
+  .clay-inner--xl { padding: var(--sc-10) var(--sc-14); }
+}
+
+/* Text clamp utilities for blob safety */
+.clay-text-safe {
+  max-width: 85%;
+  margin-inline: auto;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
 /* Organic background blobs */
 .org-blob {
   position: absolute; filter: blur(80px); opacity: 0.18; z-index: 0;
