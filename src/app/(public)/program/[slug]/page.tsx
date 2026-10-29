@@ -7,6 +7,10 @@ import { Program } from '@/types'
 import { programsFallback } from '@/lib/fallback-data'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
+import { ChevronRight, Users, Clock, Award, Shield, Sparkles as SparklesIcon, Leaf, Music, BookOpen, Calculator, ArrowRight } from 'lucide-react'
+import { Card, CardIcon, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 
 interface ProgramPageProps {
   params: Promise<{ slug: string }>
@@ -68,10 +72,21 @@ export async function generateMetadata({ params }: ProgramPageProps): Promise<Me
 function ProgramDetailContent({ program }: { program: Program }) {
   const thumbnailUrl = urlFor(program.thumbnail)?.width(800).height(450).url()
 
+  // Theme mapping for program
+  const programThemes: Record<string, { variant: 'pink' | 'peach' | 'mint' | 'lavender' | 'sand' | 'blue' | 'rose' | 'palemint'; blob: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8; icon: React.ComponentType<{ className?: string }>; badgeVariant: 'clay-pink' | 'clay-peach' | 'clay-mint' | 'clay-lavender' | 'clay-sand' | 'clay-blue' | 'clay-rose' | 'clay-palemint' }> = {
+    'toddler': { variant: 'mint', blob: 3, icon: Users, badgeVariant: 'clay-mint' },
+    'playgroup': { variant: 'pink', blob: 1, icon: SparklesIcon, badgeVariant: 'clay-pink' },
+    'tk-a': { variant: 'peach', blob: 5, icon: Award, badgeVariant: 'clay-peach' },
+    'tk-b': { variant: 'lavender', blob: 7, icon: Shield, badgeVariant: 'clay-lavender' },
+  }
+
+  const theme = programThemes[program.slug.current] || programThemes['toddler']
+  const IconComponent = theme.icon
+
   return (
     <article className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] max-h-[600px] w-full overflow-hidden">
+      {/* Hero Section - Claymorphism */}
+      <section className="relative min-h-[60vh] w-full overflow-hidden flex items-end" data-sc-in data-sc-cue="0 0.6">
         {thumbnailUrl ? (
           <Image
             src={thumbnailUrl}
@@ -83,25 +98,26 @@ function ProgramDetailContent({ program }: { program: Program }) {
             quality={85}
           />
         ) : (
-          <div className="h-full w-full bg-gradient-to-br from-blue-500 to-purple-600" />
+          <div className="absolute inset-0 clay-card clay-mint blob-3 flex items-center justify-center">
+            <IconComponent className="h-32 w-32 text-white/30" aria-hidden="true" />
+          </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10 lg:p-16">
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--sc-canvas)]/95 via-[var(--sc-canvas)]/50 to-transparent" />
+        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 pb-10 sm:pb-16 lg:pb-24">
           <div className="mx-auto max-w-4xl">
-            <span className="inline-block rounded-full bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm mb-4">
+            <Badge variant={theme.badgeVariant} className="mb-4">
+              <Users className="h-3 w-3 mr-1" aria-hidden="true" />
               {program.ageGroup}
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
+            </Badge>
+            <h1 className="sc-display sc-display--xl mb-4">
               {program.title}
             </h1>
-            <p className="text-lg sm:text-xl text-white/90 max-w-2xl">
+            <p className="sc-body text-lg sm:text-xl mb-6 max-w-2xl">
               {program.shortDescription}
             </p>
-            <div className="flex flex-wrap items-center gap-4 mt-6 text-white/80">
-              <span className="flex items-center gap-1.5">
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
+            <div className="flex flex-wrap items-center gap-4 text-[var(--sc-ink-soft)]">
+              <span className="flex items-center gap-1.5 clay-badge clay-sand">
+                <Clock className="h-4 w-4" aria-hidden="true" />
                 {program.duration}
               </span>
             </div>
@@ -110,27 +126,31 @@ function ProgramDetailContent({ program }: { program: Program }) {
       </section>
 
       {/* Content Section */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+      <section className="relative px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32" data-sc-in data-sc-cue="0.1 0.7">
         <div className="mx-auto max-w-4xl">
           {/* Features Grid */}
           {program.features && program.features.length > 0 && (
-            <div className="mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Keunggulan Program
-              </h2>
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mb-16" data-sc-in data-sc-stagger="100">
+              <div className="text-center mb-10">
+                <h2 className="sc-display sc-display--lg mb-4">Keunggulan Program</h2>
+                <p className="sc-body text-lg">Setiap detail dirancang untuk perkembangan optimal anak Anda</p>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {program.features.map((feature, index) => (
-                  <div
+                  <Card
                     key={index}
-                    className="flex items-start gap-3 rounded-xl bg-white dark:bg-gray-800 p-5 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow"
+                    variant={theme.variant}
+                    blob={(index % 8 + 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8}
+                    hoverable
+                    data-sc-cue={`${0.1 + index * 0.1} ${0.4 + index * 0.1}`}
                   >
-                    <div className="flex-shrink-0 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 p-2">
-                      <svg className="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-gray-700 dark:text-gray-300 font-medium">{feature}</p>
-                  </div>
+                    <CardIcon color={theme.variant}>
+                      <IconComponent className="h-7 w-7" aria-hidden="true" />
+                    </CardIcon>
+                    <CardContent>
+                      <CardTitle className="sc-display sc-display--md">{feature}</CardTitle>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
             </div>
@@ -138,11 +158,9 @@ function ProgramDetailContent({ program }: { program: Program }) {
 
           {/* Full Description */}
           {program.fullDescription && (
-            <div className="prose prose-lg dark:prose-invert max-w-none mb-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                Tentang Program
-              </h2>
-              <div className="text-gray-700 dark:text-gray-300 leading-relaxed">
+            <div className="prose prose-lg dark:prose-invert max-w-none mb-16" data-sc-in data-sc-cue="0.1 0.6">
+              <h2 className="sc-display sc-display--lg mb-6">Tentang Program</h2>
+              <div className="sc-body leading-relaxed">
                 {Array.isArray(program.fullDescription)
                   ? program.fullDescription
                       .filter((block: unknown) => (block as Record<string, unknown>)._type === 'block')
@@ -165,27 +183,27 @@ function ProgramDetailContent({ program }: { program: Program }) {
           )}
 
           {/* CTA Section */}
-          <div className="rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-8 sm:p-12 text-center text-white">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+          <div className="relative clay-card clay-peach blob-2 p-8 sm:p-12 text-center" data-sc-in data-sc-cue="0.8 1">
+            <div className="absolute -top-6 -right-6 w-24 h-24 bg-[var(--c-peach)] rounded-full opacity-30 blur-xl"></div>
+            <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-[var(--c-mint)] blob-5 opacity-20 blur-xl"></div>
+            <h2 className="sc-display sc-display--xl mb-4 relative z-10">
               Siap Mendaftar {program.title}?
             </h2>
-            <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="sc-body text-lg mb-8 max-w-2xl mx-auto relative z-10">
               Bergabunglah dengan ribuan orang tua yang telah mempercayakan pendidikan anak mereka di MXDP.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/daftar"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 text-lg font-semibold text-blue-600 hover:bg-gray-100 transition-colors"
-              >
-                Daftar Sekarang
-                <span className="h-5 w-5" aria-hidden="true">→</span>
-              </Link>
-              <Link
-                href="/kontak"
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 border border-white/30 px-8 py-4 text-lg font-semibold text-white hover:bg-white/20 transition-colors backdrop-blur-sm"
-              >
-                Hubungi Kami
-              </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+              <Button variant="clay-primary" size="lg" asChild>
+                <Link href="/ppdb" className="flex items-center justify-center gap-2">
+                  Daftar Sekarang
+                  <ChevronRight className="h-5 w-5" aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button variant="clay-secondary" size="lg" asChild>
+                <Link href="/kontak" className="flex items-center justify-center gap-2">
+                  Hubungi Kami
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
