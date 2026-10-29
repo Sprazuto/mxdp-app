@@ -3,6 +3,17 @@ import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import { EducationalOrganizationJsonLd } from '@/components/JsonLd'
 
+// ScrollCraft global type
+declare global {
+  interface Window {
+    ScrollCraft: {
+      mount: (root: Document | Element, opts?: Record<string, unknown>) => unknown;
+      instances: unknown[];
+      reduce: boolean;
+    };
+  }
+}
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -47,14 +58,17 @@ export default function RootLayout({
       <head>
         <EducationalOrganizationJsonLd />
         {/* ScrollCraft Engine - loads before page content */}
-        <script src="/scrollcraft/scrollcraft.js" defer></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                if (window.ScrollCraft) {
-                  window.ScrollCraft.mount(document.body);
-                }
+                var s = document.createElement('script');
+                s.src = '/scrollcraft/scrollcraft.js';
+                s.defer = true;
+                s.onload = function() {
+                  if (window.ScrollCraft) window.ScrollCraft.mount(document.body);
+                };
+                document.head.appendChild(s);
               })();
             `,
           }}
