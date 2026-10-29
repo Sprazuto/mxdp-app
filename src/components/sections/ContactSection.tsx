@@ -3,24 +3,21 @@
 import { useState } from "react";
 import { useForm, type UseFormRegister, type FieldError, type Resolver } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { motion } from "motion/react";
 import { Loader2, CheckCircle, AlertCircle, MessageSquare, Calendar, Mail, Phone, User, Baby, Send, MapPin, Sparkles as SparklesIcon, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { contactFormSchema, type ContactFormData, contactFormDefaultValues } from "@/lib/validations/contact";
 import { CampusMap } from "@/components/ui/CampusMap";
-import { Sparkles } from "@/components/aceternity";
-import { fadeInUp, staggerContainer, getMotionProps, useReducedMotion } from "@/lib/motion";
+import { Input, Textarea } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const WHATSAPP_ADMIN = "6281234567890";
 
 const formResolver = zodResolver(contactFormSchema) as Resolver<ContactFormData>;
-const viewportOnce = { once: true, margin: "50px" };
 
 export function ContactSection() {
   const [submitStatus, setSubmitStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const reducedMotion = useReducedMotion();
-  const motionProps = getMotionProps(reducedMotion);
 
   const {
     register,
@@ -81,152 +78,70 @@ export function ContactSection() {
     return tomorrow.toISOString().split("T")[0];
   });
 
-  const getTomorrowDate = () => tomorrowDate;
-
   return (
-    <section
-      className={cn(
-        "relative px-4 py-16 sm:py-20 lg:py-24",
-        "bg-gradient-to-b from-emerald-50 via-white to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"
-      )}
-      aria-labelledby="contact-title"
-    >
-      <Sparkles count={25} color="multi" size="md" />
-
-      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
-        <div className="absolute top-20 left-10 w-[300px] h-[300px] rounded-full bg-emerald-200/40 blur-3xl dark:bg-emerald-900/20" />
-        <div className="absolute bottom-20 right-10 w-[300px] h-[300px] rounded-full bg-pink-200/40 blur-3xl dark:bg-pink-900/20" />
-        <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-10" />
-      </div>
-
-      <div className="mx-auto max-w-7xl relative z-10">
+    <section className="relative px-4 py-16 sm:py-20 lg:py-24" aria-labelledby="contact-title">
+      <div className="mx-auto max-w-7xl">
         <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-start">
-          {/* Left Panel - parent controls children via variants */}
-          <motion.div
-            className="mb-10 lg:mb-0"
-            variants={staggerContainer(0.1, 100)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-          >
-            <motion.div
-              variants={staggerContainer(0.1, 100)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
-            >
-              <motion.span
-                className="inline-flex items-center gap-2 rounded-full bg-blue-100/90 px-5 py-2 text-sm font-bold text-blue-800 dark:bg-blue-900/40 dark:text-blue-300 backdrop-blur-sm mb-4 border-2 border-blue-200 dark:border-blue-800 shadow-lg shadow-blue-200/50 rotate-[-2deg]"
-                variants={fadeInUp}
-                style={{ transformOrigin: "center" }}
-              >
-                <SparklesIcon className="h-4 w-4 animate-bounce" />
-                Hubungi Kami
-              </motion.span>
+          {/* Left Panel */}
+          <div className="mb-10 lg:mb-0" data-sc-in data-sc-cue="0 0.6">
+            <span className="inline-flex items-center gap-2 clay-badge clay-blue px-4 py-1.5 text-sm font-semibold mb-4">
+              <SparklesIcon className="h-4 w-4 animate-bounce" />
+              Hubungi Kami
+            </span>
 
-              <motion.h2
-                id="contact-title"
-                className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white mb-4"
-                variants={fadeInUp}
-              >
-                Jadwalkan Kunjungan
-                <span className="block text-slate-900 dark:text-white bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  & Pertanyaan
-                </span>
-              </motion.h2>
+            <h2 id="contact-title" className="sc-display sc-display--xl mb-4">
+              Jadwalkan Kunjungan
+              <span className="block gradient-text">& Pertanyaan</span>
+            </h2>
 
-              <motion.p
-                className="text-lg text-slate-600 dark:text-slate-300 mb-8 font-medium"
-                variants={fadeInUp}
-              >
-                Isi formulir di samping untuk menjadwalkan kunjungan ke kampus MXDP atau mengajukan pertanyaan. Tim kami akan menghubungi Anda dalam 1x24 jam.
-              </motion.p>
-            </motion.div>
+            <p className="sc-body text-lg mb-8">
+              Isi formulir di samping untuk menjadwalkan kunjungan ke kampus MXDP atau mengajukan pertanyaan. Tim kami akan menghubungi Anda dalam 1x24 jam.
+            </p>
 
-            <motion.div
-              className="space-y-4"
-              variants={staggerContainer(0.1)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
-            >
-              <motion.div
-                className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-blue-200 dark:border-blue-800 backdrop-blur-sm hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-xl hover:shadow-blue-200/30 transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
+            <div className="space-y-4" data-sc-in data-sc-stagger="100">
+              <Card variant="blue" blob={4} padded hoverable={false} className="p-6">
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    className="p-4 rounded-[16px] bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-lg shadow-blue-200/50"
-                    whileHover={{ scale: 1.1, rotate: 3 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  >
+                  <div className="flex items-center justify-center rounded-[var(--sc-r-lg)] w-14 h-14 clay-card clay-blue text-white shadow-[0_8px_16px_-4px_color-mix(in_oklab,var(--clay-6)_40%,transparent)]">
                     <MessageSquare className="h-7 w-7" aria-hidden="true" />
-                  </motion.div>
+                  </div>
                   <div>
-                    <h3 className="font-black text-slate-900 dark:text-white">WhatsApp Langsung</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">Balasan cepat dari tim kami</p>
+                    <h3 className="sc-display sc-display--md font-bold text-[var(--sc-ink)]">WhatsApp Langsung</h3>
+                    <p className="sc-body text-sm">Balasan cepat dari tim kami</p>
                   </div>
                 </div>
-              </motion.div>
+              </Card>
 
-              <motion.div
-                className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-emerald-200 dark:border-emerald-800 backdrop-blur-sm hover:border-emerald-400 dark:hover:border-emerald-600 hover:shadow-xl hover:shadow-emerald-200/30 transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
+              <Card variant="mint" blob={3} padded hoverable={false} className="p-6">
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    className="p-4 rounded-[16px] bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 shadow-lg shadow-emerald-200/50"
-                    whileHover={{ scale: 1.1, rotate: 3 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  >
+                  <div className="flex items-center justify-center rounded-[var(--sc-r-lg)] w-14 h-14 clay-card clay-mint text-white shadow-[0_8px_16px_-4px_color-mix(in_oklab,var(--clay-3)_40%,transparent)]">
                     <Phone className="h-7 w-7" aria-hidden="true" />
-                  </motion.div>
+                  </div>
                   <div>
-                    <h3 className="font-black text-slate-900 dark:text-white">Telepon</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">+62 21 1234 5678 (Senin-Jumat, 08:00-16:00)</p>
+                    <h3 className="sc-display sc-display--md font-bold text-[var(--sc-ink)]">Telepon</h3>
+                    <p className="sc-body text-sm">+62 21 1234 5678 (Senin-Jumat, 08:00-16:00)</p>
                   </div>
                 </div>
-              </motion.div>
+              </Card>
 
-              <motion.div
-                className="p-5 rounded-[20px] bg-white/80 dark:bg-slate-800/80 border-4 border-purple-200 dark:border-purple-800 backdrop-blur-sm hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-xl hover:shadow-purple-200/30 transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
+              <Card variant="lavender" blob={7} padded hoverable={false} className="p-6">
                 <div className="flex items-center gap-4">
-                  <motion.div
-                    className="p-4 rounded-[16px] bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 shadow-lg shadow-purple-200/50"
-                    whileHover={{ scale: 1.1, rotate: 3 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  >
+                  <div className="flex items-center justify-center rounded-[var(--sc-r-lg)] w-14 h-14 clay-card clay-lavender text-white shadow-[0_8px_16px_-4px_color-mix(in_oklab,var(--clay-4)_40%,transparent)]">
                     <Mail className="h-7 w-7" aria-hidden="true" />
-                  </motion.div>
+                  </div>
                   <div>
-                    <h3 className="font-black text-slate-900 dark:text-white">Email</h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">info@mxdp.id</p>
+                    <h3 className="sc-display sc-display--md font-bold text-[var(--sc-ink)]">Email</h3>
+                    <p className="sc-body text-sm">info@mxdp.id</p>
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </Card>
+            </div>
 
-            <motion.div
-              className="mt-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <h3 className="font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <MapPin className="h-6 w-6 text-red-500" aria-hidden="true" />
+            <div className="mt-8" data-sc-in data-sc-cue="0.8 1">
+              <h3 className="sc-display sc-display--md font-bold text-[var(--sc-ink)] mb-4 flex items-center gap-2">
+                <MapPin className="h-6 w-6 text-[var(--c-rose)]" aria-hidden="true" />
                 Lokasi Kampus
               </h3>
-              <motion.div
-                className="rounded-[36px] overflow-hidden border-8 border-white/90 dark:border-slate-800/90 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.2)]"
-                whileHover={{ scale: 1.01 }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              >
+              <div className="rounded-[var(--sc-r-xl)] overflow-hidden border-4 border-[var(--sc-surface)] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)]">
                 <CampusMap
                   lat={-6.9175}
                   lng={107.6191}
@@ -234,191 +149,135 @@ export function ContactSection() {
                   address="Jl. Pendidikan No. 123, Jakarta Selatan, DKI Jakarta 12345"
                   name="MXDP Edukasi"
                 />
-              </motion.div>
-            </motion.div>
-          </motion.div>
+              </div>
+            </div>
+          </div>
 
           {/* Right Panel - Form */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewportOnce}
-          >
-            <Sparkles count={15} color="multi" size="sm" className="absolute inset-0 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-[32px] blur-2xl" aria-hidden="true" />
-            <form onSubmit={handleSubmit(onSubmit)} className="relative p-6 sm:p-8 md:p-10 rounded-[32px] bg-white border-4 border-amber-200 dark:border-amber-800 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)] dark:bg-slate-900/90">
+          <div className="relative" data-sc-in data-sc-cue="0.1 0.7">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--c-blue)]/10 to-[var(--c-lavender)]/10 rounded-[var(--sc-r-xl)] blur-2xl" aria-hidden="true" />
+            <form onSubmit={handleSubmit(onSubmit)} className="relative p-6 sm:p-8 md:p-10 rounded-[var(--sc-r-xl)] clay-card clay-peach blob-2 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.15)]">
               {submitStatus === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="mb-6 flex items-center gap-3 p-4 rounded-[16px] bg-emerald-50 dark:bg-emerald-900/30 border-4 border-emerald-200 dark:border-emerald-800 shadow-lg shadow-emerald-200/50"
-                >
-                  <motion.div
-                    className="p-2 rounded-full bg-emerald-100 dark:bg-emerald-900/30"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  >
-                    <CheckCircle className="h-7 w-7 text-emerald-600 dark:text-emerald-400 flex-shrink-0" aria-hidden="true" />
-                  </motion.div>
-                  <div>
-                    <p className="font-black text-emerald-800 dark:text-emerald-200">Formulir Terkirim!</p>
-                    <p className="text-sm text-emerald-700 dark:text-emerald-300">Tim kami akan menghubungi Anda segera via WhatsApp/Email.</p>
+                <div className="mb-6 flex items-center gap-3 p-4 rounded-[var(--sc-r-lg)] clay-card clay-mint blob-6 border-2 border-[var(--c-mint)] shadow-[0_8px_16px_-4px_rgba(181,234,215,0.4)]" data-sc-in>
+                  <div className="flex items-center justify-center rounded-[var(--sc-r-lg)] w-12 h-12 clay-card clay-mint text-white shadow-[0_8px_16px_-4px_color-mix(in_oklab,var(--clay-3)_40%,transparent)]">
+                    <CheckCircle className="h-7 w-7" aria-hidden="true" />
                   </div>
-                </motion.div>
+                  <div>
+                    <p className="sc-display sc-display--md font-bold text-[var(--c-mint)]">Formulir Terkirim!</p>
+                    <p className="sc-body text-sm">Tim kami akan menghubungi Anda segera via WhatsApp/Email.</p>
+                  </div>
+                </div>
               )}
 
               {submitStatus === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="mb-6 flex items-center gap-3 p-4 rounded-[16px] bg-red-50 dark:bg-red-900/30 border-4 border-red-200 dark:border-red-800 shadow-lg shadow-red-200/50"
-                >
-                  <motion.div
-                    className="p-2 rounded-full bg-red-100 dark:bg-red-900/30"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  >
-                    <AlertCircle className="h-7 w-7 text-red-600 dark:text-red-400 flex-shrink-0" aria-hidden="true" />
-                  </motion.div>
-                  <div>
-                    <p className="font-black text-red-800 dark:text-red-200">Gagal Mengirim</p>
-                    <p className="text-sm text-red-700 dark:text-red-300">{errorMessage}</p>
+                <div className="mb-6 flex items-center gap-3 p-4 rounded-[var(--sc-r-lg)] clay-card clay-pink blob-1 border-2 border-[var(--c-pink)] shadow-[0_8px_16px_-4px_rgba(255,154,162,0.4)]" data-sc-in>
+                  <div className="flex items-center justify-center rounded-[var(--sc-r-lg)] w-12 h-12 clay-card clay-pink text-white shadow-[0_8px_16px_-4px_color-mix(in_oklab,var(--clay-1)_40%,transparent)]">
+                    <AlertCircle className="h-7 w-7" aria-hidden="true" />
                   </div>
-                </motion.div>
+                  <div>
+                    <p className="sc-display sc-display--md font-bold text-[var(--c-pink)]">Gagal Mengirim</p>
+                    <p className="sc-body text-sm">{errorMessage}</p>
+                  </div>
+                </div>
               )}
 
-              <motion.div
-                className="grid gap-4 sm:grid-cols-2"
-                variants={staggerContainer(0.1)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOnce}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <InputField
+              <div className="grid gap-4 sm:grid-cols-2" data-sc-in data-sc-stagger="100">
+                <Input
                   label="Nama Orang Tua"
-                  icon={<User className="h-4 w-4 text-emerald-500" />}
-                  register={register("parentName")}
+                  icon={<User className="h-4 w-4 text-[var(--c-mint)]" />}
+                  {...register("parentName")}
                   id="parentName"
                   placeholder="Nama lengkap orang tua/wali"
-                  error={errors.parentName}
+                  error={errors.parentName?.message}
                   errorId="parentName-error"
                 />
-                <InputField
+                <Input
                   label="Nama Anak"
-                  icon={<Baby className="h-4 w-4 text-pink-500" />}
-                  register={register("childName")}
+                  icon={<Baby className="h-4 w-4 text-[var(--c-pink)]" />}
+                  {...register("childName")}
                   id="childName"
                   placeholder="Nama lengkap anak"
-                  error={errors.childName}
+                  error={errors.childName?.message}
                   errorId="childName-error"
                 />
-                <InputField
+                <Input
                   label="Usia Anak (Tahun)"
                   type="number"
-                  icon={<Calendar className="h-4 w-4 text-amber-500" />}
-                  register={register("childAge", { valueAsNumber: true })}
+                  icon={<Calendar className="h-4 w-4 text-[var(--c-peach)]" />}
+                  {...register("childAge", { valueAsNumber: true })}
                   id="childAge"
                   min="1"
                   max="18"
                   placeholder="Contoh: 4"
-                  error={errors.childAge}
+                  error={errors.childAge?.message}
                   errorId="childAge-error"
                 />
-                <InputField
+                <Input
                   label="Nomor WhatsApp"
                   type="tel"
-                  icon={<Phone className="h-4 w-4 text-green-500" />}
-                  register={register("whatsapp")}
+                  icon={<Phone className="h-4 w-4 text-[var(--c-lime)]" />}
+                  {...register("whatsapp")}
                   id="whatsapp"
                   placeholder="08xx-xxxx-xxxx"
-                  error={errors.whatsapp}
+                  error={errors.whatsapp?.message}
                   errorId="whatsapp-error"
                 />
-                <InputField
+                <Input
                   label="Email (Opsional)"
                   type="email"
-                  icon={<Mail className="h-4 w-4 text-purple-500" />}
-                  register={register("email")}
+                  icon={<Mail className="h-4 w-4 text-[var(--c-lavender)]" />}
+                  {...register("email")}
                   id="email"
                   placeholder="email@contoh.com"
-                  error={errors.email}
+                  error={errors.email?.message}
                   errorId="email-error"
                 />
-                <InputField
+                <Input
                   label="Tanggal Kunjungan yang Diharapkan"
                   type="date"
-                  icon={<Calendar className="h-4 w-4 text-orange-500" />}
-                  register={register("preferredDate")}
+                  icon={<Calendar className="h-4 w-4 text-[var(--c-peach)]" />}
+                  {...register("preferredDate")}
                   id="preferredDate"
-                  min={getTomorrowDate()}
+                  min={tomorrowDate}
                   placeholder="Pilih tanggal"
-                  error={errors.preferredDate}
+                  error={errors.preferredDate?.message}
                   errorId="preferredDate-error"
                 />
                 <div className="sm:col-span-2">
-                  <label htmlFor="notes" className="block text-sm font-black text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1">
-                    <SparklesIcon className="h-4 w-4 text-teal-500" aria-hidden="true" />
+                  <label htmlFor="notes" className="block text-sm font-bold text-[var(--sc-ink)] mb-1.5 flex items-center gap-1">
+                    <SparklesIcon className="h-4 w-4 text-[var(--c-teal)]" aria-hidden="true" />
                     Catatan / Pertanyaan (Opsional)
                   </label>
-                  <textarea
+                  <Textarea
                     {...register("notes")}
                     id="notes"
                     rows={4}
                     placeholder="Sebutkan program yang diminati, kebutuhan khusus, atau pertanyaan lain..."
                     className={cn(
-                      "w-full px-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800 resize-none",
-                      "text-slate-900 dark:text-white placeholder-slate-400 font-medium",
-                      "focus:outline-none focus:ring-4 focus:ring-teal-200 focus:border-transparent",
-                      "transition-all duration-200",
-                      "hover:border-slate-300 dark:hover:border-slate-600",
+                      "w-full clay-input",
+                      "text-[var(--sc-ink)] placeholder-[var(--sc-ink-soft)] font-medium",
                       errors.notes
-                        ? "border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20"
-                        : "border-slate-200 dark:border-slate-700"
+                        ? "border-[var(--c-rose)] focus:ring-[var(--c-rose)]"
+                        : ""
                     )}
                     aria-invalid={errors.notes ? "true" : "false"}
                     aria-describedby={errors.notes ? "notes-error" : undefined}
                   />
                   {errors.notes && (
-                    <motion.p
-                      id="notes-error"
-                      className="mt-1.5 text-sm text-red-500 flex items-center gap-1"
-                      role="alert"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
+                    <p id="notes-error" className="mt-1.5 text-sm text-[var(--c-rose)] flex items-center gap-1" role="alert">
                       <AlertCircle className="h-4 w-4" aria-hidden="true" />
                       {errors.notes.message}
-                    </motion.p>
+                    </p>
                   )}
                 </div>
-              </motion.div>
+              </div>
 
-              <motion.div
-                className="mt-8 flex flex-col sm:flex-row gap-4"
-                variants={staggerContainer(0.1)}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportOnce}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <motion.button
+              <div className="mt-8 flex flex-col sm:flex-row gap-4" data-sc-in data-sc-cue="0.8 1">
+                <Button
                   type="submit"
+                  variant="clay-primary"
+                  className="flex-1 gap-2 rounded-full py-4 text-lg font-semibold"
                   disabled={submitStatus === "submitting"}
-                  className={cn(
-                    "flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 font-black text-base py-4 transition-all duration-200",
-                    "focus:outline-none focus:ring-4 focus:ring-emerald-300 focus:ring-offset-2",
-                    submitStatus === "submitting"
-                      ? "bg-slate-200 dark:bg-slate-700 text-slate-400 border-slate-300 dark:border-slate-600 cursor-not-allowed"
-                      : "bg-gradient-to-r from-emerald-500 to-teal-500 text-white border-emerald-600 shadow-[0_12px_24px_-6px_rgba(16,185,129,0.5)] hover:from-emerald-400 hover:to-teal-400 hover:shadow-[0_16px_32px_-8px_rgba(16,185,129,0.6)]"
-                  )}
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
                 >
                   {submitStatus === "submitting" ? (
                     <>
@@ -431,98 +290,27 @@ export function ContactSection() {
                       Kirim Formulir
                     </>
                   )}
-                </motion.button>
+                </Button>
 
-                <motion.a
+                <a
                   href={`https://wa.me/${WHATSAPP_ADMIN}?text=${formatWhatsAppMessage(contactFormDefaultValues)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border-4 border-green-300 dark:border-green-700 bg-green-50 dark:bg-green-900/20 px-6 py-4 text-base font-black text-green-700 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/30 hover:border-green-400 dark:hover:border-green-600 hover:shadow-xl hover:shadow-green-200/30 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-green-300 focus:ring-offset-2"
-                  whileHover={{ scale: 1.02, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
+                  className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-base font-bold clay-pill clay-pill-secondary"
                 >
                   <MessageSquare className="h-5 w-5" aria-hidden="true" />
                   Chat WhatsApp
-                </motion.a>
-              </motion.div>
+                </a>
+              </div>
 
-              <motion.p
-                className="mt-6 text-center text-xs text-slate-500 dark:text-slate-400"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={viewportOnce}
-                transition={{ duration: 0.5, delay: 0.4 }}
-              >
+              <p className="mt-6 text-center text-sm text-[var(--sc-ink-soft)]" data-sc-in data-sc-cue="0.9 1">
                 Dengan mengirim formulir ini, Anda menyetujui kebijakan privasi kami. Data Anda aman dan tidak akan dibagikan ke pihak ketiga.
-                <Shield className="h-3.5 w-3.5 inline-block ml-1 text-emerald-500" aria-hidden="true" />
-              </motion.p>
+                <Shield className="h-3.5 w-3.5 inline-block ml-1 text-[var(--c-lime)]" aria-hidden="true" />
+              </p>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-interface InputFieldProps {
-  label: string;
-  icon: React.ReactNode;
-  register: ReturnType<UseFormRegister<ContactFormData>>;
-  id: string;
-  placeholder: string;
-  type?: string;
-  min?: string;
-  max?: string;
-  error?: FieldError;
-  errorId?: string;
-}
-
-function InputField({ label, icon, register, id, placeholder, type = "text", min, max, error, errorId }: InputFieldProps) {
-  return (
-    <motion.div
-      variants={fadeInUp}
-    >
-      <label htmlFor={id} className="block text-sm font-black text-slate-700 dark:text-slate-300 mb-1.5 flex items-center gap-1">
-        {icon}
-        {label} <span className="text-red-500" aria-hidden="true">*</span>
-      </label>
-      <div className="relative">
-        <input
-          {...register}
-          id={id}
-          type={type}
-          min={min}
-          max={max}
-          placeholder={placeholder}
-          className={cn(
-            "w-full pl-12 pr-4 py-4 rounded-[16px] border-2 bg-white dark:bg-slate-800",
-            "text-slate-900 dark:text-white placeholder-slate-400 font-medium",
-            "focus:outline-none focus:ring-4 focus:border-transparent",
-            "transition-all duration-200",
-            "hover:border-slate-300 dark:hover:border-slate-600",
-            error
-              ? "border-red-300 dark:border-red-700 focus:ring-red-300 bg-red-50/30 dark:bg-red-900/20"
-              : "border-slate-200 dark:border-slate-700"
-          )}
-          aria-invalid={error ? "true" : "false"}
-          aria-describedby={error ? errorId : undefined}
-        />
-        <span className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true">
-          {icon}
-        </span>
-      </div>
-      {error && (
-        <motion.p
-          id={errorId}
-          className="mt-1.5 text-sm text-red-500 flex items-center gap-1"
-          role="alert"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <AlertCircle className="h-4 w-4" aria-hidden="true" />
-          {error.message}
-        </motion.p>
-      )}
-    </motion.div>
   );
 }

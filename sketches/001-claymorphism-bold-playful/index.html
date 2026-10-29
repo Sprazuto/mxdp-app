@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Belajar Seru — Bold Playful</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fff8f0;
+      --clay-1: #ff6b6b;
+      --clay-2: #ffa500;
+      --clay-3: #4ecdc4;
+      --clay-4: #a8e6cf;
+      --clay-5: #ffd3b6;
+      --clay-6: #c7ceea;
+      --clay-7: #ffb3d9;
+      --clay-8: #b3e0ff;
+      --text: #2d2d2d;
+      --text-light: #5a5a5a;
+      --white: #ffffff;
+      --shadow-hard: rgba(0,0,0,0.15);
+      --shadow-soft: rgba(0,0,0,0.08);
+    }
+    body {
+      font-family: 'Baloo 2', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .font-fun { font-family: 'Comic Neue', cursive; }
+    /* Claymorphism base — bold, colorful, high contrast */
+    .clay-bold {
+      border-radius: 2.5rem;
+      box-shadow:
+        10px 10px 0 var(--shadow-hard),
+        20px 20px 0 var(--shadow-soft),
+        inset -2px -2px 0 rgba(255,255,255,0.3);
+      position: relative;
+    }
+    .clay-bold::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent);
+      pointer-events: none;
+    }
+    .clay-card {
+      background: var(--white);
+      border-radius: 2rem;
+      box-shadow:
+        8px 8px 0 var(--shadow-hard),
+        16px 16px 0 var(--shadow-soft);
+      transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s;
+    }
+    .clay-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow:
+        12px 12px 0 var(--shadow-hard),
+        20px 20px 0 var(--shadow-soft);
+    }
+    .clay-card:active {
+      transform: translate(2px, 2px);
+      box-shadow:
+        4px 4px 0 var(--shadow-hard),
+        8px 8px 0 var(--shadow-soft);
+    }
+    .btn-bold {
+      background: var(--clay-1);
+      color: var(--white);
+      border-radius: 9999px;
+      box-shadow:
+        6px 6px 0 #e05555,
+        12px 12px 0 rgba(255,107,107,0.3);
+      transition: all 0.1s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-bold:hover {
+      transform: translate(-3px, -3px);
+      box-shadow:
+        9px 9px 0 #e05555,
+        15px 15px 0 rgba(255,107,107,0.4);
+    }
+    .btn-bold:active {
+      transform: translate(3px, 3px);
+      box-shadow:
+        3px 3px 0 #e05555,
+        6px 6px 0 rgba(255,107,107,0.3);
+    }
+    .btn-bold:focus-visible {
+      outline: 3px solid var(--clay-3);
+      outline-offset: 4px;
+    }
+    .topic-pill {
+      background: var(--white);
+      border-radius: 9999px;
+      padding: 1rem 2rem;
+      box-shadow:
+        4px 4px 0 var(--shadow-hard),
+        8px 8px 0 var(--shadow-soft);
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 3px solid transparent;
+    }
+    .topic-pill:hover {
+      transform: translate(-2px, -2px) scale(1.02);
+      box-shadow:
+        6px 6px 0 var(--shadow-hard),
+        10px 10px 0 var(--shadow-soft);
+    }
+    .topic-pill:active {
+      transform: translate(2px, 2px) scale(0.98);
+      box-shadow:
+        2px 2px 0 var(--shadow-hard),
+        4px 4px 0 var(--shadow-soft);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--white);
+      padding: 0.5rem 1.25rem;
+      border-radius: 9999px;
+      box-shadow:
+        3px 3px 0 var(--shadow-hard),
+        6px 6px 0 var(--shadow-soft);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .wiggle { animation: wiggle 3s ease-in-out infinite; }
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+    }
+    .bounce-in { animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    @keyframes bounceIn {
+      0% { opacity: 0; transform: scale(0.3) translateY(40px); }
+      60% { transform: scale(1.05) translateY(-5px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    .stagger-5 { animation-delay: 0.5s; }
+    .stagger-6 { animation-delay: 0.6s; }
+    .reduce-motion * { animation: none !important; transition: none !important; }
+    .blob-bg {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .confetti { position: fixed; pointer-events: none; z-index: 100; font-size: 1.5rem; animation: confetti-fall 1s ease-out forwards; }
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body class="relative">
+  <!-- Colorful blob background -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true" style="z-index: 0;">
+    <div class="blob-bg w-96 h-96 top-0 left-1/4 bg-[var(--clay-1)]" style="animation: drift 25s linear infinite;"></div>
+    <div class="blob-bg w-80 h-80 top-1/2 right-0 bg-[var(--clay-3)]" style="animation: drift 30s linear infinite reverse;"></div>
+    <div class="blob-bg w-72 h-72 bottom-0 left-1/3 bg-[var(--clay-7)]" style="animation: drift 20s linear infinite;"></div>
+    <div class="blob-bg w-64 h-64 top-1/4 right-1/4 bg-[var(--clay-4)]" style="animation: drift 35s linear infinite reverse;"></div>
+  </div>
+
+  <main class="relative z-10 min-h-screen flex flex-col items-center px-4 py-10 md:py-16">
+    <!-- Header -->
+    <header class="w-full max-w-5xl mb-10 text-center bounce-in">
+      <div class="inline-flex items-center gap-3 clay-bold bg-[var(--clay-5)] px-6 py-3 wiggle">
+        <span class="font-fun text-3xl md:text-4xl">🎈</span>
+        <span class="font-fun text-3xl md:text-4xl font-extrabold text-[var(--text)]">BelajarSeru</span>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="w-full max-w-5xl text-center mb-14">
+      <h1 class="font-fun text-4xl md:text-5xl lg:text-7xl font-extrabold text-[var(--text)] leading-tight mb-6 bounce-in stagger-1">
+        Belajar Itu <span class="font-fun text-[var(--clay-1)]">MENYENANGKAN</span>! 🎉
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--text-light)] max-w-2xl mx-auto mb-10 leading-relaxed bounce-in stagger-2">
+        Game seru, cerita interaktif, & tantangan harian. Koleksi lencana, naik level, jadi pahlawan belajar sendiri!
+      </p>
+
+      <!-- Primary CTA - BIG & BOLD -->
+      <button id="btnStart" class="btn-bold font-fun text-xl md:text-2xl px-12 py-5 bounce-in stagger-3" aria-label="Mulai belajar sekarang">
+        🎮 MAIN SEKARANG
+      </button>
+
+      <!-- Quick stats -->
+      <div class="mt-12 flex flex-wrap items-center justify-center gap-4 md:gap-8 bounce-in stagger-4">
+        <div class="badge" style="border-color: var(--clay-1);">👶 50K+ Anak</div>
+        <div class="badge" style="border-color: var(--clay-3);">⭐ 4.9 Rating</div>
+        <div class="badge" style="border-color: var(--clay-2);">🛡️ Aman 100%</div>
+        <div class="badge" style="border-color: var(--clay-4);">🆓 Gratis Selamanya</div>
+      </div>
+    </section>
+
+    <!-- Topic Pills Carousel -->
+    <section class="w-full max-w-5xl mb-14">
+      <h2 class="font-fun text-2xl md:text-3xl font-extrabold text-center text-[var(--text)] mb-8 bounce-in stagger-1">Pilih Duniamu 🌈</h2>
+      <div class="flex flex-wrap justify-center gap-4 md:gap-5" id="topics">
+        <!-- Topics injected via JS for stagger -->
+      </div>
+    </section>
+
+    <!-- Feature highlights -->
+    <section class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+      <article class="clay-card p-6 md:p-8 text-center relative overflow-hidden bounce-in stagger-1" style="background: linear-gradient(145deg, #fff5f5, #fff);">
+        <div class="absolute top-4 right-4 w-24 h-24 bg-[var(--clay-1)] opacity-10 rounded-full"></div>
+        <div class="relative w-18 h-18 mx-auto mb-4 clay-bold bg-[var(--clay-5)] flex items-center justify-center text-3xl">👶</div>
+        <h3 class="font-fun text-xl font-bold text-[var(--text)] mb-2">Desain Khusus Anak</h3>
+        <p class="text-[var(--text-light)]">Tombol besar, suara lucu, navigasi gampang banget</p>
+      </article>
+      <article class="clay-card p-6 md:p-8 text-center relative overflow-hidden bounce-in stagger-2" style="background: linear-gradient(145deg, #fff8f0, #fff);">
+        <div class="absolute top-4 right-4 w-24 h-24 bg-[var(--clay-2)] opacity-10 rounded-full"></div>
+        <div class="relative w-18 h-18 mx-auto mb-4 clay-bold bg-[var(--clay-8)] flex items-center justify-center text-3xl">👨‍👩‍👧</div>
+        <h3 class="font-fun text-xl font-bold text-[var(--text)] mb-2">Kontrol Orang Tua</h3>
+        <p class="text-[var(--text-light)]">Lihat progress, atur timer, kelola konten</p>
+      </article>
+      <article class="clay-card p-6 md:p-8 text-center relative overflow-hidden bounce-in stagger-3" style="background: linear-gradient(145deg, #f0fff9, #fff);">
+        <div class="absolute top-4 right-4 w-24 h-24 bg-[var(--clay-3)] opacity-10 rounded-full"></div>
+        <div class="relative w-18 h-18 mx-auto mb-4 clay-bold bg-[var(--clay-4)] flex items-center justify-center text-3xl">🏆</div>
+        <h3 class="font-fun text-xl font-bold text-[var(--text)] mb-2">Koleksi Lencana</h3>
+        <p class="text-[var(--text-light)]">Dapat hadiah tiap selesai misi, bangga banget!</p>
+      </article>
+    </section>
+
+    <!-- Social proof / testimonial -->
+    <section class="w-full max-w-5xl clay-bold bg-[var(--clay-6)] p-6 md:p-10 rounded-3xl text-center mb-10 bounce-in stagger-2">
+      <p class="font-fun text-lg md:text-xl text-[var(--text)] mb-4">"Anakku nanya 'main lagi?' tiap hari. Belajar jadi request dia, bukan suruhan!"</p>
+      <p class="text-[var(--text-light)] font-medium">— Ibu Rina, mama 2 anak 🇮🇩</p>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="w-full max-w-5xl text-center bounce-in stagger-3">
+      <p class="text-[var(--text-light)] mb-4">Gabung ribuan keluarga Indonesia yang sudah main!</p>
+      <button class="btn-bold bg-[var(--clay-3)] font-fun text-lg px-10 py-4" style="box-shadow: 6px 6px 0 #3dbdb5, 12px 12px 0 rgba(78,205,196,0.3);" onmouseover="this.style.boxShadow='9px 9px 0 #3dbdb5, 15px 15px 0 rgba(78,205,196,0.4)'" onmouseout="this.style.boxShadow='6px 6px 0 #3dbdb5, 12px 12px 0 rgba(78,205,196,0.3)'" onmousedown="this.style.boxShadow='3px 3px 0 #3dbdb5, 6px 6px 0 rgba(78,205,196,0.3)'" onmouseup="this.style.boxShadow='9px 9px 0 #3dbdb5, 15px 15px 0 rgba(78,205,196,0.4)'">
+        🌟 DAFTAR GRATIS
+      </button>
+    </section>
+  </main>
+
+  <footer class="relative z-10 py-8 text-center text-sm text-[var(--text-light)]">
+    <p>Dibuat dengan 💖 untuk anak-anak Indonesia © 2025 BelajarSeru</p>
+  </footer>
+
+  <script>
+    // Respect reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.body.classList.add('reduce-motion');
+    }
+
+    // Topic data
+    const topics = [
+      { emoji: '🧮', label: 'Matematika', color: 'var(--clay-1)', bg: 'var(--clay-5)' },
+      { emoji: '📖', label: 'Bahasa & Cerita', color: 'var(--clay-2)', bg: 'var(--clay-8)' },
+      { emoji: '🎨', label: 'Seni & Kreatif', color: 'var(--clay-7)', bg: 'var(--clay-5)' },
+      { emoji: '🔬', label: 'Sains & Eksperimen', color: 'var(--clay-3)', bg: 'var(--clay-4)' },
+      { emoji: '🎵', label: 'Musik & Gerak', color: 'var(--clay-4)', bg: 'var(--clay-8)' },
+      { emoji: '🌍', label: 'Dunia & Alam', color: 'var(--clay-6)', bg: 'var(--clay-5)' },
+      { emoji: '🧩', label: 'Puzzle & Logika', color: 'var(--clay-1)', bg: 'var(--clay-8)' },
+      { emoji: '🌈', label: 'Campur Aduk', color: 'var(--clay-7)', bg: 'var(--clay-4)' },
+    ];
+
+    const container = document.getElementById('topics');
+    topics.forEach((t, i) => {
+      const el = document.createElement('button');
+      el.className = 'topic-pill font-fun font-bold text-base clay-bounce';
+      el.style.cssText = `--clay-accent: ${t.color}; border-color: ${t.color};`;
+      el.innerHTML = `<span style="font-size: 1.5rem;">${t.emoji}</span> ${t.label}`;
+      el.style.animation = `bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${0.1 * (i + 1)}s both`;
+      el.addEventListener('click', () => {
+        createConfetti(el);
+        setTimeout(() => alert(`Demo: Masuk ke "${t.label}"`), 150);
+      });
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+      container.appendChild(el);
+    });
+
+    // Confetti burst
+    function createConfetti(btn) {
+      const rect = btn.getBoundingClientRect();
+      const colors = ['🎉', '✨', '🌈', '⭐', '🎈', '🍭', '🍬', '🌟'];
+      for (let i = 0; i < 12; i++) {
+        const c = document.createElement('div');
+        c.className = 'confetti';
+        c.textContent = colors[Math.floor(Math.random() * colors.length)];
+        c.style.left = (rect.left + rect.width / 2) + 'px';
+        c.style.top = (rect.top + rect.height / 2) + 'px';
+        c.style.animationDelay = (Math.random() * 0.2) + 's';
+        c.style.setProperty('--x', (Math.random() - 0.5) * 200 + 'px');
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 1000);
+      }
+    }
+
+    // Main button
+    document.getElementById('btnStart').addEventListener('click', () => {
+      const btn = document.getElementById('btnStart');
+      btn.textContent = 'MEMUAT... 🌟';
+      btn.disabled = true;
+      createConfetti(btn);
+      setTimeout(() => {
+        btn.textContent = 'MAIN SEKARANG 🎮';
+        btn.disabled = false;
+        alert('Demo: Redirect ke pilih topik / onboarding!');
+      }, 800);
+    });
+  </script>
+  <style>
+    @keyframes drift {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(50px, 30px) rotate(90deg); }
+      50% { transform: translate(-30px, 50px) rotate(180deg); }
+      75% { transform: translate(30px, -30px) rotate(270deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+  </style>
+</body>
+</html>

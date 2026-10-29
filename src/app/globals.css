@@ -25,8 +25,34 @@
   --c-violet:       #a855f7;  --c-violet-light:   #e9d5ff;  --c-violet-soft:   #faf5ff;
   --c-rose:         #f43f5e;  --c-rose-light:     #fecdd3;  --c-rose-soft:     #fff1f2;
 
+  /* Claymorphism palette — softer, more tactile */
+  --clay-1: #ff9aa2;   /* pink */
+  --clay-2: #ffd8a8;   /* peach */
+  --clay-3: #b5ead7;   /* mint */
+  --clay-4: #c7ceea;   /* lavender */
+  --clay-5: #ffd3b6;   /* sand */
+  --clay-6: #a1c4fd;   /* blue */
+  --clay-7: #ffb3d9;   /* rose */
+  --clay-8: #d4f6d4;   /* pale mint */
+
   --sc-hairline:    color-mix(in oklab, var(--sc-ink) 10%, transparent);
   --sc-hairline-strong: color-mix(in oklab, var(--sc-ink) 18%, transparent);
+
+  /* Organic blob radius variants — 8-value syntax for asymmetric shapes */
+  --blob-1: 60% 40% 70% 30% / 60% 40% 30% 70%;
+  --blob-2: 55% 45% 65% 35% / 40% 60% 55% 45%;
+  --blob-3: 50% 50% 50% 50% / 60% 40% 60% 40%;
+  --blob-4: 45% 55% 35% 65% / 70% 30% 70% 30%;
+  --blob-5: 65% 35% 55% 45% / 50% 50% 50% 50%;
+  --blob-6: 40% 60% 50% 50% / 45% 55% 45% 55%;
+  --blob-7: 70% 30% 60% 40% / 55% 45% 55% 45%;
+  --blob-8: 50% 50% 50% 50% / 65% 35% 65% 35%;
+
+  /* Clay shadows — inner + outer for tactile 3D feel */
+  --clay-shadow-out: 14px 14px 28px rgba(120,95,70,0.15), -14px -14px 28px rgba(255,255,255,0.95);
+  --clay-shadow-in: inset 5px 5px 10px rgba(120,95,70,0.08), inset -5px -5px 10px rgba(255,255,255,0.6);
+  --clay-shadow-deep: 20px 20px 40px rgba(120,95,70,0.18), -10px -10px 20px rgba(255,255,255,0.9);
+  --clay-shadow-press: inset 8px 8px 16px rgba(120,95,70,0.12), inset -4px -4px 8px rgba(255,255,255,0.7);
 
   /* ---- TYPE — Friendly, rounded display; clean readable text -------------- */
   --sc-font-display: "Nunito", "Quicksand", "Space Grotesk", system-ui, sans-serif;
@@ -791,6 +817,88 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 .tooltip-stage { display: block; font-family: var(--sc-font-display); font-size: var(--sc-t-sm); color: var(--sc-accent); margin-bottom: var(--sc-1); }
 .tooltip-desc { display: block; font-size: var(--sc-t-xs); color: var(--sc-ink-soft); line-height: 1.5; }
 
+/* ---------------------------------------------------------- CLAY COMPONENT UTILITIES */
+/* Organic clay blob — base class for all claymorphism elements */
+.clay-blob {
+  background: linear-gradient(145deg, #fff, var(--clay-1));
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.clay-blob:hover { transform: translateY(-12px) scale(1.03); box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in); }
+.clay-blob:active { transform: translateY(4px) scale(0.97); box-shadow: var(--clay-shadow-press); }
+
+/* Blob radius variants */
+.blob-1 { border-radius: var(--blob-1); }
+.blob-2 { border-radius: var(--blob-2); }
+.blob-3 { border-radius: var(--blob-3); }
+.blob-4 { border-radius: var(--blob-4); }
+.blob-5 { border-radius: var(--blob-5); }
+.blob-6 { border-radius: var(--blob-6); }
+.blob-7 { border-radius: var(--blob-7); }
+.blob-8 { border-radius: var(--blob-8); }
+
+/* Clay color variants */
+.clay-pink { background: linear-gradient(145deg, #fff, var(--clay-1)); }
+.clay-peach { background: linear-gradient(145deg, #fff, var(--clay-2)); }
+.clay-mint { background: linear-gradient(145deg, #fff, var(--clay-3)); }
+.clay-lavender { background: linear-gradient(145deg, #fff, var(--clay-4)); }
+.clay-sand { background: linear-gradient(145deg, #fff, var(--clay-5)); }
+.clay-blue { background: linear-gradient(145deg, #fff, var(--clay-6)); }
+.clay-rose { background: linear-gradient(145deg, #fff, var(--clay-7)); }
+.clay-palemint { background: linear-gradient(145deg, #fff, var(--clay-8)); }
+
+/* Clay pill — fully rounded buttons/badges */
+.clay-pill {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 2.5rem; border-radius: 9999px;
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  font-weight: 700; font-size: 1.125rem; cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: linear-gradient(145deg, #fff, var(--clay-1));
+  color: #3d352d;
+}
+.clay-pill:hover { transform: translateY(-4px) scale(1.05); box-shadow: var(--clay-shadow-deep), var(--clay-shadow-in); }
+.clay-pill:active { transform: scale(0.95); box-shadow: var(--clay-shadow-press); }
+.clay-pill-primary { background: linear-gradient(145deg, var(--clay-1), var(--clay-7)); color: #fff; }
+.clay-pill-secondary { background: linear-gradient(145deg, var(--clay-3), var(--clay-4)); color: #fff; }
+
+/* Clay badge */
+.clay-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 1.25rem; border-radius: 9999px;
+  box-shadow: var(--clay-shadow-out); font-weight: 700; font-size: 0.875rem;
+  background: linear-gradient(145deg, #fff, var(--clay-1));
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.clay-badge:hover { transform: translateY(-2px); }
+
+/* Clay input */
+.clay-input {
+  background: linear-gradient(145deg, var(--sc-surface), var(--sc-canvas));
+  border: 2px solid var(--sc-hairline);
+  border-radius: var(--sc-r-pill);
+  padding: var(--sc-3) var(--sc-5);
+  box-shadow: var(--clay-shadow-in);
+  transition: all 0.2s var(--sc-ease-out);
+}
+.clay-input:focus {
+  outline: none;
+  border-color: var(--clay-1);
+  box-shadow: var(--clay-shadow-in), 0 0 0 4px color-mix(in oklab, var(--clay-1) 25%, transparent);
+}
+
+/* Organic background blobs */
+.org-blob {
+  position: absolute; filter: blur(80px); opacity: 0.18; z-index: 0;
+  animation: organic-float 25s ease-in-out infinite;
+}
+@keyframes organic-float {
+  0%, 100% { transform: translate(0,0) rotate(0deg) scale(1); border-radius: var(--blob-1); }
+  25% { transform: translate(60px,-40px) rotate(15deg) scale(1.1); border-radius: var(--blob-2); }
+  50% { transform: translate(-40px,60px) rotate(-10deg) scale(0.95); border-radius: var(--blob-3); }
+  75% { transform: translate(30px,30px) rotate(5deg) scale(1.05); border-radius: var(--blob-4); }
+}
+
 /* ---------------------------------------------------------- GLOBAL ORNAMENTS */
 /* Page-level decorative shapes — injected via Script */
 .sc-page-ornaments {
@@ -825,7 +933,8 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
 
 /* ---------------------------------------------------------- REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
-  .growth-compass, .sc-atmosphere, .sc-floaties, .sc-confetti, .sc-page-ornaments, .sc-sparkle-burst { display: none; }
+  .growth-compass, .sc-atmosphere, .sc-floaties, .sc-confetti, .sc-page-ornaments, .sc-sparkle-burst,
+  .clay-blob, .org-blob, .clay-pill, .clay-badge { display: none; }
   [data-sc-in], [data-sc-stagger] > * { transform: none; transition-duration: 220ms; }
   [data-sc-parallax], [data-sc-pan], .sc-split__i { transform: none !important; }
   [data-sc-reveal] { clip-path: none !important; }
@@ -838,6 +947,7 @@ video[data-sc-scrub].sc-has-clip { opacity: 1; }
   .growth-compass { display: none; }
   .cta { transition: transform 100ms, box-shadow 100ms, background 100ms; }
   * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .clay-blob, .clay-pill, .clay-badge, .clay-input { animation: none !important; transition: none !important; transform: none !important; }
 }
 
 /* Mobile Adjustments */

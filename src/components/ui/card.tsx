@@ -1,165 +1,152 @@
 "use client";
 
-import { forwardRef, type AnchorHTMLAttributes, type HTMLAttributes, type ReactNode, type Ref } from "react";
-import { motion } from "motion/react";
-import { useReducedMotion, getMotionProps } from "@/lib/motion";
+import { forwardRef, type ReactNode, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
-interface CardPropsBase {
-  variant?: "default" | "elevated" | "interactive" | "glass";
-  padding?: "none" | "sm" | "md" | "lg";
-  children: ReactNode;
-  className?: string;
-  style?: React.CSSProperties;
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+  variant?: "pink" | "peach" | "mint" | "lavender" | "sand" | "blue" | "rose" | "palemint";
+  blob?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+  hoverable?: boolean;
+  padded?: boolean;
 }
 
-type CardProps = CardPropsBase & (
-  | { href: string; asChild?: never }
-  | { href?: never; asChild?: never }
-);
-
-const variantStyles = {
-  default: "bg-[var(--color-bg-elevated)] border border-[var(--color-border)] shadow-[var(--shadow-sm)]",
-  elevated: "bg-[var(--color-bg-elevated)] border border-[var(--color-border)] shadow-[var(--shadow-lg)]",
-  interactive: "bg-[var(--color-bg-elevated)] border border-[var(--color-border)] shadow-[var(--shadow-md)] cursor-pointer",
-  glass: "glass",
+const variantClasses = {
+  pink: "clay-pink",
+  peach: "clay-peach",
+  mint: "clay-mint",
+  lavender: "clay-lavender",
+  sand: "clay-sand",
+  blue: "clay-blue",
+  rose: "clay-rose",
+  palemint: "clay-palemint",
 };
 
-const paddingStyles = {
-  none: "",
-  sm: "p-3",
-  md: "p-4",
-  lg: "p-6",
+const blobClasses = {
+  1: "blob-1",
+  2: "blob-2",
+  3: "blob-3",
+  4: "blob-4",
+  5: "blob-5",
+  6: "blob-6",
+  7: "blob-7",
+  8: "blob-8",
 };
 
-const motionProps = {
-  whileHover: { y: -4, boxShadow: "var(--shadow-xl)" },
-  whileTap: { y: -2, scale: 0.99 },
-};
-
-function CardComponent({
-  variant = "default",
-  padding = "md",
-  children,
-  href,
-  className,
-  style,
-}: CardProps) {
-  const reduced = useReducedMotion();
-  const isLink = !!href;
-  const reducedProps = getMotionProps(reduced);
-
-  const baseClassName = cn(
-    "rounded-[var(--radius-lg)]",
-    "transition-all duration-300",
-    variantStyles[variant],
-    paddingStyles[padding],
-    className
-  );
-
-  if (reduced) {
-    if (isLink) {
-      return (
-        <a
-          href={href}
-          className={baseClassName}
-          style={style}
-        >
-          {children}
-        </a>
-      );
-    }
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  (
+    {
+      variant = "mint",
+      blob = 3,
+      hoverable = true,
+      padded = true,
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <div
-        className={baseClassName}
-        style={style}
+        ref={ref}
+        className={cn(
+          "clay-blob",
+          variantClasses[variant],
+          blobClasses[blob],
+          hoverable && "cursor-pointer",
+          padded && "p-6 md:p-8",
+          className
+        )}
+        {...props}
       >
         {children}
       </div>
     );
   }
-
-  if (isLink) {
-    return (
-      <motion.a
-        href={href}
-        className={baseClassName}
-        style={style}
-        {...reducedProps}
-        whileHover={variant === "interactive" ? motionProps.whileHover : undefined}
-        whileTap={variant === "interactive" ? motionProps.whileTap : undefined}
-      >
-        {children}
-      </motion.a>
-    );
-  }
-
-  return (
-    <motion.div
-      className={baseClassName}
-      style={style}
-      {...reducedProps}
-      whileHover={variant === "interactive" ? motionProps.whileHover : undefined}
-      whileTap={variant === "interactive" ? motionProps.whileTap : undefined}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function Card(props: CardProps) {
-  return <CardComponent {...props} />;
-}
+);
 
 Card.displayName = "Card";
 
 /* ========================================
-   CARD SUB-COMPONENTS
+   CARD COMPOSITE COMPONENTS
 ======================================== */
 
-export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("mb-4", className)} {...props} />
+export type CardHeaderProps = HTMLAttributes<HTMLDivElement>;
+export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
+  ({ className, children, ...props }, ref) => (
+    <div ref={ref} className={cn("flex flex-col gap-2", className)} {...props}>
+      {children}
+    </div>
   )
 );
 CardHeader.displayName = "CardHeader";
 
-export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
-  ({ className, ...props }, ref) => (
-    <h3
-      ref={ref}
-      className={cn("text-h3 font-semibold text-[var(--color-text-primary)]", className)}
-      {...props}
-    />
+export type CardTitleProps = HTMLAttributes<HTMLHeadingElement>;
+export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
+  ({ className, children, ...props }, ref) => (
+    <h3 ref={ref} className={cn("sc-display sc-display--md font-bold text-[var(--sc-ink)]", className)} {...props}>
+      {children}
+    </h3>
   )
 );
 CardTitle.displayName = "CardTitle";
 
-export const CardDescription = forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn("text-body-sm text-[var(--color-text-secondary)] mt-1", className)}
-      {...props}
-    />
+export type CardDescriptionProps = HTMLAttributes<HTMLParagraphElement>;
+export const CardDescription = forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+  ({ className, children, ...props }, ref) => (
+    <p ref={ref} className={cn("sc-body text-[var(--sc-ink-soft)]", className)} {...props}>
+      {children}
+    </p>
   )
 );
 CardDescription.displayName = "CardDescription";
 
-export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn(className)} {...props} />
+export type CardContentProps = HTMLAttributes<HTMLDivElement>;
+export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
+  ({ className, children, ...props }, ref) => (
+    <div ref={ref} className={cn("flex-1", className)} {...props}>
+      {children}
+    </div>
   )
 );
 CardContent.displayName = "CardContent";
 
-export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn("flex items-center gap-3 mt-4 pt-4 border-t border-[var(--color-border)]", className)}
-      {...props}
-    />
+export type CardFooterProps = HTMLAttributes<HTMLDivElement>;
+export const CardFooter = forwardRef<HTMLDivElement, CardFooterProps>(
+  ({ className, children, ...props }, ref) => (
+    <div ref={ref} className={cn("flex items-center gap-4 pt-4 border-t border-[var(--sc-hairline)]", className)} {...props}>
+      {children}
+    </div>
   )
 );
 CardFooter.displayName = "CardFooter";
+
+export interface CardIconProps extends HTMLAttributes<HTMLDivElement> {
+  color?: "pink" | "peach" | "mint" | "lavender" | "sand" | "blue" | "rose" | "palemint";
+}
+export const CardIcon = forwardRef<HTMLDivElement, CardIconProps>(
+  (
+    {
+      color = "mint",
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => (
+    <div
+      ref={ref}
+      className={cn(
+        "flex items-center justify-center rounded-[var(--sc-r-lg)]",
+        "w-14 h-14",
+        variantClasses[color],
+        "text-white",
+        "shadow-[0_8px_16px_-4px_color-mix(in_oklab,var(--clay-1)_40%,transparent)]",
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+);
+CardIcon.displayName = "CardIcon";

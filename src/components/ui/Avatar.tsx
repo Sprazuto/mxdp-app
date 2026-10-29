@@ -8,9 +8,10 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   alt?: string;
   fallback?: ReactNode;
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  shape?: "circle" | "square";
+  shape?: "circle" | "blob";
   status?: "online" | "offline" | "busy" | "away";
   statusPosition?: "bottom-right" | "top-right" | "bottom-left" | "top-left";
+  clayColor?: "pink" | "peach" | "mint" | "lavender" | "sand" | "blue" | "rose" | "palemint";
 }
 
 const sizeStyles = {
@@ -23,10 +24,10 @@ const sizeStyles = {
 };
 
 const statusColors = {
-  online: "bg-[var(--color-success)]",
-  offline: "bg-[var(--color-text-tertiary)]",
-  busy: "bg-[var(--color-error)]",
-  away: "bg-[var(--color-warning)]",
+  online: "bg-[var(--c-lime)]",
+  offline: "bg-[var(--sc-ink-soft)]",
+  busy: "bg-[var(--c-rose)]",
+  away: "bg-[var(--c-amber)]",
 };
 
 const statusSizes = {
@@ -45,6 +46,17 @@ const statusPositions = {
   "top-left": "top-0 left-0",
 };
 
+const clayColorClasses = {
+  pink: "clay-pink",
+  peach: "clay-peach",
+  mint: "clay-mint",
+  lavender: "clay-lavender",
+  sand: "clay-sand",
+  blue: "clay-blue",
+  rose: "clay-rose",
+  palemint: "clay-palemint",
+};
+
 export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
   (
     {
@@ -55,23 +67,25 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
       shape = "circle",
       status,
       statusPosition = "bottom-right",
+      clayColor = "mint",
       className,
       ...props
     },
     ref
   ) => {
-    const shapeClass = shape === "circle" ? "rounded-full" : "rounded-[var(--radius-lg)]";
+    const shapeClass = shape === "circle" ? "rounded-full" : "clay-blob blob-3";
     const sizeClass = sizeStyles[size];
     const statusSizeClass = statusSizes[size];
+    const clayClass = clayColorClasses[clayColor];
 
     return (
       <div
         ref={ref}
         className={cn(
-          "relative inline-flex items-center justify-center overflow-hidden bg-[var(--color-border)]",
-          "flex-shrink-0 transition-transform duration-150",
+          "relative inline-flex items-center justify-center overflow-hidden flex-shrink-0 transition-transform duration-150",
           shapeClass,
           sizeClass,
+          clayClass,
           className
         )}
         {...props}
@@ -80,14 +94,14 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
           <img
             src={src}
             alt={alt}
-            className="h-full w-full object-cover"
+            className={cn("h-full w-full object-cover", shape === "circle" ? "rounded-full" : "blob-3")}
             loading="lazy"
           />
         ) : (
-          <div className="h-full w-full flex items-center justify-center bg-[var(--color-border)]">
+          <div className={cn("h-full w-full flex items-center justify-center", shape === "circle" ? "rounded-full" : "blob-3")}>
             {fallback || (
               <svg
-                className="h-1/2 w-1/2 text-[var(--color-text-tertiary)]"
+                className="h-1/2 w-1/2 text-white/90"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -100,7 +114,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
         {status && (
           <span
             className={cn(
-              "absolute rounded-full border-2 border-[var(--color-bg-elevated)] transition-transform duration-200",
+              "absolute rounded-full border-2 border-white/80 transition-transform duration-200",
               statusColors[status],
               statusSizes[size],
               statusPositions[statusPosition]
@@ -123,7 +137,7 @@ export interface AvatarGroupProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   max?: number;
   size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  shape?: "circle" | "square";
+  shape?: "circle" | "blob";
   spacing?: number;
 }
 
@@ -150,10 +164,10 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
         {remaining > 0 && (
           <div
             className={cn(
-              "relative z-0 flex items-center justify-center font-medium text-[var(--color-text-secondary)]",
-              "bg-[var(--color-bg-elevated)] border-2 border-[var(--color-bg-elevated)]",
+              "relative z-0 flex items-center justify-center font-medium text-[var(--sc-ink-soft)]",
+              "bg-[var(--sc-canvas)] border-2 border-[var(--sc-surface)]",
               sizeStyles[size],
-              shape === "circle" ? "rounded-full" : "rounded-[var(--radius-lg)]"
+              shape === "circle" ? "rounded-full" : "clay-blob blob-3"
             )}
             style={{ marginLeft: spacing }}
           >

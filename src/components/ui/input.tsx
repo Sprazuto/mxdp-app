@@ -1,15 +1,16 @@
 "use client";
 
 import { forwardRef, type InputHTMLAttributes, type TextareaHTMLAttributes } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
   hint?: string;
+  icon?: React.ReactNode;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
+  errorId?: string;
   fullWidth?: boolean;
 }
 
@@ -19,6 +20,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       label,
       error,
       hint,
+      icon,
       iconLeft,
       iconRight,
       fullWidth = true,
@@ -36,6 +38,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const errorId = error ? `${inputId}-error` : undefined;
     const hintId = hint ? `${inputId}-hint` : undefined;
     const describedBy = [errorId, hintId].filter(Boolean).join(" ") || undefined;
+    const effectiveIconLeft = iconLeft || icon;
 
     return (
       <div className={cn("flex flex-col gap-1.5", fullWidth && "w-full")}>
@@ -43,21 +46,21 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <label
             htmlFor={inputId}
             className={cn(
-              "text-body-sm font-medium text-[var(--color-text-primary)]",
+              "text-body-sm font-medium text-[var(--sc-ink)]",
               "flex items-center gap-1"
             )}
           >
             {label}
-            {required && <span className="text-[var(--color-rose)]" aria-hidden="true">*</span>}
+            {required && <span className="text-[var(--c-rose)]" aria-hidden="true">*</span>}
           </label>
         )}
         <div className="relative">
-          {iconLeft && (
+          {effectiveIconLeft && (
             <div
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)] pointer-events-none"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--sc-ink-soft)] pointer-events-none"
               aria-hidden="true"
             >
-              {iconLeft}
+              {effectiveIconLeft}
             </div>
           )}
           <input
@@ -69,24 +72,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             aria-invalid={error ? "true" : "false"}
             aria-describedby={describedBy}
             className={cn(
-              "w-full rounded-[var(--radius-md)] border-2 bg-[var(--color-bg-elevated)]",
-              "text-[var(--color-text-primary)] placeholder-[var(--color-text-tertiary)]",
+              "w-full clay-input",
+              "text-[var(--sc-ink)] placeholder-[var(--sc-ink-soft)]",
               "transition-all duration-150",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:border-transparent",
               "disabled:opacity-50 disabled:cursor-not-allowed",
-              "hover:not-disabled:border-[var(--color-border-strong)]",
-              iconLeft && "pl-10",
+              effectiveIconLeft && "pl-10",
               iconRight && "pr-10",
-              error
-                ? "border-[var(--color-error)] focus-visible:ring-[var(--color-error)]"
-                : "border-[var(--color-border)]",
               className
             )}
             {...props}
           />
           {iconRight && (
             <div
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)] pointer-events-none"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--sc-ink-soft)] pointer-events-none"
               aria-hidden="true"
             >
               {iconRight}
@@ -94,22 +92,19 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
         {error && (
-          <motion.p
+          <p
             id={errorId}
             role="alert"
-            className="text-body-sm text-[var(--color-error)] flex items-center gap-1"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15 }}
+            className="text-body-sm text-[var(--c-rose)] flex items-center gap-1"
           >
             <svg className="h-3.5 w-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
             {error}
-          </motion.p>
+          </p>
         )}
         {hint && !error && (
-          <p id={hintId} className="text-body-sm text-[var(--color-text-tertiary)]">
+          <p id={hintId} className="text-body-sm text-[var(--sc-ink-soft)]">
             {hint}
           </p>
         )}
@@ -158,12 +153,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           <label
             htmlFor={textareaId}
             className={cn(
-              "text-body-sm font-medium text-[var(--color-text-primary)]",
+              "text-body-sm font-medium text-[var(--sc-ink)]",
               "flex items-center gap-1"
             )}
           >
             {label}
-            {required && <span className="text-[var(--color-rose)]" aria-hidden="true">*</span>}
+            {required && <span className="text-[var(--c-rose)]" aria-hidden="true">*</span>}
           </label>
         )}
         <textarea
@@ -174,37 +169,28 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           aria-invalid={error ? "true" : "false"}
           aria-describedby={describedBy}
           className={cn(
-            "w-full rounded-[var(--radius-md)] border-2 bg-[var(--color-bg-elevated)]",
-            "text-[var(--color-text-primary)] placeholder-[var(--color-text-tertiary)]",
-            "transition-all duration-150 resize-none",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:border-transparent",
+            "w-full clay-input resize-none",
+            "text-[var(--sc-ink)] placeholder-[var(--sc-ink-soft)]",
+            "transition-all duration-150",
             "disabled:opacity-50 disabled:cursor-not-allowed",
-            "hover:not-disabled:border-[var(--color-border-strong)]",
-            error
-              ? "border-[var(--color-error)] focus-visible:ring-[var(--color-error)]"
-              : "border-[var(--color-border)]",
-            "px-4 py-3",
             className
           )}
           {...props}
         />
         {error && (
-          <motion.p
+          <p
             id={errorId}
             role="alert"
-            className="text-body-sm text-[var(--color-error)] flex items-center gap-1"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15 }}
+            className="text-body-sm text-[var(--c-rose)] flex items-center gap-1"
           >
             <svg className="h-3.5 w-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
             {error}
-          </motion.p>
+          </p>
         )}
         {hint && !error && (
-          <p id={hintId} className="text-body-sm text-[var(--color-text-tertiary)]">
+          <p id={hintId} className="text-body-sm text-[var(--sc-ink-soft)]">
             {hint}
           </p>
         )}

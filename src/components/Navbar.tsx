@@ -20,6 +20,7 @@ import {
 } from '@/components/ui/navigation-menu'
 import { cn } from '@/lib/utils'
 import { Menu, X, ChevronDown } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const navigation = [
   { name: 'Beranda', href: '/' },
@@ -34,69 +35,64 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = React.useState(false)
 
   return (
-    <header className="border-b bg-white/80 backdrop-blur-md border-gray-200 dark:bg-gray-950/80 dark:border-gray-800">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2 text-xl font-bold text-gray-900 dark:text-white" aria-label="MXDP Home">
-            <span className="text-2xl font-extrabold text-gray-900 dark:text-white bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">MXDP</span>
-            <span className="hidden sm:block text-sm text-gray-500 dark:text-gray-400">Taman Kanak-Kanak Terpercaya</span>
-          </Link>
+    <header className="site-bar" role="banner">
+      <div className="sc-wrap">
+        <Link href="/" className="wordmark" aria-label="MXDP Home">
+          <span className="wordmark__logotype">MXDP</span>
+          <span className="wordmark__tagline">Taman Kanak-Kanak Terpercaya</span>
+        </Link>
 
-          <div className="hidden md:block">
-            <NavigationMenu>
-              <NavigationMenuList>
-                {navigation.map((item) => (
-                  <NavigationMenuItem key={item.name}>
-                    <NavigationMenuTrigger className={cn(
-                      'relative inline-flex items-center px-3 py-2 text-sm font-medium transition-colors',
-                      'hover:text-blue-600 dark:hover:text-blue-400',
-                      'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2',
-                      pathname === item.href
-                        ? 'text-blue-600 dark:text-blue-400'
-                        : 'text-gray-700 dark:text-gray-300'
-                    )}>
-                      {item.name}
-                      <ChevronDown className="ml-1 h-4 w-4" aria-hidden="true" />
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent className="bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg">
-                      <Link
-                        href={item.href}
-                        className="block px-4 py-2 text-sm transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                      >
-                        Lihat semua {item.name.toLowerCase()}
-                      </Link>
-                    </NavigationMenuContent>
-                  </NavigationMenuItem>
-                ))}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
+        <div className="hidden md:flex items-center gap-4">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navigation.map((item) => (
+                <NavigationMenuItem key={item.name}>
+                  <NavigationMenuTrigger className={cn(
+                    'relative inline-flex items-center px-3 py-2 text-sm font-medium transition-colors',
+                    'hover:text-[var(--c-orange)] dark:hover:text-[var(--c-orange)]',
+                    'focus:outline-none focus:ring-2 focus:ring-[var(--c-orange-light)] focus:ring-offset-2',
+                    pathname === item.href
+                      ? 'text-[var(--c-orange)] dark:text-[var(--c-orange)]'
+                      : 'text-[var(--sc-ink)] dark:text-[var(--sc-ink)]'
+                  )}>
+                    {item.name}
+                    <ChevronDown className="ml-1 h-4 w-4" aria-hidden="true" />
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-[var(--sc-surface)] dark:bg-[var(--sc-surface)] border border-[var(--sc-hairline)] dark:border-[var(--sc-hairline)] rounded-[var(--sc-r-lg)] shadow-[var(--sc-e3)]">
+                    <Link
+                      href={item.href}
+                      className="block px-4 py-2 text-sm transition-colors hover:bg-[var(--sc-canvas)] dark:hover:bg-[var(--sc-canvas)]"
+                    >
+                      Lihat semua {item.name.toLowerCase()}
+                    </Link>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <Link
-            href="/ppdb"
-            className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 px-5 py-2.5 text-sm font-semibold text-white shadow-lg hover:from-emerald-700 hover:to-teal-700 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
-          >
-            Daftar PPDB
-          </Link>
+          <Button variant="clay-primary" size="md" asChild>
+            <Link href="/ppdb">Daftar PPDB</Link>
+          </Button>
         </div>
 
         <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
           <SheetTrigger>
             <button
-              className="md:hidden rounded-lg p-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="md:hidden rounded-[var(--sc-r-md)] p-2 text-[var(--sc-ink)] dark:text-[var(--sc-ink)] hover:bg-[var(--sc-canvas)] dark:hover:bg-[var(--sc-canvas)] focus:outline-none focus:ring-2 focus:ring-[var(--c-orange-light)]"
               aria-label="Open menu"
             >
               <Menu className="h-6 w-6" aria-hidden="true" />
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-72 p-4">
+          <SheetContent side="right" className="w-72 p-4 bg-[var(--sc-surface)]">
             <div className="flex items-center justify-between mb-6">
-              <span className="text-lg font-bold text-gray-900 dark:text-white">Menu</span>
+              <span className="text-lg font-bold text-[var(--sc-ink)] dark:text-[var(--sc-ink)]">Menu</span>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="rounded-lg p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="rounded-[var(--sc-r-md)] p-2 text-[var(--sc-ink-soft)] hover:text-[var(--sc-ink)] dark:hover:text-[var(--sc-ink)] hover:bg-[var(--sc-canvas)] dark:hover:bg-[var(--sc-canvas)] focus:outline-none focus:ring-2 focus:ring-[var(--c-orange-light)]"
                 aria-label="Close menu"
               >
                 <X className="h-6 w-6" aria-hidden="true" />
@@ -109,27 +105,23 @@ export function Navbar() {
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
-                    'rounded-lg px-4 py-3 text-base font-medium transition-colors',
-                    'focus:outline-none focus:ring-2 focus:ring-blue-500',
+                    'rounded-[var(--sc-r-lg)] px-4 py-3 text-base font-medium transition-colors',
+                    'focus:outline-none focus:ring-2 focus:ring-[var(--c-orange-light)]',
                     pathname === item.href
-                      ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400'
-                      : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+                      ? 'bg-[var(--c-orange-soft)] text-[var(--c-orange)] dark:bg-[var(--c-orange-soft)] dark:text-[var(--c-orange)]'
+                      : 'text-[var(--sc-ink)] hover:bg-[var(--sc-canvas)] dark:text-[var(--sc-ink)] dark:hover:bg-[var(--sc-canvas)]'
                   )}
                 >
                   {item.name}
                 </Link>
               ))}
-              <Link
-                href="/ppdb"
-                onClick={() => setMobileOpen(false)}
-                className="mt-4 rounded-lg bg-gradient-to-r from-emerald-600 to-teal-600 px-4 py-3 text-center text-base font-semibold text-white shadow-lg hover:from-emerald-700 hover:to-teal-700 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
-              >
-                Daftar PPDB
-              </Link>
+              <Button variant="clay-primary" size="md" asChild className="mt-4 w-full">
+                <Link href="/ppdb">Daftar PPDB</Link>
+              </Button>
             </nav>
           </SheetContent>
         </Sheet>
-      </nav>
+      </div>
     </header>
   )
 }

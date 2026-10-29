@@ -1,7 +1,6 @@
 "use client";
 
 import { forwardRef, type SelectHTMLAttributes, type ReactNode } from "react";
-import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
@@ -54,18 +53,18 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <label
             htmlFor={selectId}
             className={cn(
-              "text-body-sm font-medium text-[var(--color-text-primary)]",
+              "text-body-sm font-medium text-[var(--sc-ink)]",
               "flex items-center gap-1"
             )}
           >
             {label}
-            {required && <span className="text-[var(--color-rose)]" aria-hidden="true">*</span>}
+            {required && <span className="text-[var(--c-rose)]" aria-hidden="true">*</span>}
           </label>
         )}
         <div className="relative">
           {iconLeft && (
             <div
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)] pointer-events-none"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--sc-ink-soft)] pointer-events-none"
               aria-hidden="true"
             >
               {iconLeft}
@@ -79,17 +78,12 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             aria-invalid={error ? "true" : "false"}
             aria-describedby={describedBy}
             className={cn(
-              "w-full rounded-[var(--radius-md)] border-2 bg-[var(--color-bg-elevated)]",
-              "text-[var(--color-text-primary)]",
-              "transition-all duration-150 appearance-none",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-ring)] focus-visible:border-transparent",
+              "w-full clay-input appearance-none",
+              "text-[var(--sc-ink)]",
+              "transition-all duration-150",
               "disabled:opacity-50 disabled:cursor-not-allowed",
-              "hover:not-disabled:border-[var(--color-border-strong)]",
               "pr-10",
               iconLeft && "pl-10",
-              error
-                ? "border-[var(--color-error)] focus-visible:ring-[var(--color-error)]"
-                : "border-[var(--color-border)]",
               className
             )}
             {...props}
@@ -102,7 +96,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             {optionsToRender}
           </select>
           <div
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-text-tertiary)] pointer-events-none"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--sc-ink-soft)] pointer-events-none"
             aria-hidden="true"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,22 +105,19 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           </div>
         </div>
         {error && (
-          <motion.p
-            id={`${selectId}-error`}
+          <p
+            id={errorId}
             role="alert"
-            className="text-body-sm text-[var(--color-error)] flex items-center gap-1"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.15 }}
+            className="text-body-sm text-[var(--c-rose)] flex items-center gap-1"
           >
             <svg className="h-3.5 w-3.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
             </svg>
             {error}
-          </motion.p>
+          </p>
         )}
         {hint && !error && (
-          <p id={`${selectId}-hint`} className="text-body-sm text-[var(--color-text-tertiary)]">
+          <p id={hintId} className="text-body-sm text-[var(--sc-ink-soft)]">
             {hint}
           </p>
         )}

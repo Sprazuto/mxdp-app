@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Belajar Seru — Soft Dreamy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fef9f3;
+      --bg-alt: #fff5eb;
+      --clay-base: #ffe8cc;
+      --clay-light: #fff3e6;
+      --clay-dark: #f5d6b8;
+      --clay-shadow: #e8c4a0;
+      --accent: #ff8c42;
+      --accent-dark: #e6732e;
+      --text: #4a3728;
+      --text-muted: #8b7355;
+      --pink: #ffb3c6;
+      --mint: #b8f0d0;
+      --lavender: #d8c8f0;
+      --sky: #b8e8f0;
+    }
+    body {
+      font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .font-display { font-family: 'Fredoka', cursive; }
+    .clay {
+      background: linear-gradient(145deg, var(--clay-light), var(--clay-base));
+      box-shadow:
+        8px 8px 16px var(--clay-shadow),
+        -4px -4px 8px rgba(255,255,255,0.9),
+        inset 2px 2px 4px rgba(255,255,255,0.6),
+        inset -2px -2px 4px var(--clay-shadow);
+      border-radius: 2rem;
+    }
+    .clay-pressed {
+      background: linear-gradient(145deg, var(--clay-base), var(--clay-light));
+      box-shadow:
+        inset 6px 6px 12px var(--clay-shadow),
+        inset -3px -3px 6px rgba(255,255,255,0.7);
+    }
+    .clay-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .clay-bounce {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .clay-bounce:hover { transform: scale(1.04) translateY(-2px); }
+    .clay-bounce:active { transform: scale(0.98); }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      animation: blob-drift 20s ease-in-out infinite;
+    }
+    @keyframes blob-drift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -20px) scale(1.1); }
+      50% { transform: translate(-20px, 30px) scale(0.9); }
+      75% { transform: translate(20px, 20px) scale(1.05); }
+    }
+    .topic-card {
+      background: linear-gradient(145deg, var(--clay-light), var(--clay-base));
+      box-shadow:
+        6px 6px 12px var(--clay-shadow),
+        -3px -3px 6px rgba(255,255,255,0.8),
+        inset 1px 1px 2px rgba(255,255,255,0.5);
+      border-radius: 1.5rem;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .topic-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow:
+        12px 12px 20px var(--clay-shadow),
+        -6px -6px 12px rgba(255,255,255,0.9),
+        inset 2px 2px 4px rgba(255,255,255,0.6);
+    }
+    .topic-card:active { transform: translateY(-2px) scale(0.99); }
+    .btn-primary {
+      background: linear-gradient(145deg, var(--accent), var(--accent-dark));
+      box-shadow:
+        4px 4px 8px rgba(230,115,46,0.4),
+        -2px -2px 4px rgba(255,160,90,0.5),
+        inset 1px 1px 2px rgba(255,255,255,0.3);
+      color: white;
+      border-radius: 9999px;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-primary:hover {
+      transform: scale(1.05) translateY(-2px);
+      box-shadow:
+        6px 6px 12px rgba(230,115,46,0.5),
+        -3px -3px 6px rgba(255,160,90,0.6),
+        inset 1px 1px 2px rgba(255,255,255,0.4);
+    }
+    .btn-primary:active {
+      transform: scale(0.96);
+      box-shadow:
+        inset 3px 3px 6px rgba(230,115,46,0.5),
+        inset -1px -1px 2px rgba(255,255,255,0.2);
+    }
+    .star { position: absolute; animation: twinkle 3s ease-in-out infinite; }
+    @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); } 50% { opacity: 1; transform: scale(1.2) rotate(180deg); } }
+    .cloud { position: absolute; opacity: 0.6; animation: drift 30s linear infinite; }
+    @keyframes drift { from { transform: translateX(-100px); } to { transform: translateX(calc(100vw + 100px)); } }
+    .reduce-motion * { animation: none !important; transition: none !important; }
+  </style>
+</head>
+<body class="relative">
+  <!-- Floating blobs background -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <div class="blob w-72 h-72 top-1/4 left-1/4 bg-[var(--pink)]" style="animation-delay: 0s;"></div>
+    <div class="blob w-96 h-96 top-1/2 right-1/4 bg-[var(--mint)]" style="animation-delay: -5s;"></div>
+    <div class="blob w-64 h-64 bottom-1/4 left-1/3 bg-[var(--lavender)]" style="animation-delay: -10s;"></div>
+    <div class="blob w-80 h-80 top-1/3 right-1/2 bg-[var(--sky)]" style="animation-delay: -15s;"></div>
+    <!-- Stars -->
+    <div class="star top-20 left-20 w-3 h-3 bg-yellow-300 rounded-full" style="animation-delay: 0s;"></div>
+    <div class="star top-40 right-32 w-2 h-2 bg-pink-300 rounded-full" style="animation-delay: 1s;"></div>
+    <div class="star bottom-40 left-40 w-2.5 h-2.5 bg-blue-300 rounded-full" style="animation-delay: 2s;"></div>
+    <div class="star top-1/3 right-1/4 w-1.5 h-1.5 bg-purple-300 rounded-full" style="animation-delay: 0.5s;"></div>
+    <div class="star bottom-1/3 left-1/3 w-2 h-2 bg-green-300 rounded-full" style="animation-delay: 1.5s;"></div>
+  </div>
+
+  <main class="relative z-10 min-h-screen flex flex-col items-center px-4 py-12 md:py-20">
+    <!-- Header / Logo -->
+    <header class="w-full max-w-4xl mb-12 text-center">
+      <div class="inline-flex items-center gap-3 clay px-6 py-3 clay-float">
+        <span class="font-display text-2xl md:text-3xl text-[var(--accent)]">🌈</span>
+        <span class="font-display text-2xl md:text-3xl font-bold text-[var(--text)]">BelajarSeru</span>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="w-full max-w-4xl text-center mb-16">
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--text)] leading-tight mb-6 clay-float" style="animation-delay: 0.5s;">
+        Belajar Jadi <span class="text-[var(--accent)]">Petualangan</span> ✨
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed clay-float" style="animation-delay: 1s;">
+        Jelajahi dunia pengetahuan dengan game interaktif, cerita seru, dan teman-teman baru. Setiap hari adalah hari baru untuk menemukan hal menarik!
+      </p>
+
+      <!-- Primary CTA -->
+      <button id="btnStart" class="btn-primary font-display text-lg md:text-xl px-10 py-4 clay-bounce" aria-label="Mulai belajar sekarang">
+        🚀 Mulai Petualangan
+      </button>
+
+      <!-- Trust indicators -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-[var(--text-muted)] clay-float" style="animation-delay: 1.5s;">
+        <span class="flex items-center gap-1">👨‍👩‍👧‍👦 50.000+ keluarga</span>
+        <span class="flex items-center gap-1">⭐ 4.9/5 rating</span>
+        <span class="flex items-center gap-1">🛡️ Aman & bebas iklan</span>
+      </div>
+    </section>
+
+    <!-- Topic Cards -->
+    <section class="w-full max-w-4xl mb-16">
+      <h2 class="font-display text-2xl md:text-3xl font-bold text-center text-[var(--text)] mb-8 clay-float" style="animation-delay: 2s;">Pilih Petualanganmu</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <article class="topic-card p-6 md:p-8 text-center group clay-float" style="animation-delay: 2.2s;" tabindex="0">
+          <div class="w-20 h-20 mx-auto mb-4 clay rounded-full flex items-center justify-center text-4xl group-hover:rotate-6 transition-transform duration-300">🧮</div>
+          <h3 class="font-display text-xl font-bold text-[var(--text)] mb-2">Matematika Ceria</h3>
+          <p class="text-sm text-[var(--text-muted)]">Hitung, tebak, mainan angka seru</p>
+        </article>
+        <article class="topic-card p-6 md:p-8 text-center group clay-float" style="animation-delay: 2.4s;" tabindex="0">
+          <div class="w-20 h-20 mx-auto mb-4 clay rounded-full flex items-center justify-center text-4xl group-hover:rotate-6 transition-transform duration-300">📖</div>
+          <h3 class="font-display text-xl font-bold text-[var(--text)] mb-2">Cerita Ajaib</h3>
+          <p class="text-sm text-[var(--text-muted)]">Dongeng interaktif & baca sendiri</p>
+        </article>
+        <article class="topic-card p-6 md:p-8 text-center group clay-float" style="animation-delay: 2.6s;" tabindex="0">
+          <div class="w-20 h-20 mx-auto mb-4 clay rounded-full flex items-center justify-center text-4xl group-hover:rotate-6 transition-transform duration-300">🎨</div>
+          <h3 class="font-display text-xl font-bold text-[var(--text)] mb-2">Seni & Kreatif</h3>
+          <p class="text-sm text-[var(--text-muted)]">Mewarnai, menggambar, bikin craft</p>
+        </article>
+        <article class="topic-card p-6 md:p-8 text-center group clay-float" style="animation-delay: 2.8s;" tabindex="0">
+          <div class="w-20 h-20 mx-auto mb-4 clay rounded-full flex items-center justify-center text-4xl group-hover:rotate-6 transition-transform duration-300">🔬</div>
+          <h3 class="font-display text-xl font-bold text-[var(--text)] mb-2">Sains Kecil</h3>
+          <p class="text-sm text-[var(--text-muted)]">Eksperimen mudah di rumah</p>
+        </article>
+        <article class="topic-card p-6 md:p-8 text-center group clay-float" style="animation-delay: 3s;" tabindex="0">
+          <div class="w-20 h-20 mx-auto mb-4 clay rounded-full flex items-center justify-center text-4xl group-hover:rotate-6 transition-transform duration-300">🎵</div>
+          <h3 class="font-display text-xl font-bold text-[var(--text)] mb-2">Musik & Gerak</h3>
+          <p class="text-sm text-[var(--text-muted)]">Nyanyi, tari, main alat musik</p>
+        </article>
+        <article class="topic-card p-6 md:p-8 text-center group clay-float" style="animation-delay: 3.2s;" tabindex="0">
+          <div class="w-20 h-20 mx-auto mb-4 clay rounded-full flex items-center justify-center text-4xl group-hover:rotate-6 transition-transform duration-300">🌍</div>
+          <h3 class="font-display text-xl font-bold text-[var(--text)] mb-2">Dunia Luar</h3>
+          <p class="text-sm text-[var(--text-muted)]">Hewan, tumbuhan, planet, bintang</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Features strip -->
+    <section class="w-full max-w-4xl clay p-6 md:p-8 rounded-3xl mb-10 clay-float" style="animation-delay: 3.5s;">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+        <div class="p-4">
+          <div class="w-14 h-14 mx-auto mb-3 clay rounded-xl flex items-center justify-center text-2xl">👶</div>
+          <h4 class="font-display font-bold text-[var(--text)] mb-1">Desain untuk Anak</h4>
+          <p class="text-sm text-[var(--text-muted)]">UI besar, suara ramah, navigasi simpel</p>
+        </div>
+        <div class="p-4">
+          <div class="w-14 h-14 mx-auto mb-3 clay rounded-xl flex items-center justify-center text-2xl">👨‍👩‍👧</div>
+          <h4 class="font-display font-bold text-[var(--text)] mb-1">Kontrol Orang Tua</h4>
+          <p class="text-sm text-[var(--text-muted)]">Pantau progress, atur batas waktu</p>
+        </div>
+        <div class="p-4">
+          <div class="w-14 h-14 mx-auto mb-3 clay rounded-xl flex items-center justify-center text-2xl">🏆</div>
+          <h4 class="font-display font-bold text-[var(--text)] mb-1">Hadiah & Lencana</h4>
+          <p class="text-sm text-[var(--text-muted)]">Motivasi belajar setiap hari</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="w-full max-w-4xl text-center clay-float" style="animation-delay: 4s;">
+      <p class="text-[var(--text-muted)] mb-4">Siap memulai petualangan bersama kami?</p>
+      <button class="btn-primary font-display text-lg px-8 py-3 clay-bounce">Daftar Gratis Selamanya</button>
+    </section>
+  </main>
+
+  <footer class="relative z-10 py-8 text-center text-xs text-[var(--text-muted)]">
+    <p>Dibuat dengan ❤️ untuk anak-anak Indonesia © 2025 BelajarSeru</p>
+  </footer>
+
+  <script>
+    // Respect reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.body.classList.add('reduce-motion');
+    }
+
+    // Button interaction
+    const btn = document.getElementById('btnStart');
+    btn.addEventListener('click', () => {
+      btn.textContent = 'Memuat... 🌟';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Mulai Petualangan 🚀';
+        btn.disabled = false;
+        alert('Demo: Di sini akan redirect ke halaman pilih topik / onboarding!');
+      }, 800);
+    });
+
+    // Keyboard support for topic cards
+    document.querySelectorAll('.topic-card').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          card.click();
+        }
+      });
+      card.addEventListener('click', () => {
+        const title = card.querySelector('h3').textContent;
+        alert(`Demo: Masuk ke "${title}"`);
+      });
+    });
+  </script>
+</body>
+</html>
