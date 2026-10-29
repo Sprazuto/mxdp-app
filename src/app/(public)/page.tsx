@@ -1,18 +1,21 @@
 "use client";
 
-import Link from "next/link";
 import Script from "next/script";
-import { ArrowRight, Users, Award, CheckCircle, Shield, Sparkles, BookOpen, Wifi, Zap, ThermometerSun, Video, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
+import HeroSection from "@/components/sections/HeroSection";
+import FeaturesSection from "@/components/sections/FeaturesSection";
+import ProgramsSection from "@/components/sections/ProgramsSection";
+import FacilitiesSection from "@/components/sections/FacilitiesSection";
+import TeachersSection from "@/components/sections/TeachersSection";
+import SafetySection from "@/components/sections/SafetySection";
+import FinalCTASection from "@/components/sections/FinalCTASection";
 
 /* ==========================================================================
    MXDP TK — SCROLL-CRAFT HOME PAGE
-   Grammar: Filmic one-shot (single linear argument, one emotional arc)
-   Journey: Recognition → Tension → Turn → Substance → Range → Commitment
-   Feeling Curve: Calm → Building → Relief → Confidence → Excitement → Resolution
-   Peak: Turn act (MXDP revealed as the partner)
-   Signature Move: "Growth Compass" - colorful radial progress ring with gradient,
-     particle tooltip, and scroll-synced fill. Global ornaments: floating shapes,
-     ambient gradients, confetti burst, section sparkles.
+   Hybrid: Claymorphism for hero/key moments, Minimal for content.
+   Based on sketch 002 (Clay Organic Adventure) + scroll-craft engine.
    ========================================================================== */
 
 export default function Home() {
@@ -58,111 +61,13 @@ export default function Home() {
       <div className="sc-grain" aria-hidden="true"></div>
 
       <main id="top">
-        {/* ================================================================
-             ACT 1 — RECOGNITION (pin)
-             Warm morning moment. Photo holds, copy greets with kinetic lines.
-             ================================================================ */}
-        <section
-          data-sc-act="pin"
-          data-sc-span="2.8"
-          data-sc-dwell="0.35"
-          data-sc-drift="#fdfbf7"
-          aria-labelledby="act1-title"
-        >
-          <div data-sc-stage>
-            <img
-              className="sc-stage__poster"
-              src="/assets/hero-poster.webp"
-              alt=""
-              width="1920"
-              height="1080"
-            />
-            <div className="sc-scrim sc-scrim--lead" aria-hidden="true"></div>
+        {/* ACT 1: Hero - Full Claymorphism */}
+        <HeroSection />
 
-            <div className="sc-copy sc-copy--lead" data-sc-cue="0 0.78 0">
-              <div className="clay-blob blob-1 clay-peach relative z-10" style={{ maxWidth: '800px' }}>
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--clay-1)] rounded-full opacity-30 blur-xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--clay-3)] blob-2 opacity-25 blur-xl"></div>
-                <div className="p-8 md:p-12 lg:p-16 max-w-3xl mx-auto">
-                  <h1
-                    id="act1-title"
-                    className="sc-display sc-display--xl"
-                    data-sc-kinetic="lines"
-                  >
-                    Setiap pagi dimulai dengan doa & harapan.
-                  </h1>
-                  <p className="sc-body">
-                    Anak yang ceria, berakhlak mulia, siap belajar. Pilihan sekolah yang tepat.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ACT 2 & 4: Features - Sticky Organic Cards + Organic Grid */}
+        <FeaturesSection />
 
-        {/* ================================================================
-           ACT 2 — TENSION (pin)
-           The weight of the wrong choice. Visual cards with stagger reveal.
-           Overlapping cues ~15% so there's never a gap.
-           ================================================================ */}
-        <section
-          data-sc-act="pin"
-          data-sc-span="3.2"
-          data-sc-drift="#fef8f0"
-          aria-labelledby="act2-title"
-        >
-          <div data-sc-stage className="argument">
-            <div className="clay-blob blob-2 clay-lavender max-w-7xl w-full relative z-10" style={{ maxWidth: '1120px' }}>
-              <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-4)] blob-4 opacity-20 blur-xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-[var(--clay-7)] blob-5 opacity-20 blur-xl"></div>
-
-              <div className="p-8 md:p-16">
-                <div className="tension-stack" data-sc-in data-sc-stagger="100">
-                  <header className="tension-header">
-                    <span className="sc-label">Masalah Nyata</span>
-                    <h2 id="act2-title" className="sc-display sc-display--lg" data-sc-kinetic="lines">
-                      Pilihan TK yang salah: fondasi 6 tahun goyah.
-                    </h2>
-                  </header>
-
-                  <div className="tension-cards" role="list">
-                    {[
-                      { icon: BookOpen, label: "Kurikulum Tidak Seimbang", desc: "Fokus akademik terlalu dini, mengabaikan bermain & eksplorasi — fondasi karakter goyah." },
-                      { icon: Users, label: "Guru Kurang Sabar & Terlatih", desc: "Tanpa sertifikasi PG-PAUD, rasio guru:anak tidak ideal, turnover tinggi." },
-                      { icon: Shield, label: "Fasilitas Tidak Aman & Standar", desc: "Peralatan tidak SNI, area bermain minim, CCTV tidak penuh, akses tidak terkontrol." },
-                      { icon: Zap, label: "Rasa Ingin Tahu Sirna", desc: "Anak kehilangan cinta belajar & kepercayaan diri sebelum waktunya." },
-                    ].map((item, i) => (
-                      <article key={item.label} className="tension-card" style={{ transitionDelay: `${i * 100}ms` }} data-sc-cue={`${0.15 + i * 0.2} ${0.45 + i * 0.2}`}>
-                        <div className="tension-card__icon" aria-hidden="true">
-                          <item.icon className="h-7 w-7" />
-                        </div>
-                        <div className="tension-card__content">
-                          <h3 className="sc-display sc-display--md">{item.label}</h3>
-                          <p className="sc-body">{item.desc}</p>
-                        </div>
-                        <span className="tension-card__pulse" aria-hidden="true" />
-                      </article>
-                    ))}
-                  </div>
-
-                  <footer className="tension-close" data-sc-cue="0.88">
-                    <div className="clay-blob blob-3 clay-peach p-6 max-w-2xl mx-auto">
-                      <p className="sc-lede sc-lede--impact" data-sc-kinetic="chars">
-                        Bukan soal biaya. Soal masa depan yang tak terulang.
-                      </p>
-                    </div>
-                  </footer>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ================================================================
-           ACT 3 — TURN (reveal + flow)
-           The wipe is a change of state. MXDP enters. Then a flow section
-           with stagger reveal for the core promise.
-           ================================================================ */}
+        {/* ACT 3: Turn - Flow section with hero image */}
         <section
           className="sc-section"
           data-sc-act="flow"
@@ -172,8 +77,8 @@ export default function Home() {
           <div className="sc-wrap split">
             <div className="sc-stack" data-sc-in data-sc-stagger="70">
               <div className="clay-blob blob-4 clay-mint relative z-10" style={{ maxWidth: '720px' }}>
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--clay-3)] blob-5 opacity-25 blur-xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--clay-5)] blob-6 opacity-20 blur-xl"></div>
+                <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--clay-3)] blob-5 opacity-25 blur-xl" aria-hidden="true"></div>
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--clay-5)] blob-6 opacity-20 blur-xl" aria-hidden="true"></div>
                 <div className="p-8 md:p-12 lg:p-16 max-w-2xl mx-auto">
                   <h2 id="act3-title" className="sc-display sc-display--lg" data-sc-kinetic="lines">
                     Apa yang berubah saat MXDP hadir.
@@ -206,10 +111,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ================================================================
-           ACT 4 — SUBSTANCE (pin)
-           Macro texture: close-ups of real learning moments. Trail-anchored copy.
-           ================================================================ */}
+        {/* ACT 4: Substance - Pin with poster */}
         <section
           data-sc-act="pin"
           data-sc-span="2.2"
@@ -229,8 +131,8 @@ export default function Home() {
 
             <div className="sc-copy sc-copy--trail" data-sc-cue="0.14 0.86">
               <div className="clay-blob blob-5 clay-sand relative z-10" style={{ maxWidth: '640px' }}>
-                <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--clay-5)] blob-1 opacity-25 blur-xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--clay-2)] blob-2 opacity-20 blur-xl"></div>
+                <div className="absolute -top-6 -right-6 w-20 h-20 bg-[var(--clay-5)] blob-1 opacity-25 blur-xl" aria-hidden="true"></div>
+                <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-[var(--clay-2)] blob-2 opacity-20 blur-xl" aria-hidden="true"></div>
                 <div className="p-8 md:p-12 lg:p-16 max-w-2xl mx-auto">
                   <h2
                     id="act4-title"
@@ -245,350 +147,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ================================================================
-           ACT 5 — RANGE (pan)
-           Lateral rail: the program lineup. One viewport-height per item + 1.
-           Items stagger in from --sc-p. Trail becomes band on mobile.
-           ================================================================ */}
-        <section
-          data-sc-act="pan"
-          data-sc-span="4.2"
-          data-sc-drift="#fdfbf7"
-          aria-labelledby="act5-title"
-        >
-          <div data-sc-stage>
-            <div className="relative z-10">
-              <div className="clay-blob blob-6 clay-blue max-w-7xl relative p-4 md:p-8" style={{ maxWidth: '1120px' }}>
-                <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-6)] blob-7 opacity-25 blur-2xl"></div>
-                <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-3)] blob-8 opacity-20 blur-2xl"></div>
+        {/* ACT 5: Programs - Pan rail */}
+        <ProgramsSection />
 
-                <div className="p-4 md:p-8">
-                  <div className="rail" data-sc-pan="0.06">
-                {/* Lead card - acts as heading + overflow anchor */}
-                <article className="rail__lead sc-stack">
-                  <div className="clay-blob blob-1 clay-peach p-6 md:p-8 max-w-xl mx-auto">
-                    <h2 id="act5-title" className="sc-display sc-display--md">
-                      Program untuk setiap tahap
-                    </h2>
-                    <p className="sc-body">
-                      Pilih usia, lihat detail, daftar langsung.
-                    </p>
-                  </div>
-                </article>
+        {/* ACT 6: Facilities - Pan rail */}
+        <FacilitiesSection />
 
-                {/* Program 1: Toddler */}
-                <article className="program-card" data-sc-tilt="6">
-                  <div className="program-card__media">
-                    <img src="/assets/program-toddler.webp" alt="Toddler Class activities" width="400" height="300" />
-                  </div>
-                  <div className="program-card__content">
-                    <span className="sc-label">1.5 – 3 Tahun</span>
-                    <h3 className="sc-display sc-display--md">Toddler Class</h3>
-                    <p className="sc-body">Pengenalan lingkungan melalui bermain terstruktur. Motorik, bahasa, sosialisasi awal, doa harian.</p>
-                    <ul className="program-card__features" role="list">
-                      <li>Pengenalan Bahasa & Doa</li>
-                      <li>Motorik Halus & Kasar</li>
-                      <li>Sosialisasi & Sharing</li>
-                      <li>Music & Movement</li>
-                    </ul>
-                  </div>
-                </article>
+        {/* ACT 7: Teachers - Pin + stagger */}
+        <TeachersSection />
 
-                {/* Program 2: Playgroup */}
-                <article className="program-card" data-sc-tilt="6">
-                  <div className="program-card__media">
-                    <img src="/assets/program-playgroup.webp" alt="Playgroup activities" width="400" height="300" />
-                  </div>
-                  <div className="program-card__content">
-                    <span className="sc-label">3 – 4 Tahun</span>
-                    <h3 className="sc-display sc-display--md">Playgroup</h3>
-                    <p className="sc-body">Kreativitas & kemandirian melalui bermain terarah. Phonics, pre-math, seni, outdoor, hafalan surat pendek.</p>
-                    <ul className="program-card__features" role="list">
-                      <li>Phonics Awareness</li>
-                      <li>Pre-Math Concepts</li>
-                      <li>Art, Craft & Hafalan</li>
-                      <li>Outdoor Exploration</li>
-                    </ul>
-                  </div>
-                </article>
+        {/* ACT 8: Safety - Pin */}
+        <SafetySection />
 
-                {/* Program 3: TK A */}
-                <article className="program-card" data-sc-tilt="6">
-                  <div className="program-card__media">
-                    <img src="/assets/program-tka.webp" alt="TK A classroom" width="400" height="300" />
-                  </div>
-                  <div className="program-card__content">
-                    <span className="sc-label">4 – 5 Tahun</span>
-                    <h3 className="sc-display sc-display--md">TK A</h3>
-                    <p className="sc-body">Persiapan SD: literasi, numerasi, karakter Islami. Reading readiness, number sense, STEAM, akhlak mulia.</p>
-                    <ul className="program-card__features" role="list">
-                      <li>Reading Readiness & Huruf Hijaiyah</li>
-                      <li>Number Sense & Logika</li>
-                      <li>Character Building & Akhlak</li>
-                      <li>STEAM & Keterampilan Hidup</li>
-                    </ul>
-                  </div>
-                </article>
-
-                {/* Program 4: TK B */}
-                <article className="program-card" data-sc-tilt="6">
-                  <div className="program-card__media">
-                    <img src="/assets/program-tkb.webp" alt="TK B graduation" width="400" height="300" />
-                  </div>
-                  <div className="program-card__content">
-                    <span className="sc-label">5 – 6 Tahun</span>
-                    <h3 className="sc-display sc-display--md">TK B</h3>
-                    <p className="sc-body">Persiapan SD komprehensif. Advanced literacy, math mastery, leadership, hafalan juz 30, transisi SD lancar.</p>
-                    <ul className="program-card__features" role="list">
-                      <li>Advanced Literacy & Juz 30</li>
-                      <li>Math Mastery & Pemecahan Masalah</li>
-                      <li>Leadership & Tanggung Jawab</li>
-                      <li>Primary Transition & Wawancara SD</li>
-                    </ul>
-                  </div>
-                </article>
-
-                {/* Closing note card - gives rail the width it needs */}
-                <article className="rail__close sc-stack">
-                  <div className="clay-blob blob-2 clay-lavender p-6 md:p-8 max-w-xl mx-auto">
-                    <h3 className="sc-display sc-display--md">Setiap program, satu janji.</h3>
-                    <p className="sc-body">Kurikulum terintegrasi Islami. Guru yang peduli. Hasil yang terukur.</p>
-                    <Link href="/program" className="cta cta--secondary inline-flex">
-                      Lihat Semua Program
-                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                    </Link>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-        {/* ================================================================
-           ACT 6 — FACILITIES (pan + reveal)
-           Another pan rail but for facilities. Reveal on images.
-           ================================================================ */}
-        <section
-          data-sc-act="pan"
-          data-sc-span="3.8"
-          data-sc-drift="#fef8f0"
-          aria-labelledby="act6-title"
-        >
-          <div data-sc-stage>
-            <div className="relative z-10">
-              <div className="clay-blob blob-7 clay-rose max-w-7xl relative p-4 md:p-8" style={{ maxWidth: '1120px' }}>
-                <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-7)] blob-4 opacity-25 blur-2xl"></div>
-                <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-5)] blob-5 opacity-20 blur-2xl"></div>
-
-                <div className="p-4 md:p-8">
-                  <div className="rail" data-sc-pan="0.06">
-                <article className="rail__lead sc-stack">
-                  <div className="clay-blob blob-1 clay-peach p-6 md:p-8 max-w-xl mx-auto">
-                    <h2 id="act6-title" className="sc-display sc-display--md">
-                      Fasilitas lengkap untuk tumbuh kembang optimal
-                    </h2>
-                    <p className="sc-body">
-                      Ruang belajar modern. Musholla & ruang ibadah. Kantin bergizi. Ruang tidur. Area bermain SNI.
-                    </p>
-                  </div>
-                </article>
-
-                <article className="facility-card" data-sc-tilt="6">
-                  <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                    <img src="/assets/facility-classroom.webp" alt="Ruang Kelas Cerdas" width="400" height="300" />
-                  </figure>
-                  <div className="facility-card__content">
-                    <h3 className="sc-display sc-display--md">Ruang Kelas Cerdas</h3>
-                    <p className="sc-body">AC, Proyektor Interaktif, WiFi, Furnitur Ergonomis, Sudut Baca.</p>
-                  </div>
-                </article>
-
-                <article className="facility-card" data-sc-tilt="6">
-                  <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                    <img src="/assets/facility-steam.webp" alt="Laboratorium STEAM" width="400" height="300" />
-                  </figure>
-                  <div className="facility-card__content">
-                    <h3 className="sc-display sc-display--md">Laboratorium STEAM & Komputer</h3>
-                    <p className="sc-body">Kit Robotik, Laptop/Tablet, Alat Eksperimen, Whiteboard Digital, Coding Dasar.</p>
-                  </div>
-                </article>
-
-                <article className="facility-card" data-sc-tilt="6">
-                  <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                    <img src="/assets/facility-playground.webp" alt="Area Bermain Aman" width="400" height="300" />
-                  </figure>
-                  <div className="facility-card__content">
-                    <h3 className="sc-display sc-display--md">Area Bermain & Olahraga</h3>
-                    <p className="sc-body">Lantai Lempung, Peralatan SNI, Naungan, CCTV 24/7, Lapangan Mini.</p>
-                  </div>
-                </article>
-
-                <article className="facility-card" data-sc-tilt="6">
-                  <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
-                    <img src="/assets/facility-library.webp" alt="Perpustakaan & Reading Corner" width="400" height="300" />
-                  </figure>
-                  <div className="facility-card__content">
-                    <h3 className="sc-display sc-display--md">Perpustakaan, Musholla & Kantin</h3>
-                    <p className="sc-body">Koleksi Buku Islami & Anak, Musholla Luas, Kantin Bergizi Halal, Ruang Tidur Nyaman.</p>
-                  </div>
-                </article>
-
-                <article className="rail__close sc-stack">
-                  <div className="clay-blob blob-2 clay-lavender p-6 md:p-8 max-w-xl mx-auto">
-                    <h3 className="sc-display sc-display--md">Lebih dari 15 fasilitas terintegrasi.</h3>
-                    <p className="sc-body">Semua dirancang untuk tumbuh kembang optimal anak Anda.</p>
-                    <Link href="/fasilitas" className="cta cta--secondary inline-flex">
-                      Jelajahi Fasilitas
-                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                    </Link>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-        {/* ================================================================
-           ACT 7 — TEACHERS (pin + stagger)
-           Pinned stage with magnetic reveal. Teacher cards cascade in.
-           Spotlight follows pointer. Close CTA magnetizes.
-           ================================================================ */}
-        <section
-          data-sc-act="pin"
-          data-sc-span="3.5"
-          data-sc-drift="#fdfbf7"
-          aria-labelledby="act7-title"
-        >
-          <div data-sc-stage className="teachers-stage" data-sc-spotlight>
-            <div className="sc-wrap">
-              <header className="teachers-header sc-stack" data-sc-in data-sc-cue="0.05 0.4">
-                <span className="sc-label">Tim Pendidik</span>
-                <h2 id="act7-title" className="sc-display sc-display--lg" data-sc-kinetic="lines">
-                  Guru yang mengasuh, bukan hanya mengajar
-                </h2>
-                <p className="sc-body" data-sc-kinetic="lines">
-                  Lebih dari 150 pendidik bersertifikat S1 PG-PAUD dengan pengalaman rata-rata 8 tahun.
-                  Setiap guru menjalani pelatihan berkala: pedagogi Islami, psikologi anak, first aid,
-                  tahsin & hafalan, dan integrasi teknologi. Mereka tidak hanya mengajar —
-                  mereka mengasuh, mendengar, dan meneladani akhlak mulia setiap hari.
-                </p>
-              </header>
-
-              <div className="clay-blob blob-8 clay-palemint max-w-7xl w-full relative z-10 p-6 md:p-10" style={{ maxWidth: '1120px' }}>
-                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[var(--clay-8)] blob-3 opacity-25 blur-2xl"></div>
-                <div className="absolute -bottom-10 -left-10 w-28 h-28 bg-[var(--clay-2)] blob-4 opacity-20 blur-2xl"></div>
-
-                <div className="p-6 md:p-10">
-                  <div className="teacher-showcase" data-sc-in data-sc-stagger="100" role="list">
-                    {[
-                      { name: "Ibu Sari Dewi, S.Pd", role: "Kepala TK & Guru Kelas TK B", exp: "12 tahun", specialty: "Pedagogi Islami & Kurikulum Merdeka", icon: Award, colorStart: "var(--clay-3)", colorEnd: "var(--clay-6)" },
-                      { name: "Bapak Ahmad Rizki, M.Pd", role: "Koordinator STEAM & Coding", exp: "9 tahun", specialty: "Computational Thinking & Robotik", icon: Zap, colorStart: "var(--clay-4)", colorEnd: "var(--clay-7)" },
-                      { name: "Ibu Maya Putri, S.Psi", role: "Guru Bimbingan & Konseling", exp: "7 tahun", specialty: "Psikologi Anak & Kecerdasan Emosional", icon: Users, colorStart: "var(--clay-5)", colorEnd: "var(--clay-1)" },
-                      { name: "Ustazah Rina Wijaya, S.Pd.I", role: "Guru Tahsin, Hafalan & Akhlak", exp: "10 tahun", specialty: "Tahsin, Hafalan Juz 30, Pendidikan Karakter", icon: BookOpen, colorStart: "var(--clay-8)", colorEnd: "var(--clay-3)" },
-                    ].map((teacher, i) => (
-                      <article
-                        key={teacher.name}
-                        className="teacher-showcase__card"
-                        style={{
-                          transitionDelay: `${i * 100}ms`,
-                        } as React.CSSProperties}
-                        data-sc-cue={`${0.15 + i * 0.18} ${0.55 + i * 0.18}`}
-                      >
-                        <div className="teacher-showcase__avatar" aria-hidden="true" style={{ background: `linear-gradient(135deg, ${teacher.colorStart}, ${teacher.colorEnd})` }}>
-                          <teacher.icon className="h-8 w-8" />
-                        </div>
-                        <div className="teacher-showcase__content">
-                          <h3 className="sc-display sc-display--md">{teacher.name}</h3>
-                          <p className="sc-label">{teacher.role}</p>
-                          <p className="sc-body teacher-showcase__specialty">{teacher.specialty}</p>
-                          <div className="teacher-showcase__meta">
-                            <span className="teacher-showcase__exp">{teacher.exp} pengalaman</span>
-                            <span className="teacher-showcase__badge badge-3d badge-mint">Sertifikat PG-PAUD</span>
-                          </div>
-                        </div>
-                        <div className="teacher-showcase__glow" aria-hidden="true" style={{ background: `linear-gradient(135deg, ${teacher.colorStart}, ${teacher.colorEnd})` }} />
-                      </article>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <footer className="teachers-close sc-stack" data-sc-cue="0.85">
-                <div className="clay-blob blob-1 clay-peach p-4 md:p-6 inline-block max-w-xl mx-auto">
-                  <Link href="/guru" className="cta cta--primary cta--magnet" data-sc-magnet="0.2" data-sc-rise="0">
-                    Kenali Semua Guru Kami
-                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                  </Link>
-                  <p className="foot-note">150+ guru &bull; Rata-rata 8 th pengalaman &bull; Pelatihan berkala &bull; First Aid certified</p>
-                </div>
-              </footer>
-            </div>
-          </div>
-        </section>
-
-        {/* ================================================================
-           ACT 8 — SAFETY & WELLBEING (pin)
-           Short pinned act. One-value hold cues so nothing fades before page ends.
-           Spotlight + magnetic CTA on the close.
-           ================================================================ */}
-        <section
-          data-sc-act="pin"
-          data-sc-span="2.0"
-          data-sc-drift="#fdfbf7"
-          aria-labelledby="act8-title"
-        >
-          <div data-sc-stage className="safety-stage" data-sc-spotlight>
-            <div className="clay-blob blob-4 clay-blue max-w-7xl w-full relative z-10 p-6 md:p-10" style={{ maxWidth: '1120px' }}>
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-[var(--clay-6)] blob-7 opacity-25 blur-2xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-3)] blob-8 opacity-20 blur-2xl"></div>
-
-              <div className="p-6 md:p-10">
-                <div className="safety-grid">
-                  {[
-                    { icon: Video, label: "CCTV 24/7", desc: "Pengawasan penuh di seluruh area sekolah" },
-                    { icon: Shield, label: "Akses Terkontrol", desc: "Sistem keamanan pintu masuk & keluar, kartu orang tua" },
-                    { icon: CheckCircle, label: "Standar SNI & Halal", desc: "Peralatan bermain SNI, makanan berkerti halal MUI" },
-                    { icon: ThermometerSun, label: "Kesehatan & Nutrisi", desc: "Pemeriksaan rutin, klinik sekolah, menu bergizi seimbang" },
-                  ].map((item, i) => (
-                    <article key={item.label} className="safety-card" style={{ transitionDelay: `${i * 60}ms` }}>
-                      <div className="safety-card__icon" aria-hidden="true">
-                        <item.icon className="h-7 w-7" />
-                      </div>
-                      <h3 className="sc-display sc-display--md">{item.label}</h3>
-                      <p className="sc-body">{item.desc}</p>
-                    </article>
-                  ))}
-                </div>
-
-                {/* Close: magnetic CTA inside pinned stage, footer inside stage */}
-                <footer className="close-foot">
-                  <div className="clay-blob blob-2 clay-lavender p-6 md:p-8 max-w-2xl mx-auto">
-                    <h2 id="act8-title" className="sc-display sc-display--lg" data-sc-cue="0.06" data-sc-kinetic="lines">
-                      Siap memberikan fondasi terbaik untuk anak Anda?
-                    </h2>
-                    <Link
-                      href="/ppdb"
-                      className="cta cta--primary cta--magnet"
-                      data-sc-magnet="0.28"
-                      data-sc-cue="0.06"
-                      data-sc-rise="0"
-                    >
-                      Daftar PPDB Sekarang
-                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                    </Link>
-                    <p className="foot-note">
-                      Proses cepat & aman • Konsultasi gratis • Survei sekolah gratis
-                    </p>
-                  </div>
-                </footer>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* ACT 9: Final CTA - Reveal */}
+        <FinalCTASection />
       </main>
 
       {/* ========================================================================
@@ -653,6 +225,7 @@ export default function Home() {
       <div className="sc-sparkle-burst" data-act="6" aria-hidden="true"></div>
       <div className="sc-sparkle-burst" data-act="7" aria-hidden="true"></div>
       <div className="sc-sparkle-burst" data-act="8" aria-hidden="true"></div>
+      <div className="sc-sparkle-burst" data-act="9" aria-hidden="true"></div>
 
       {/* ========================================================================
          Client-side initialization: ScrollCraft + Growth Compass + Ornaments
