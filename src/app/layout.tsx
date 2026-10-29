@@ -48,6 +48,17 @@ export default function RootLayout({
         <EducationalOrganizationJsonLd />
         {/* ScrollCraft Engine - loads before page content */}
         <script src="/scrollcraft/scrollcraft.js" defer></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (window.ScrollCraft) {
+                  window.ScrollCraft.mount(document.body);
+                }
+              })();
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>

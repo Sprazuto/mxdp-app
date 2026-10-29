@@ -228,20 +228,15 @@ export default function Home() {
       <div className="sc-sparkle-burst" data-act="9" aria-hidden="true"></div>
 
       {/* ========================================================================
-         Client-side initialization: ScrollCraft + Growth Compass + Ornaments
+         Client-side initialization: Growth Compass + Ornaments
+         ScrollCraft is mounted in root layout
          ======================================================================== */}
       <Script
-        id="scrollcraft-init"
+        id="growth-compass-init"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             (function() {
-              // Mount ScrollCraft
-              if (window.ScrollCraft) {
-                window.ScrollCraft.mount(document.body);
-              }
-
-              // ================================================================
               // GROWTH COMPASS LOGIC
               // ================================================================
               const compass = document.querySelector('.growth-compass');
