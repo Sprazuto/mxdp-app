@@ -15,21 +15,23 @@ export default function SafetySection() {
     <section
       data-sc-act="pin"
       data-sc-span="2.0"
-      className="relative min-h-screen px-4 md:px-8"
+      className="relative"
       aria-labelledby="safety-title"
     >
-      <div className="relative z-10">
-        <div className="clay-blob blob-4 clay-blue max-w-7xl w-full relative p-6 md:p-10">
+      {/* Sticky stage */}
+      <div className="sc-stage" data-sc-stage>
+        <div className="clay-blob blob-4 clay-blue max-w-7xl w-full h-full relative p-6 md:p-10">
           <div className="absolute -top-8 -right-8 w-32 h-32 bg-[var(--clay-6)] blob-7 opacity-25 blur-2xl" aria-hidden="true"></div>
           <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-3)] blob-8 opacity-20 blur-2xl" aria-hidden="true"></div>
 
-          <div className="p-6 md:p-10">
-            <div className="safety-grid grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="p-6 md:p-10 h-full flex flex-col">
+            <div className="safety-grid grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1">
               {safetyItems.map((item, i) => (
                 <article
                   key={item.label}
                   className="safety-card"
                   style={{ transitionDelay: `${i * 60}ms` }}
+                  data-sc-cue={`${0.1 + i * 0.15} ${0.5 + i * 0.1}`}
                 >
                   <div className="safety-card__icon" aria-hidden="true">
                     <item.icon className="h-7 w-7" />
@@ -64,6 +66,7 @@ export default function SafetySection() {
         </div>
       </div>
 
+      {/* Wavy divider */}
       <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none sc-wave-divider" aria-hidden="true">
         <svg viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <path d="M0,40 C300,80 600,0 900,40 S1200,80 1200,40 L1200,80 0,80 Z" fill="var(--sc-canvas)" />

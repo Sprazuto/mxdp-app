@@ -31,40 +31,47 @@ export default function FeaturesSection() {
       {/* ACT 2: Sticky Organic Cards - Featured Characters */}
       <section
         data-sc-act="pin"
-        className="pin stagger z-10 relative min-h-screen flex items-center justify-center px-4 md:px-8"
+        data-sc-span="2.5"
+        className="pin stagger z-10 relative"
         aria-labelledby="features-title"
       >
-        <div className="clay-blob blob-2 clay-lavender max-w-7xl w-full relative z-10 p-8 md:p-16">
-          <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-4)] blob-4 opacity-20 blur-xl" aria-hidden="true"></div>
-          <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-[var(--clay-7)] blob-5 opacity-20 blur-xl" aria-hidden="true"></div>
+        {/* Sticky stage */}
+        <div className="sc-stage" data-sc-stage>
+          <div className="clay-blob blob-2 clay-lavender w-full h-full flex items-center justify-center p-8 md:p-16">
+            <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-4)] blob-4 opacity-20 blur-xl" aria-hidden="true"></div>
+            <div className="absolute -bottom-8 -left-8 w-20 h-20 bg-[var(--clay-7)] blob-5 opacity-20 blur-xl" aria-hidden="true"></div>
 
-          <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
-            <div className="flex-1 min-w-[250px] relative z-10">
-              <h2 id="features-title" className="sc-display sc-display--lg text-[var(--clay-4)] mb-6 leading-tight">
-                Bentuk-bentuk<br />yang Hidup
-              </h2>
-              <p className="text-lg md:text-xl text-gray-500">
-                Setiap blob punya warna, karakter, dan cerita sendiri. Pilih yang memanggilmu.
-              </p>
-            </div>
+            <div className="relative z-10 w-full max-w-7xl clay-inner clay-inner--lg">
+              <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-start md:items-center">
+                <div className="flex-1 min-w-[250px]">
+                  <h2 id="features-title" className="sc-display sc-display--lg text-[var(--clay-4)] mb-6 leading-tight" data-sc-cue="0 0.6">
+                    Bentuk-bentuk<br />yang Hidup
+                  </h2>
+                  <p className="text-lg md:text-xl text-gray-500" data-sc-cue="0.1 0.7">
+                    Setiap blob punya warna, karakter, dan cerita sendiri. Pilih yang memanggilmu.
+                  </p>
+                </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl relative z-10">
-              {features.map((feature, i) => (
-                <article
-                  key={feature.name}
-                  className={`clay-blob ${feature.blob} ${feature.color} p-8 md:p-10 text-center cursor-pointer group relative`}
-                  style={{ transitionDelay: `${i * 80}ms` }}
-                >
-                  <div className={`absolute -top-3 -right-3 w-16 h-16 ${feature.iconBg} ${feature.iconBlob} opacity-30 blur-lg`} aria-hidden="true" />
-                  <div className="w-24 h-24 mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
-                    <div className={`w-full h-full ${feature.iconBg} ${feature.iconBlob} flex items-center justify-center shadow-[8px_8px_16px_rgba(0,0,0,0.1)]`}>
-                      <feature.icon className="w-12 h-12 text-white" aria-hidden="true" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-2">{feature.name}</h3>
-                  <p className="text-sm text-gray-500">{feature.desc}</p>
-                </article>
-              ))}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-5xl">
+                  {features.map((feature, i) => (
+                    <article
+                      key={feature.name}
+                      className={`clay-blob ${feature.blob} ${feature.color} p-8 md:p-10 text-center cursor-pointer group relative`}
+                      style={{ transitionDelay: `${i * 80}ms` }}
+                      data-sc-cue={`0.2 ${0.3 + i * 0.05}`}
+                    >
+                      <div className={`absolute -top-3 -right-3 w-16 h-16 ${feature.iconBg} ${feature.iconBlob} opacity-30 blur-lg`} aria-hidden="true" />
+                      <div className="w-24 h-24 mx-auto mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <div className={`w-full h-full ${feature.iconBg} ${feature.iconBlob} flex items-center justify-center shadow-[8px_8px_16px_rgba(0,0,0,0.1)]`}>
+                          <feature.icon className="w-12 h-12 text-white" aria-hidden="true" />
+                        </div>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold mb-2">{feature.name}</h3>
+                      <p className="text-sm text-gray-500">{feature.desc}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -88,7 +95,7 @@ export default function FeaturesSection() {
           <div className="absolute -top-12 -right-12 w-36 h-36 bg-[var(--clay-3)] blob-1 opacity-20 blur-2xl" aria-hidden="true"></div>
           <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-[var(--clay-5)] blob-6 opacity-20 blur-2xl" aria-hidden="true"></div>
 
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-sc-cue="0 0.3">
             <h2 id="categories-title" className="sc-display sc-display--lg text-[var(--clay-3)] mb-4">
               Koleksi Organik
             </h2>
@@ -101,6 +108,8 @@ export default function FeaturesSection() {
                 key={cat.name}
                 className={`clay-blob ${cat.blob} ${cat.color} p-8 cursor-pointer group relative overflow-hidden`}
                 style={{ transitionDelay: `${i * 60}ms` }}
+                data-sc-in={true}
+                data-sc-stagger="80"
               >
                 <div className={`absolute top-4 right-4 w-28 h-28 ${cat.iconColor} ${cat.iconBlob} opacity-20 blur-xl`} aria-hidden="true" />
                 <div className={`w-12 h-12 mx-auto mb-6 text-[var(--${cat.iconColor})]`}>

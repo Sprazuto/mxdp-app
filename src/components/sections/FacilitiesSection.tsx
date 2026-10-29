@@ -39,17 +39,18 @@ export default function FacilitiesSection() {
     <section
       data-sc-act="pan"
       data-sc-span="3.8"
-      className="relative min-h-screen px-4 md:px-8"
+      className="relative"
       aria-labelledby="facilities-title"
     >
-      <div className="relative z-10">
-        <div className="clay-blob blob-7 clay-rose max-w-7xl relative p-4 md:p-8">
+      {/* Sticky stage for pan act */}
+      <div className="sc-stage" data-sc-stage>
+        <div className="clay-blob blob-7 clay-rose max-w-7xl w-full h-full relative p-4 md:p-8">
           <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-7)] blob-4 opacity-25 blur-2xl" aria-hidden="true"></div>
           <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-5)] blob-5 opacity-20 blur-2xl" aria-hidden="true"></div>
 
-          <div className="p-4 md:p-8">
-            <div className="rail" data-sc-pan="0.06">
-              <article className="rail__lead sc-stack">
+          <div className="p-4 md:p-8 h-full flex items-center">
+            <div className="rail" data-sc-pan="0.06" role="list">
+              <article className="rail__lead sc-stack" data-sc-cue="0 0.15">
                 <div className="clay-blob blob-1 clay-peach p-6 md:p-8 max-w-xl mx-auto text-center">
                   <h2 id="facilities-title" className="sc-display sc-display--md mb-4">
                     Fasilitas lengkap untuk tumbuh kembang optimal
@@ -65,6 +66,8 @@ export default function FacilitiesSection() {
                   key={facility.title}
                   className={`facility-card ${facility.color} ${facility.blob}`}
                   data-sc-tilt="6"
+                  data-sc-cue={`0.1 ${0.25 + i * 0.15}`}
+                  role="listitem"
                 >
                   <figure data-sc-reveal="left" data-sc-reveal-at="0.2 0.6">
                     <img src={facility.image} alt={facility.title} width="400" height="300" />
@@ -76,7 +79,7 @@ export default function FacilitiesSection() {
                 </article>
               ))}
 
-              <article className="rail__close sc-stack">
+              <article className="rail__close sc-stack" data-sc-cue="0.85 1">
                 <div className="clay-blob blob-2 clay-lavender p-6 md:p-8 max-w-xl mx-auto text-center">
                   <h3 className="sc-display sc-display--md mb-4">Lebih dari 15 fasilitas terintegrasi.</h3>
                   <p className="sc-body mb-6">Semua dirancang untuk tumbuh kembang optimal anak Anda.</p>
@@ -91,6 +94,7 @@ export default function FacilitiesSection() {
         </div>
       </div>
 
+      {/* Wavy divider */}
       <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none sc-wave-divider" aria-hidden="true">
         <svg viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <path d="M0,40 C300,80 600,0 900,40 S1200,80 1200,40 L1200,80 0,80 Z" fill="var(--sc-canvas)" />

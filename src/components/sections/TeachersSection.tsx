@@ -51,15 +51,16 @@ export default function TeachersSection() {
     <section
       data-sc-act="pin"
       data-sc-span="3.5"
-      className="relative min-h-screen px-4 md:px-8"
+      className="relative"
       aria-labelledby="teachers-title"
     >
-      <div className="relative z-10">
-        <div className="clay-blob blob-8 clay-palemint max-w-7xl w-full relative p-6 md:p-10">
+      {/* Sticky stage */}
+      <div className="sc-stage" data-sc-stage>
+        <div className="clay-blob blob-8 clay-palemint max-w-7xl w-full h-full relative p-6 md:p-10">
           <div className="absolute -top-10 -right-10 w-32 h-32 bg-[var(--clay-8)] blob-3 opacity-25 blur-2xl" aria-hidden="true"></div>
           <div className="absolute -bottom-10 -left-10 w-28 h-28 bg-[var(--clay-2)] blob-4 opacity-20 blur-2xl" aria-hidden="true"></div>
 
-          <div className="p-6 md:p-10">
+          <div className="p-6 md:p-10 h-full flex flex-col">
             <header className="teachers-header sc-stack text-center max-w-3xl mx-auto mb-12" data-sc-in data-sc-cue="0.05 0.4">
               <span className="sc-label text-[var(--clay-3)] font-bold mb-3 inline-block">Tim Pendidik</span>
               <h2 id="teachers-title" className="sc-display sc-display--lg mb-6" data-sc-kinetic="lines">
@@ -73,7 +74,7 @@ export default function TeachersSection() {
               </p>
             </header>
 
-            <div className="teacher-showcase grid grid-cols-1 sm:grid-cols-2 gap-6" data-sc-in data-sc-stagger="100" role="list">
+            <div className="teacher-showcase grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1" data-sc-in data-sc-stagger="100" role="list">
               {teachers.map((teacher, i) => (
                 <article
                   key={teacher.name}
@@ -105,20 +106,21 @@ export default function TeachersSection() {
             </div>
           </div>
         </div>
-
-        <footer className="teachers-close sc-stack text-center mt-12" data-sc-cue="0.85">
-          <div className="clay-blob blob-1 clay-peach p-4 md:p-6 inline-block max-w-xl mx-auto">
-            <Link href="/guru" className="cta cta--primary cta--magnet inline-flex" data-sc-magnet="0.2" data-sc-rise="0">
-              Kenali Semua Guru Kami
-              <ArrowRight className="h-5 w-5" aria-hidden="true" />
-            </Link>
-            <p className="foot-note mt-4 text-sm text-[var(--sc-ink-soft)]">
-              150+ guru • Rata-rata 8 th pengalaman • Pelatihan berkala • First Aid certified
-            </p>
-          </div>
-        </footer>
       </div>
 
+      <footer className="teachers-close sc-stack text-center mt-12" data-sc-cue="0.85">
+        <div className="clay-blob blob-1 clay-peach p-4 md:p-6 inline-block max-w-xl mx-auto">
+          <Link href="/guru" className="cta cta--primary cta--magnet inline-flex" data-sc-magnet="0.2" data-sc-rise="0">
+            Kenali Semua Guru Kami
+            <ArrowRight className="h-5 w-5" aria-hidden="true" />
+          </Link>
+          <p className="foot-note mt-4 text-sm text-[var(--sc-ink-soft)]">
+            150+ guru • Rata-rata 8 th pengalaman • Pelatihan berkala • First Aid certified
+          </p>
+        </div>
+      </footer>
+
+      {/* Wavy divider */}
       <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none sc-wave-divider" aria-hidden="true">
         <svg viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <path d="M0,40 C300,80 600,0 900,40 S1200,80 1200,40 L1200,80 0,80 Z" fill="var(--sc-canvas)" />

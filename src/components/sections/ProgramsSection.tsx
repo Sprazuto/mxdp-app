@@ -47,18 +47,19 @@ export default function ProgramsSection() {
     <section
       data-sc-act="pan"
       data-sc-span="4.2"
-      className="relative min-h-screen px-4 md:px-8"
+      className="relative"
       aria-labelledby="programs-title"
     >
-      <div className="relative z-10">
-        <div className="clay-blob blob-6 clay-blue max-w-7xl relative p-4 md:p-8">
+      {/* Sticky stage for pan act */}
+      <div className="sc-stage" data-sc-stage>
+        <div className="clay-blob blob-6 clay-blue max-w-7xl w-full h-full relative p-4 md:p-8">
           <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-6)] blob-7 opacity-25 blur-2xl" aria-hidden="true"></div>
           <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-3)] blob-8 opacity-20 blur-2xl" aria-hidden="true"></div>
 
-          <div className="p-4 md:p-8">
-            <div className="rail" data-sc-pan="0.06">
+          <div className="p-4 md:p-8 h-full flex items-center">
+            <div className="rail" data-sc-pan="0.06" role="list">
               {/* Lead card */}
-              <article className="rail__lead sc-stack">
+              <article className="rail__lead sc-stack" data-sc-cue="0 0.15">
                 <div className="clay-blob blob-1 clay-peach p-6 md:p-8 max-w-xl mx-auto text-center">
                   <h2 id="programs-title" className="sc-display sc-display--md mb-4">
                     Program untuk setiap tahap
@@ -73,6 +74,8 @@ export default function ProgramsSection() {
                   key={program.title}
                   className={`program-card ${program.color} ${program.blob}`}
                   data-sc-tilt="6"
+                  data-sc-cue={`0.1 ${0.25 + i * 0.15}`}
+                  role="listitem"
                 >
                   <div className="program-card__media">
                     <img src={program.image} alt={`${program.title} activities`} width="400" height="300" />
@@ -93,7 +96,7 @@ export default function ProgramsSection() {
               ))}
 
               {/* Closing card */}
-              <article className="rail__close sc-stack">
+              <article className="rail__close sc-stack" data-sc-cue="0.85 1">
                 <div className="clay-blob blob-2 clay-lavender p-6 md:p-8 max-w-xl mx-auto text-center">
                   <h3 className="sc-display sc-display--md mb-4">Setiap program, satu janji.</h3>
                   <p className="sc-body mb-6">Kurikulum terintegrasi Islami. Guru yang peduli. Hasil yang terukur.</p>
