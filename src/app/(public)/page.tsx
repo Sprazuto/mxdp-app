@@ -257,11 +257,13 @@ export default function Home() {
           aria-labelledby="act5-title"
         >
           <div data-sc-stage>
-            <div className="clay-blob blob-6 clay-blue max-w-7xl relative z-10 p-4 md:p-8" style={{ maxWidth: '1120px' }}>
-              <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-6)] blob-7 opacity-25 blur-2xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-3)] blob-8 opacity-20 blur-2xl"></div>
+            <div className="relative z-10">
+              <div className="clay-blob blob-6 clay-blue max-w-7xl relative p-4 md:p-8" style={{ maxWidth: '1120px' }}>
+                <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-6)] blob-7 opacity-25 blur-2xl"></div>
+                <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-3)] blob-8 opacity-20 blur-2xl"></div>
 
-              <div className="rail" data-sc-pan="0.06">
+                <div className="p-4 md:p-8">
+                  <div className="rail" data-sc-pan="0.06">
                 {/* Lead card - acts as heading + overflow anchor */}
                 <article className="rail__lead sc-stack">
                   <div className="clay-blob blob-1 clay-peach p-6 md:p-8 max-w-xl mx-auto">
@@ -360,7 +362,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
         {/* ================================================================
            ACT 6 — FACILITIES (pan + reveal)
@@ -373,11 +377,13 @@ export default function Home() {
           aria-labelledby="act6-title"
         >
           <div data-sc-stage>
-            <div className="clay-blob blob-7 clay-rose max-w-7xl relative z-10 p-4 md:p-8" style={{ maxWidth: '1120px' }}>
-              <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-7)] blob-4 opacity-25 blur-2xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-5)] blob-5 opacity-20 blur-2xl"></div>
+            <div className="relative z-10">
+              <div className="clay-blob blob-7 clay-rose max-w-7xl relative p-4 md:p-8" style={{ maxWidth: '1120px' }}>
+                <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--clay-7)] blob-4 opacity-25 blur-2xl"></div>
+                <div className="absolute -bottom-8 -left-8 w-28 h-28 bg-[var(--clay-5)] blob-5 opacity-20 blur-2xl"></div>
 
-              <div className="rail" data-sc-pan="0.06">
+                <div className="p-4 md:p-8">
+                  <div className="rail" data-sc-pan="0.06">
                 <article className="rail__lead sc-stack">
                   <div className="clay-blob blob-1 clay-peach p-6 md:p-8 max-w-xl mx-auto">
                     <h2 id="act6-title" className="sc-display sc-display--md">
@@ -442,7 +448,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
 
         {/* ================================================================
            ACT 7 — TEACHERS (pin + stagger)
