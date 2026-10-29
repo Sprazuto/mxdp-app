@@ -5,7 +5,10 @@ import { Sparkles, Star, Heart, Award, Play } from "lucide-react";
 export default function HeroSection() {
   return (
     <section
-      data-sc-act="reveal"
+      data-sc-act="pin"
+      data-sc-span="2.8"
+      data-sc-dwell="0.35"
+      data-sc-drift="#fdfbf7"
       className="reveal z-10 relative min-h-screen flex items-center justify-center px-4 md:px-8"
       aria-labelledby="hero-title"
     >
@@ -46,7 +49,7 @@ export default function HeroSection() {
       </div>
 
       {/* Wavy divider */}
-      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none" aria-hidden="true">
+      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none sc-wave-divider" aria-hidden="true">
         <svg viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <path
             d="M0,40 C300,80 600,0 900,40 S1200,80 1200,40 L1200,80 0,80 Z"

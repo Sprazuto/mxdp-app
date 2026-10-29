@@ -91,7 +91,7 @@ export default function FacilitiesSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none" aria-hidden="true">
+      <div className="absolute bottom-0 left-0 w-full h-20 pointer-events-none sc-wave-divider" aria-hidden="true">
         <svg viewBox="0 0 1200 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
           <path d="M0,40 C300,80 600,0 900,40 S1200,80 1200,40 L1200,80 0,80 Z" fill="var(--sc-canvas)" />
         </svg>
