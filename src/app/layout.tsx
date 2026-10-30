@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import { EducationalOrganizationJsonLd } from '@/components/JsonLd'
+import ScrollCraftMount from '@/components/ScrollCraftMount'
 
 // ScrollCraft global type
 declare global {
@@ -57,26 +58,12 @@ export default function RootLayout({
     <html lang="id" className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}>
       <head>
         <EducationalOrganizationJsonLd />
-        {/* ScrollCraft Engine - loads before page content */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                var s = document.createElement('script');
-                s.src = '/scrollcraft/scrollcraft.js';
-                s.defer = true;
-                s.onload = function() {
-                  if (window.ScrollCraft) window.ScrollCraft.mount(document.body);
-                };
-                document.head.appendChild(s);
-              })();
-            `,
-          }}
-        />
+        <script src="/scrollcraft/scrollcraft.js" defer />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full flex flex-col">
+        <ScrollCraftMount />
         {children}
       </body>
     </html>
